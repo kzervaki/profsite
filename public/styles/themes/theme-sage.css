@@ -1,0 +1,12 @@
+/* theme-sage.css */
+
+[data-theme="theme-sage"] {
+  --theme-base-color: hsl(120 15% 95%);         /* soft sage background */
+  --theme-text-color: hsl(120 20% 20%);         /* dark sage text */
+  --theme-text-hover-color: hsl(120 30% 35%);   /* slightly brighter on hover */
+  --theme-background-image: url("/images/background-sage.png");
+
+  --theme-border-color: hsl(120 25% 70%);       /* subtle border */
+  --theme-surface-color: hsl(120 15% 85%);      /* card/panel background */
+ --theme-selection-color: hsl(120 40% 50% / 0.3); /* semi-transparent highlight */
+}

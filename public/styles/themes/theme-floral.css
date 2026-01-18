@@ -1,0 +1,12 @@
+/* theme-floral.css */
+
+[data-theme="theme-floral"] {
+  --theme-base-color: hsl(50 100% 98%);         /* soft floral white aura */
+  --theme-text-color: hsl(30 25% 20%);          /* warm dark text */
+  --theme-text-hover-color: hsl(30 40% 40%);    /* hover accent */
+  --theme-background-image: url("/images/background-floral.png");
+
+  --theme-border-color: hsl(30 50% 85%);        /* subtle warm border */
+  --theme-surface-color: hsl(50 100% 95%);      /* card/panel surface */
+  --theme-selection-color: hsl(50 100% 80% / 0.4); /* selection highlight */
+}

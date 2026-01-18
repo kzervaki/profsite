@@ -37,3 +37,11 @@
   --heading-margin-bottom: 0.75rem;
 }
 
+/* =========================
+   Borders
+   ========================= */
+:root {
+  /* Default border width for typographic elements (e.g., underlines, separators, panels) */
+  --text-border-width: 1px;
+}
+
