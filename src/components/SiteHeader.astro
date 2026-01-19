@@ -1,9 +1,10 @@
 ---
 import NavigationBar from "./NavigationBar.astro";
+import { CONFIG } from "../site-config";
 ---
 
 <header class="site-header">
-  <p>This is header: TODO</p>
+  <p>This is header: {CONFIG.todo}</p>
 </header>
 
 <NavigationBar />
