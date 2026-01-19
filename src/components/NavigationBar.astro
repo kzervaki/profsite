@@ -1,6 +1,22 @@
 ---
 import { CONFIG } from "../site-config";
+
+const currentPath = Astro.url.pathname;
+const isActive = (path) => currentPath === path;
 ---
+
 <nav class="navigation-bar">
   <p>This is nav bar: {CONFIG.todo}</p>
+
+  <ul>
+    <li>
+      <a href=`${import.meta.env.BASE_URL}/` class={isActive(`${import.meta.env.BASE_URL}/`) ? "active" : ""}>Home</a>
+    </li>
+    <li>
+      <a href=`${import.meta.env.BASE_URL}/approaches` class={isActive(`${import.meta.env.BASE_URL}/approaches`) ? "active" : ""}>Approaches</a>
+    </li>
+    <li>
+      <a href=`${import.meta.env.BASE_URL}/services` class={isActive(`${import.meta.env.BASE_URL}/services`) ? "active" : ""}>Services</a>
+    </li>
+  </ul>
 </nav>
