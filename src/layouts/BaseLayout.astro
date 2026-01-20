@@ -1,8 +1,31 @@
 ---
 import SiteHeader from "../components/SiteHeader.astro"
 import SiteFooter from "../components/SiteFooter.astro"
+import { CONFIG } from "../site-config"
 
-const { title = "Astro Site" } = Astro.props;
+interface Props {
+  title?: string;   // optional manual override
+}
+
+const { title } = Astro.props;
+
+const segments = Astro.url.pathname
+  .split("/")
+  .filter(Boolean);
+
+const formatSegment = (segment: string) => segment
+  .replace(/-/g, " ")
+  .replace(/\b\w/g, (c) => c.toUpperCase());
+
+const breadcrumbTitle = segments.length > 0
+  ? segments.map(formatSegment).join(" · ")
+  : "";
+
+const pageSuffix = title || breadcrumbTitle;
+
+const pageTitle = pageSuffix
+  ? `${pageSuffix} · ${CONFIG.fullName} – ${CONFIG.profession}`
+  : `${CONFIG.fullName} – ${CONFIG.profession}`;
 ---
 
 <!DOCTYPE html>
@@ -11,7 +34,7 @@ const { title = "Astro Site" } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
+    <title>{pageTitle}</title>
 
     <!-- Global styles -->
     <link rel="stylesheet" href={`${import.meta.env.BASE_URL}/styles/global.css`}>
