@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  base: '/profsite',
+  site: 'https://kzervaki.github.io',
+  base: '/_profsite',
   outDir: 'docs',
 });
