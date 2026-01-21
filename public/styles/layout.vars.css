@@ -6,7 +6,7 @@
 
 /* ---------- Main content width ---------- */
 :root {
-  --layout-main-max-width: 1600px;    /* maximum width of main content */
+  --layout-main-max-width: 100%;    /* maximum width of main content */
   --layout-main-min-width: 320px;     /* minimum width for responsive behavior */
   --layout-main-width: 100%;          /* preferred width relative to viewport */
 }
