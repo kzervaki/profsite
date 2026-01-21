@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import IntraLink from "../components/IntraLink.astro";
+import LinkIntra from "../components/LinkIntra.astro";
 import { CONFIG } from "../site-config";
 ---
 
@@ -14,17 +14,17 @@ import { CONFIG } from "../site-config";
       <p>This is approaches page</p>
 
       <p>
-        See also <IntraLink location="services" text="services" />.
+        See also <LinkIntra location="services" text="services" />.
       </p>
 
       <ul>
         <li>
-          <IntraLink
+          <LinkIntra
             location="approaches/systemic"
             text="Συστημική ψυχοθεραπεία" />
         </li>
         <li>
-          <IntraLink
+          <LinkIntra
             location="approaches/dialectic"
             text="Διαλεκτική συμπεριφορική" />
         </li>

@@ -1,0 +1,27 @@
+---
+import { CONFIG } from "../site-config";
+import LinkActive from "../components/LinkActive.astro";
+---
+
+
+<nav class="site-nav" data-theme="theme-sage">
+  <p>This is nav bar</p>
+
+  <ul>
+    <li>
+      <LinkActive location="" text="Home" />
+    </li>
+    <li>
+      <LinkActive location="approaches" text="Approaches" />
+    </li>
+    <li>
+      <LinkActive location="services" text="Services" />
+    </li>
+    <li>
+      <LinkActive location="about" text="About" />
+    </li>
+    <li>
+      <LinkActive location="contact" text="Contact" />
+    </li>
+  </ul>
+</nav>

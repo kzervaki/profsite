@@ -1,5 +1,5 @@
 ---
-import NavigationBar from "../components/NavigationBar.astro";
+import SiteNav from "../components/SiteNav.astro";
 import SiteHeader from "../components/SiteHeader.astro"
 import SiteFooter from "../components/SiteFooter.astro"
 import { CONFIG } from "../site-config"
@@ -47,7 +47,7 @@ const pageTitle = pageSuffix
     />
 
     <main class="page-wrapper">
-      <NavigationBar />
+      <SiteNav />
       <slot /> <!-- Page content goes here -->
     </main>
 

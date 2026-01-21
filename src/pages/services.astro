@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import IntraLink from "../components/IntraLink.astro";
+import LinkIntra from "../components/LinkIntra.astro";
 import { CONFIG } from "../site-config";
 ---
 
@@ -13,37 +13,37 @@ import { CONFIG } from "../site-config";
 
       <p>This is services page</p>
       <p>
-        See also <IntraLink location="approaches" text="approaches" />.
+        See also <LinkIntra location="approaches" text="approaches" />.
       </p>
 
       <ul>
         <li>
-          <IntraLink
+          <LinkIntra
             location="services/individual-adults"
             text="Ατομική Ενηλίκων" />
         </li>
         <li>
-          <IntraLink
+          <LinkIntra
             location="services/individual-teenagers"
             text="Ατομική Εφήβων" />
         </li>
         <li>
-          <IntraLink
+          <LinkIntra
             location="services/online-sessions"
             text="Διαδικτυακές Συνεδρίες" />
         </li>
         <li>
-          <IntraLink
+          <LinkIntra
             location="services/couple-therapy"
             text="Θεραπεία ζεύγους" />
         </li>
         <li>
-          <IntraLink
+          <LinkIntra
             location="services/family-therapy"
             text="Θεραπεία οικογένειας" />
         </li>
         <li>
-          <IntraLink
+          <LinkIntra
             location="services/parents-counseling"
             text="Συμβουλευτική Γονέων" />
         </li>
