@@ -11,6 +11,10 @@
 @import "./layout.vars.css";
 @import "./layout.css";
 
+@import "./page-wrapper.css";
+
+@import "./contact.css";
+
 @import "./site-header.css";
 @import "./navigation-bar.css";
 @import "./site-footer.css";

@@ -1,6 +1,34 @@
 ---
 import { CONFIG } from "../site-config";
+import IconEmail from "../components/IconEmail.astro";
+import IconPhone from "../components/IconPhone.astro";
+import IconAddress from "../components/IconAddress.astro";
 ---
-<header class="site-footer">
-  <p>This is footer: {CONFIG.todo}</p>
-</header>
+
+<footer class="site-footer" data-theme="theme-sage">
+  <div>
+    <p>
+        © {CONFIG.year}, {CONFIG.fullName}
+        <span style="margin: 0 5px; display: inline-block;">·</span>
+        {CONFIG.professionTitle}
+        <span style="margin: 0 5px; display: inline-block;">·</span>
+        {CONFIG.specialtySystemic}
+        <span style="right-margin: 0 50px; display: inline-block;">/</span>
+        {CONFIG.specialtyDialectic}
+    </p>
+
+    <p>
+        <span class="contact-icon" style="margin-right: 0.1rem"><IconAddress /></span>
+        {CONFIG.address}
+    </p>
+    <p>
+        <span class="contact-icon" style="margin-right: 0.1rem"><IconEmail /></span>
+        <a href={`mailto:${CONFIG.email}`}>{CONFIG.email}</a>
+
+        <span style="margin: 0 5px; display: inline-block;">·</span>
+
+        <span class="contact-icon" style="margin-right: 0.1rem"><IconPhone /></span>
+        {CONFIG.phone}
+    </p>
+  </div>
+</footer>

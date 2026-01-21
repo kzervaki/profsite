@@ -1,0 +1,13 @@
+/* Make the page fill viewport and use column flex layout */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* ensures footer sticks to bottom */
+}
+
+/* Main content grows to fill space between header and footer */
+.page-wrapper main {
+  flex: 1 0 auto;
+  margin: 0; /* ensures no gap to footer */
+}
+

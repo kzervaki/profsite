@@ -44,9 +44,14 @@ const pageTitle = pageSuffix
     <SiteHeader
       logoSrc=`${import.meta.env.BASE_URL}/images/logo-sample.jpg`
     />
-    <main>
-      <slot /> <!-- Page content goes here -->
-    </main>
+
+    <div class="page-wrapper">
+      <main>
+        <slot /> <!-- Page content goes here -->
+      </main>
+    </div>
+
+  
     <SiteFooter />
   </body>
 

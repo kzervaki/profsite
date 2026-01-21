@@ -1,3 +1,38 @@
 .site-footer {
-  background: pink; /* TODO */
+  --footer-height: 8rem; /* tunable */
+
+  text-align: center;
+  font-size: 0.9rem;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  color: inherit;
+
+  /* No external margins */
+  margin: 0;
+
+  /* Internal padding optional, can tune separately */
+  padding: 1rem;
+
+  /* Full width */
+  width: 100%;
+
+  /* Default position (relative, flow in DOM) */
+  position: relative;
+  height: var(--footer-height);
+  flex-shrink: 0; /* ensures it does not collapse in flex layout */
+}
+
+/* Sticky footer only on desktop */
+@media screen and (min-width: 768px) {
+  .site-footer {
+    position: sticky;
+    bottom: 0;
+  }
+}
+
+/* Mobile: default flow */
+@media screen and (max-width: 767px) {
+  .site-footer {
+    position: relative;
+  }
 }
