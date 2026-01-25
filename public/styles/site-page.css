@@ -8,9 +8,9 @@
   --page-padding: 3.6rem;
   --page-section-gap: 2rem;
 
-  /* Stretch */
-  flex: 1 1 auto;           /*  CRITICAL */
-  min-height: 100vh;        /*  CRITICAL: ensures fill */
+  /* Stretch (DESKTOP INTENT PRESERVED) */
+  flex: 1 1 auto;            /* CRITICAL */
+  min-height: 100vh;         /* CRITICAL */
 
   display: flex;
   flex-direction: column;
@@ -18,8 +18,9 @@
 
   padding: var(--page-padding);
 
-  min-width: 100vh;         /*  CRITICAL: ensures fill */
+  min-width: 100vh;          /* CRITICAL (desktop only) */
   max-width: var(--page-max-width);
+
   margin-left: auto;
   margin-right: auto;
 }
@@ -42,3 +43,18 @@
   flex: 0 0 auto;
 }
 
+/* ==================================================
+   Mobile overrides ONLY
+   ================================================== */
+
+@media (max-width: 768px) {
+  .site-page {
+    /* Remove viewport coupling on mobile */
+    min-height: auto;
+    min-width: auto;
+
+    /* Tighter spacing */
+    --page-padding: 1.25rem;
+    --page-section-gap: 1.25rem;
+  }
+}
