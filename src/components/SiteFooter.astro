@@ -7,27 +7,27 @@ import IconAddress from "../components/IconAddress.astro";
 
 <footer class="site-footer" data-theme="theme-floral">
   <div>
-    <p>
+    <p class="footer-line-1">
         © {CONFIG.year}, {CONFIG.fullName}
-        <span style="margin: 0 5px; display: inline-block;">·</span>
+        <span class="separator">·</span>
         {CONFIG.professionTitle}
-        <span style="margin: 0 5px; display: inline-block;">·</span>
+        <span class="separator">·</span>
         {CONFIG.specialtySystemic}
-        <span style="right-margin: 0 50px; display: inline-block;">/</span>
+        <span class="separator">/</span>
         {CONFIG.specialtyDialectic}
     </p>
 
-    <p>
-        <span class="contact-icon" style="margin-right: 0.1rem"><IconAddress /></span>
+    <p class="footer-line-2">
+        <span class="contact-icon"><IconAddress /></span>
         {CONFIG.address}
     </p>
-    <p>
-        <span class="contact-icon" style="margin-right: 0.1rem"><IconEmail /></span>
+    <p class="footer-line-3">
+        <span class="contact-icon"><IconEmail /></span>
         <a href={`mailto:${CONFIG.email}`}>{CONFIG.email}</a>
 
-        <span style="margin: 0 5px; display: inline-block;">·</span>
+        <span class="separator">·</span>
 
-        <span class="contact-icon" style="margin-right: 0.1rem"><IconPhone /></span>
+        <span class="contact-icon"><IconPhone /></span>
         {CONFIG.phone}
     </p>
   </div>
