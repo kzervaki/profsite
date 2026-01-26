@@ -1,27 +1,23 @@
 /* ==================================================
-   Site Navigation — Drawer
+   Site Navigation — Drawer (Modern Right Slide)
    ================================================== */
 
 .site-nav {
-  --nav-padding: 1rem 1.1rem 0.2rem; /* top left down*/
   --nav-font-size: 1.1rem;
-
   --burger-size: 2.25rem;
   --drawer-width: 260px;
-
-  --nav-z-drawer: 30;
-  --nav-z-overlay: 20;
 
   position: sticky;
   top: 0;
   z-index: 40;
-  padding: var(--nav-padding);
+  padding: 0.5rem 1rem;
 }
 
 /* ---------- Layout ---------- */
 .nav-inner {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 /* ---------- Toggle ---------- */
@@ -33,40 +29,37 @@
 
 /* ---------- Burger ---------- */
 .nav-burger {
-  width: 3rem;
-  height: 3rem;
+  width: var(--burger-size);
+  height: var(--burger-size);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  position: relative;
+  z-index: 50; /* always above drawer */
 }
 
-/* ☰ → ✕ animation */
+/* ☰ → ✕ */
 .nav-burger span {
   position: relative;
-  width: 1.5rem;
+  width: 1.4rem;
   height: 2px;
   background: currentColor;
-  transition: background 0.2s ease;
+  display: block;
 }
 
 .nav-burger span::before,
 .nav-burger span::after {
   content: "";
   position: absolute;
-  width: 1.5rem;
+  width: 1.4rem;
   height: 2px;
   background: currentColor;
   transition: transform 0.25s ease;
 }
 
-.nav-burger span::before {
-  transform: translateY(-6px);
-}
-
-.nav-burger span::after {
-  transform: translateY(6px);
-}
+.nav-burger span::before { transform: translateY(-6px); }
+.nav-burger span::after  { transform: translateY(6px); }
 
 .nav-toggle:checked + .nav-burger span {
   background: transparent;
@@ -89,22 +82,23 @@
 
   position: fixed;
   top: 0;
-  left: 0;
-
+  right: 0;                 /* slide from right */
   height: 100vh;
   width: var(--drawer-width);
 
-  background: var(--surface-color);
-
+  /* Transparent background */
+  background: rgba(255, 255, 255, 0.0); /* fully transparent */
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
-  transform: translateX(-100%);
+  transform: translateX(100%); /* hidden initially to the right */
   transition: transform 0.35s ease;
+  z-index: 40;
 
-  z-index: var(--nav-z-drawer);
-  pointer-events: auto;
+  /* Transparency effect */
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(2px);
 }
 
 /* Slide-in */
@@ -115,25 +109,20 @@
 /* ---------- Overlay ---------- */
 .nav-overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 
+  background: rgba(0, 0, 0, 0.4);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease;
-
-  z-index: var(--nav-z-overlay);
 }
 
 .nav-toggle:checked ~ .nav-overlay {
   opacity: 1;
   pointer-events: auto;
-}
-
-/* ---------- Links ---------- */
-.site-nav a {
-  text-decoration: none;
-  color: inherit;
 }
 
 /* ---------- Desktop ---------- */
@@ -147,14 +136,10 @@
     position: static;
     height: auto;
     width: auto;
-
-    flex-direction: row;
     padding: 0;
 
+    flex-direction: row;
     transform: none;
     background: none;
-
-    z-index: auto;
   }
 }
-

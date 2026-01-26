@@ -1,69 +1,42 @@
 /* ==================================================
    Site Header
-   ==================================================
-   Clickable header with logo + banner
-   No external vertical spacing
-   Fully tunable via CSS variables
-*/
+   ================================================== */
 
-/* ---------- Header root ---------- */
 .site-header {
   --header-max-width: var(--layout-main-max-width, 900px);
 
-  /* External spacing (intentionally zero) */
-  --header-margin-top: 0;
-  --header-margin-bottom: 0;
-
-  /* Internal spacing */
-  --header-padding-top: 2rem;
-  --header-padding-bottom: 2rem;
-  --header-padding-left: 1rem;
-  --header-padding-right: 1rem;
-
-  /* Layout */
+  --header-padding-y: 2rem;
+  --header-padding-x: 1rem;
   --header-gap: 1.5rem;
 
-  /* Logo */
-  --header-logo-width: 96px;
-  --header-logo-height: auto;
-  --header-logo-max-height: 96px;
+  --header-logo-size: 96px;
 
-  /* Banner text */
   --header-title-size: 2.5rem;
   --header-subtitle-size: 1.1rem;
-  --header-subtitle-spacing: 0.5rem;
 
-  margin-top: var(--header-margin-top);
-  margin-bottom: var(--header-margin-bottom);
+  margin: 0;
 }
 
-/* ---------- Clickable wrapper ---------- */
 /* ---------- Clickable wrapper ---------- */
 .site-header-link {
   display: block;
-  color: inherit !important;          /* keep text color static */
-  text-decoration: none !important;  /* no underline */
+  color: inherit !important;
+  text-decoration: none !important;
 }
 
-/* Hover / focus / active */
 .site-header-link:hover,
 .site-header-link:focus,
 .site-header-link:active {
-  cursor: pointer;                   /* show pointer for clickability */
-  color: inherit !important;         /* no color change */
-  text-decoration: none !important;  /* no underline */
+  cursor: pointer;
+  color: inherit !important;
+  text-decoration: none !important;
 }
 
-/* ---------- Inner layout ---------- */
+/* ---------- Layout ---------- */
 .site-header-inner {
   max-width: var(--header-max-width);
-  margin-left: auto;
-  margin-right: auto;
-
-  padding-top: var(--header-padding-top);
-  padding-bottom: var(--header-padding-bottom);
-  padding-left: var(--header-padding-left);
-  padding-right: var(--header-padding-right);
+  margin: 0 auto;
+  padding: var(--header-padding-y) var(--header-padding-x);
 
   display: flex;
   align-items: center;
@@ -72,9 +45,8 @@
 
 /* ---------- Logo ---------- */
 .site-header-logo img {
-  width: var(--header-logo-width);
-  height: var(--header-logo-height);
-  max-height: var(--header-logo-max-height);
+  width: var(--header-logo-size);
+  height: auto;
   display: block;
 }
 
@@ -91,6 +63,40 @@
 
 .site-header-subtitle {
   font-size: var(--header-subtitle-size);
-  margin-top: var(--header-subtitle-spacing);
-  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-top: 0.5rem;
+  line-height: 1.2;
+}
+
+.subtitle-sep {
+  opacity: 0.6;
+}
+
+/* ==================================================
+   Mobile
+   ================================================== */
+
+@media (max-width: 768px) {
+  .site-header {
+    --header-padding-y: 1rem;
+    --header-logo-size: 48px;
+    --header-title-size: 1.4rem;
+    --header-subtitle-size: 0.9rem;
+  }
+
+  .site-header-inner {
+    align-items: center;
+  }
+
+  .site-header-subtitle {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+
+  .subtitle-sep {
+    display: none;
+  }
 }

@@ -1,14 +1,6 @@
 ---
 import { CONFIG } from "../site-config";
 
-/*
-  Optional props:
-  - title
-  - subtitle
-  - logoSrc (optional)
-  - logoAlt
-  - homeHref (defaults to "/")
-*/
 const {
   title = CONFIG.siteTitle ?? "Site Title",
   subtitle = CONFIG.siteSubtitle ?? "Site subtitle",
@@ -29,9 +21,13 @@ const {
 
       <div class="site-header-banner">
         <h1 class="site-header-title">{title}</h1>
-        <p class="site-header-subtitle">{subtitle}</p>
+
+        <div class="site-header-subtitle">
+          <span class="subtitle-part">{CONFIG.specialtySystemic}</span>
+          <span class="subtitle-sep">·</span>
+          <span class="subtitle-part">{CONFIG.specialtyDialectic}</span>
+        </div>
       </div>
     </div>
   </a>
 </header>
-
