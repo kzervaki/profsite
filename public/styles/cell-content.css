@@ -64,8 +64,10 @@
   .grid-vertical {
     aspect-ratio: auto;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(3, auto);
+    /* Use fixed min-height for rows instead of auto */
+    grid-template-rows: 210px 210px 210px; /* Adjust as needed */
     max-width: 100%;
+    height: auto;
 
     /* Update background for mobile layout (2 columns) */
     background:
@@ -80,6 +82,11 @@
       linear-gradient(currentColor, currentColor) 0 calc(66.66% - var(--gv-line-width) / 2) / 100% var(--gv-line-width) no-repeat;
   }
 
+  /* Optional: Use min-height for cells */
+  .cell {
+    min-height: 150px;
+  }
+
   .a { display: none; }
 
   .b, .d, .f { grid-column: 1; }
@@ -89,5 +96,4 @@
   .cell :where(p, span, div:not(.cell-content, .cell-static, .cell-link)) {
     font-size: clamp(0.75rem, 3vw, 0.9rem);
   }
-
 }
