@@ -1,0 +1,109 @@
+/* =========================================================
+   Grid Horizontal — Responsive & Tunable
+   ========================================================= */
+
+.grid-horizontal-wrapper {
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  justify-content: center;
+
+  padding: var(--gh-padding);
+  box-sizing: border-box;
+}
+
+/* ---------- Grid container ---------- */
+.grid-horizontal {
+  width: 100%;
+  max-width: var(--gh-size);
+  height: var(--gh-height);
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr;
+
+  box-sizing: border-box;
+  padding: var(--gh-line-width);
+
+  background:
+    /* Outer border */
+    linear-gradient(currentColor, currentColor) top / 100% var(--gh-line-width) no-repeat,
+    linear-gradient(currentColor, currentColor) bottom / 100% var(--gh-line-width) no-repeat,
+    linear-gradient(currentColor, currentColor) left / var(--gh-line-width) 100% no-repeat,
+    linear-gradient(currentColor, currentColor) right / var(--gh-line-width) 100% no-repeat,
+
+    /* Vertical interior line */
+    linear-gradient(currentColor, currentColor)
+      calc(33.333% - var(--gh-line-width) / 2) 0 /
+      var(--gh-line-width) 100% no-repeat,
+
+    /* Horizontal interior line (right side only) */
+    linear-gradient(currentColor, currentColor)
+      33.333% calc(50% - var(--gh-line-width) / 2) /
+      66.666% var(--gh-line-width) no-repeat;
+
+  transition:
+    width 0.35s ease,
+    height 0.35s ease;
+}
+
+/* ---------- Cell placement (desktop) ---------- */
+.cell {
+  position: relative;
+  overflow: hidden;
+}
+
+.cell.ah {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.cell.bh {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.cell.ch {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* =========================================================
+   Mobile layout
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .grid-horizontal {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    background:
+      /* Outer border */
+      linear-gradient(currentColor, currentColor) top / 100% var(--gh-line-width) no-repeat,
+      linear-gradient(currentColor, currentColor) bottom / 100% var(--gh-line-width) no-repeat,
+      linear-gradient(currentColor, currentColor) left / var(--gh-line-width) 100% no-repeat,
+      linear-gradient(currentColor, currentColor) right / var(--gh-line-width) 100% no-repeat,
+
+      /* Horizontal divider */
+      linear-gradient(currentColor, currentColor)
+        0 calc(50% - var(--gh-line-width) / 2) /
+        100% var(--gh-line-width) no-repeat;
+  }
+
+  /* Hide A completely */
+  .cell.ah {
+    display: none;
+  }
+
+  .cell.bh {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .cell.ch {
+    grid-column: 1;
+    grid-row: 2;
+  }
+}
+

@@ -20,6 +20,7 @@
 @import "./link-active.css";
 @import "./link-intra.css";
 
+@import "./grid-horizontal.css";
 @import "./grid-vertical.css";
 @import "./cell-content.css";
 

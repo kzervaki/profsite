@@ -1,0 +1,64 @@
+---
+interface Props {
+  /** Max width of the grid */
+  size?: string;
+
+  /** Total height of the grid */
+  height?: string;
+
+  /** Outer padding */
+  padding?: string;
+
+  /** Line thickness */
+  lineWidth?: string;
+
+  /** Click handlers (optional) */
+  onClickA?: () => void;
+  onClickB?: () => void;
+  onClickC?: () => void;
+}
+
+const {
+  size = "80vmin",
+  height = "60vmin",
+  padding = "1rem",
+  lineWidth = "2px",
+} = Astro.props;
+---
+
+<section
+  class="grid-horizontal-wrapper"
+  style={`
+    --gh-size: ${size};
+    --gh-height: ${height};
+    --gh-padding: ${padding};
+    --gh-line-width: ${lineWidth};
+  `}
+>
+  <div class="grid-horizontal">
+    <div
+      class="cell ah"
+      data-cell="A"
+      onClick={Astro.props.onClickA}
+    >
+      <slot name="A" />
+    </div>
+
+    <div
+      class="cell bh"
+      data-cell="B"
+      onClick={Astro.props.onClickB}
+    >
+      <slot name="B" />
+    </div>
+
+    <div
+      class="cell ch"
+      data-cell="C"
+      onClick={Astro.props.onClickC}
+    >
+      <slot name="C" />
+    </div>
+  </div>
+</section>
+
