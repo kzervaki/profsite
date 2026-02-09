@@ -3,9 +3,9 @@
    ========================= */
 :root {
   --text-font-family: system-ui, sans-serif;
-  --text-font-size: 16px;
+  --text-font-size: 18px;
   --text-font-weight: 400;
-  --text-line-height: 1.6;
+  --text-line-height: 1.9;
   --text-letter-spacing: 0em;
 
   --text-margin-top: 0;
