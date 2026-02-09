@@ -81,10 +81,9 @@
 @media (max-width: 768px) {
   .site-header {
     --header-padding-y: 2rem;
-    --header-padding-y: 2rem;
     --header-logo-size: 120px;
-    --header-title-size: 1.8rem;
-    --header-subtitle-size: 1.2rem;
+    --header-title-size: 1.4rem;
+    --header-subtitle-size: 1.0rem;
   }
 
   .site-header-inner {
