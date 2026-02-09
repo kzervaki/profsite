@@ -23,11 +23,7 @@
   box-sizing: border-box;
 
   background:
-    /* Top border */
-    linear-gradient(currentColor, currentColor) top / 100% var(--sg-line-width) no-repeat,
-    /* Bottom border */
-    linear-gradient(currentColor, currentColor) bottom / 100% var(--sg-line-width) no-repeat,
-    /* Dividers - calculated dynamically */
+    /* Dividers only - no top/bottom borders */
     repeating-linear-gradient(
       to bottom,
       transparent 0,
