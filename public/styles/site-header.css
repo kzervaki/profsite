@@ -82,8 +82,8 @@
   .site-header {
     --header-padding-y: 2rem;
     --header-logo-size: 120px;
-    --header-title-size: 1.4rem;
-    --header-subtitle-size: 1.0rem;
+    --header-title-size: 1.2rem;
+    --header-subtitle-size: 0.9rem;
   }
 
   .site-header-inner {
