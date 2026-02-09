@@ -3,10 +3,50 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import LinkIntra from "../components/LinkIntra.astro";
 import SitePage from "../components/SitePage.astro";
 import GridVertical from "../components/GridVertical.astro";
+import GridStacked from "../components/GridStacked.astro";
 import CellContent from "../components/CellContent.astro";
 import { CONFIG } from "../site-config";
 
 const baseUrl = import.meta.env.BASE_URL || '/';
+
+const services = [
+  {
+    id: "B",
+    title: "Ατομική Ενηλίκων",
+    href: `${baseUrl}/services/individual-adults`,
+    description: "Δομημένος χώρος διερεύνησης των σκέψεων, των συναισθημάτων και των βιωμάτων του ώριμου ατόμου. Στο επίκεντρο βρίσκεται η μοναδική προσωπική ιστορία κάθε ανθρώπου, καθώς και ο τρόπος με τον οποίο οι εμπειρίες ζωής, οι σχέσεις και τα εσωτερικά μοτίβα επηρεάζουν τη σημερινή του λειτουργικότητα."
+  },
+  {
+    id: "C",
+    title: "Ατομική Εφήβων",
+    href: `${baseUrl}/services/individual-teenagers`,
+    description: "Ασφαλής χώρος έκφρασης και κατανόησης εαυτού σε μια ιδιαίτερα κρίσιμη αναπτυξιακή φάση του ατόμου. Στοχεύει στη στήριξη του εφήβου, ενισχύοντας την ψυχική του ανθεκτικότητα και τη σταδιακή του αυτονόμηση μέσα σε καταστάσεις έντονων συναισθηματικών μεταβολών και αναζήτησης ταυτότητας."
+  },
+  {
+    id: "D",
+    title: "Διαδικτυακές συνεδρίες",
+    href: `${baseUrl}/services/online-sessions`,
+    description: "Υποστήριξη και θεραπεία μέσω βιντεοκλήσεων, ειδικών εφαρμογών ή κρυπτογραφημένης επικοινωνίας. Παρέχεται σε περιπτώσεις όπου η φυσική παρουσία είναι δύσκολη ή ανέφικτη, ή όποτε κάποιο άτομο νιώθει πιο άνετα να ξεκινήσει θεραπεία από τον προσωπικό του χώρο. Πραγματοποιούνται με τον ίδιο τρόπο όπως οι παραδοσιακές συνεδρίες."
+  },
+  {
+    id: "E",
+    title: "Θεραπεία ζεύγους",
+    href: `${baseUrl}/services/couple-therapy`,
+    description: "Υποστηρικτικό και μη επικριτικό πλαίσιο εξερεύνησης της σχέσης του ζεύγους και αμοιβαίας κατανόησης των μοτίβων επικοινωνίας. Η σχέση δεν εξετάζεται απομονωμένα, αλλά ως μέρος ενός ευρύτερου συστήματος –οικογένειας, κοινωνικού περιβάλλοντος και προσωπικού ιστορικού– όπου κάθε μέλος επηρεάζει και επηρεάζεται από τους υπόλοιπους."
+  },
+  {
+    id: "F",
+    title: "Θεραπεία οικογένειας",
+    href: `${baseUrl}/services/family-therapy`,
+    description: "Δομημένος χώρος αμοιβαίας διερεύνησης των σχέσεων και αλληλοκατανόησης μεταξύ των μελών της οικογένειας. Στόχος είναι να ενισχυθεί η επικοινωνία, η συναισθηματική σύνδεση και η συνολική ισορροπία του οικογενειακού συστήματος, πέρα από την αντιμετώπιση μόνο μεμονωμένων προβλημάτων ή προβληματικών συμπεριφορών."
+  },
+  {
+    id: "G",
+    title: "Συμβουλευτική Γονέων",
+    href: `${baseUrl}/services/parents-counseling`,
+    description: "Υποστηρικτικό πλαίσιο επεξεργασίας των προκλήσεων της γ��νεϊκότητας και καλύτερης κατανόησης των αναγκών των παιδιών. Η διαδικασία αυτή δεν επικεντρώνεται σε «σωστούς» ή «λάθους» τρόπους ανατροφής, αλλά στην κατανόηση των μοναδικών δυναμικών που διαμορφώνουν την επικοινωνία και τη λειτουργικότητα της κάθε οικογένειας."
+  }
+];
 ---
 
 <BaseLayout title="Υπηρεσίες">
@@ -22,90 +62,97 @@ const baseUrl = import.meta.env.BASE_URL || '/';
       που ακολουθώ.
     </p>
 
-    <GridVertical
-      size="90vmin" padding="1rem" lineWidth="2.2px"
-    >
-      <img slot="A" src=`${import.meta.env.BASE_URL}/images/composition-1.jpg` />
+    <div class="grid-desktop">
+      <GridVertical
+        size="90vmin" padding="1rem" lineWidth="2.2px"
+      >
+        <img slot="A" src=`${import.meta.env.BASE_URL}/images/composition-1.jpg` />
+        <div slot="B">
+          <CellContent title={services[0].title} href={services[0].href}>
+            {services[0].description}
+          </CellContent>
+        </div>
+        <div slot="C">
+          <CellContent title={services[1].title} href={services[1].href}>
+            {services[1].description}
+          </CellContent>
+        </div>
+        <div slot="D">
+          <CellContent title={services[2].title} href={services[2].href}>
+            {services[2].description}
+          </CellContent>
+        </div>
+        <div slot="E">
+          <CellContent title={services[3].title} href={services[3].href}>
+            {services[3].description}
+          </CellContent>
+        </div>
+        <div slot="F">
+          <CellContent title={services[4].title} href={services[4].href}>
+            {services[4].description}
+          </CellContent>
+        </div>
+        <div slot="G">
+          <CellContent title={services[5].title} href={services[5].href}>
+            {services[5].description}
+          </CellContent>
+        </div>
+      </GridVertical>
+    </div>
 
-      <div slot="B">
-        <CellContent
-          title="Ατομική Ενηλίκων"
-          href=`${baseUrl}/services/individual-adults`}
-        >
-          Δομημένος χώρος διερεύνησης των σκέψεων,
-          των συναισθημάτων και των βιωμάτων του ώριμου ατόμου. Στο επίκεντρο
-          βρίσκεται η μοναδική προσωπική ιστορία κάθε ανθρώπου,
-          καθώς και ο τρόπος με τον οποίο οι εμπειρίες ζωής, οι σχέσεις και
-          τα εσωτερικά μοτίβα επηρεάζουν τη σημερινή του λειτουργικότητα.
-        </CellContent>
-      </div>
+    <div class="grid-mobile">
+      <GridStacked
+        height="90vh" padding="1rem" lineWidth="2.2px"
+      >
+        <div slot="B">
+          <CellContent title={services[0].title} href={services[0].href}>
+            {services[0].description}
+          </CellContent>
+        </div>
+        <div slot="C">
+          <CellContent title={services[1].title} href={services[1].href}>
+            {services[1].description}
+          </CellContent>
+        </div>
+        <div slot="D">
+          <CellContent title={services[2].title} href={services[2].href}>
+            {services[2].description}
+          </CellContent>
+        </div>
+        <div slot="E">
+          <CellContent title={services[3].title} href={services[3].href}>
+            {services[3].description}
+          </CellContent>
+        </div>
+        <div slot="F">
+          <CellContent title={services[4].title} href={services[4].href}>
+            {services[4].description}
+          </CellContent>
+        </div>
+        <div slot="G">
+          <CellContent title={services[5].title} href={services[5].href}>
+            {services[5].description}
+          </CellContent>
+        </div>
+      </GridStacked>
+    </div>
 
-      <div slot="C">
-        <CellContent
-          title="Ατομική Εφήβων"
-          href=`${baseUrl}/services/individual-teenagers`}
-        >
-          Ασφαλής χώρος έκφρασης και κατανόησης εαυτού σε μια ιδιαίτερα κρίσιμη
-          αναπτυξιακή φάση του ατόμου. Στοχεύει στη στήριξη του εφήβου,
-          ενισχύοντας την ψυχική του ανθεκτικότητα και τη σταδιακή του αυτονόμηση
-          μέσα σε καταστάσεις έντονων συναισθηματικών μεταβολών και αναζήτησης
-          ταυτότητας.
-        </CellContent>
-      </div>
+    <style>
+      .grid-mobile {
+        display: none;
+      }
 
-      <div slot="D">
-        <CellContent
-          title="Διαδικτυακές συνεδρίες"
-          href=`${baseUrl}/services/online-sessions`}
-        >
-          Υποστήριξη και θεραπεία μέσω βιντεοκλήσεων, ειδικών εφαρμογών
-          ή κρυπτογραφημένης επικοινωνίας. Παρέχεται σε περιπτώσεις όπου
-          η φυσική παρουσία είναι δύσκολη ή ανέφικτη, ή όποτε κάποιο άτομο
-          νιώθει πιο άνετα να ξεκινήσει θεραπεία από τον προσωπικό του χώρο. 
-          Πραγματοποιούνται με τον ίδιο τρόπο όπως οι παραδοσιακές συνεδρίες.
-        </CellContent>
-      </div>
+      @media (max-width: 768px) {
+        .grid-desktop {
+          display: none;
+        }
 
-      <div slot="E">
-        <CellContent
-          title="Θεραπεία ζεύγους"
-          href=`${baseUrl}/services/couple-therapy`}
-        >
-          Υποστηρικτικό και μη επικριτικό πλαίσιο εξερεύνησης της σχέσης του
-          ζεύγους και αμοιβαίας κατανόησης των μοτίβων επικοινωνίας. Η σχέση
-          δεν εξετάζεται απομονωμένα, αλλά ως μέρος ενός ευρύτερου συστήματος
-          –οικογένειας, κοινωνικού περιβάλλοντος και προσωπικού ιστορικού–
-          όπου κάθε μέλος επηρεάζει και επηρεάζεται από τους υπόλοιπους.
-        </CellContent>
-      </div>
+        .grid-mobile {
+          display: block;
+        }
+      }
+    </style>
 
-      <div slot="F">
-        <CellContent
-          title="Θεραπεία οικογένειας"
-          href=`${baseUrl}/services/family-therapy`}
-        >
-          Δομημένος χώρος αμοιβαίας διερεύνησης των σχέσεων και
-          αλληλοκατανόησης μεταξύ των μελών της οικογένειας.
-          Στόχος είναι να ενισχυθεί η επικοινωνία, η συναισθηματική σύνδεση και
-          η συνολική ισορροπία του οικογενειακού συστήματος, πέρα από την
-          αντιμετώπιση μόνο μεμονωμένων προβλημάτων ή προβληματικών
-          συμπεριφορών.
-        </CellContent>
-      </div>
-
-      <div slot="G">
-        <CellContent
-          title="Συμβουλευτική Γονέων"
-          href=`${baseUrl}/services/parents-counseling`}
-        >
-          Υποστηρικτικό πλαίσιο επεξεργασίας των προκλήσεων της γονεϊκότητας
-          και καλύτερης κατανόησης των αναγκών των παιδιών.
-          Η διαδικασία αυτή δεν επικεντρώνεται σε «σωστούς» ή «λάθους» τρόπους
-          ανατροφής, αλλά στην κατανόηση των μοναδικών δυναμικών που διαμορφώνουν την
-          επικοινωνία και τη λειτουργικότητα της κάθε οικογένειας.
-        </CellContent>
-      </div>
-
-    </GridVertical>
+  </SitePage>
 
 </BaseLayout>

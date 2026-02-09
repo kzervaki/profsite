@@ -1,0 +1,51 @@
+---
+interface Props {
+  height?: string;
+  padding?: string;
+  lineWidth?: string;
+
+  onClickB?: string;
+  onClickC?: string;
+  onClickD?: string;
+  onClickE?: string;
+  onClickF?: string;
+  onClickG?: string;
+}
+
+const {
+  height = "60vmin",
+  padding = "1rem",
+  lineWidth = "2px",
+} = Astro.props;
+---
+
+<section
+  class="stacked-grid-wrapper"
+  style={`
+    --sg-height: ${height};
+    --sg-padding: ${padding};
+    --sg-line-width: ${lineWidth};
+    --sg-cell-count: ${[Astro.slots.has('B'), Astro.slots.has('C'), Astro.slots.has('D'), Astro.slots.has('E'), Astro.slots.has('F'), Astro.slots.has('G')].filter(Boolean).length};
+  `}
+>
+  <div class="stacked-grid">
+    {Astro.slots.has('B') && (
+      <div class="cell" data-cell="B" onclick={Astro.props.onClickB}><slot name="B" /></div>
+    )}
+    {Astro.slots.has('C') && (
+      <div class="cell" data-cell="C" onclick={Astro.props.onClickC}><slot name="C" /></div>
+    )}
+    {Astro.slots.has('D') && (
+      <div class="cell" data-cell="D" onclick={Astro.props.onClickD}><slot name="D" /></div>
+    )}
+    {Astro.slots.has('E') && (
+      <div class="cell" data-cell="E" onclick={Astro.props.onClickE}><slot name="E" /></div>
+    )}
+    {Astro.slots.has('F') && (
+      <div class="cell" data-cell="F" onclick={Astro.props.onClickF}><slot name="F" /></div>
+    )}
+    {Astro.slots.has('G') && (
+      <div class="cell" data-cell="G" onclick={Astro.props.onClickG}><slot name="G" /></div>
+    )}
+  </div>
+</section>

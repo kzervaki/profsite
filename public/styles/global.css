@@ -22,6 +22,7 @@
 
 @import "./grid-horizontal.css";
 @import "./grid-vertical.css";
+@import "./grid-stacked.css";
 @import "./cell-content.css";
 
 @import "./quote-block.css";

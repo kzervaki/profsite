@@ -3,10 +3,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import LinkIntra from "../components/LinkIntra.astro";
 import SitePage from "../components/SitePage.astro";
 import GridHorizontal from "../components/GridHorizontal.astro";
+import GridStacked from "../components/GridStacked.astro";
 import CellContent from "../components/CellContent.astro";
 import { CONFIG } from "../site-config";
 
 const baseUrl = import.meta.env.BASE_URL || '/';
+
+const approaches = [
+  {
+    id: "B",
+    title: "Συστημική Ψυχοθεραπεία",
+    href: `${baseUrl}/approaches/systemic`,
+    description: "Στρέφει την ψυχολογική ματιά από το άτομο στο «όλον» και από τις προσωπικές ιδιότητες στις σχέσεις, υποστηριζοντας μια διευρυμένη θεώρηση του ανθρώπου. Η συστημική θεωρια αντλεί από ποικίλα θεωρητικά ρεύματα, όπως η θεωρία των συστημάτων, η κυβερνητική, ο κοινωνικός κονστρουξιονισμός και η αφηγηματική προσέγγιση. Βασικό χαρακτηριστικό της είναι η θέαση των ψυχολογικών συμπτωμάτων όχι ως αποκλειστικά ατομικά παθολογικά χαρακτηριστικά, αλλά ως αποτέλεσμα των δυναμικών αλληλεπιδράσεων μεταξύ του ατόμου, της οικογένειας, του ζευγαριού ή ευρύτερων κοινωνικών πλαισίων. Τα ψυχολογικά συμπτώματα προσεγγίζονται έτσι όχι ως «πρόβλημα του ατόμου», αλλά ως έκφραση και αποτέλεσμα αλληλεπιδράσεων και σχεσιακών μοτίβων."
+  },
+  {
+    id: "C",
+    title: "Διαλεκτική Συμπεριφορική Ψυχοθεραπεία",
+    href: `${baseUrl}/approaches/dialectic`,
+    description: "Σύγχρονη, επιστημονικά τεκμηριωμένη ψυχοθεραπευτική προσέγγιση που αναπτύχθηκε κατά τη δεκαετία του 1980. Η αρχική της διαμόρφωση προέκυψε μέσα από την ανάγκη αποτελεσματικής θεραπευτικής παρέμβασης σε άτομα με έντονη συναισθηματική ��πορρύθμιση και χρόνιες αυτοκαταστροφικές συμπεριφορές, κυρίως στο πλαίσιο της διαταραχής οριακής προσωπικότητας. Βασίζεται στο γνωσιακό–συμπεριφορικό μοντέλο, ενσωματώνοντας ταυτόχρονα διαλεκτικές αρχές και πρακτικές ενσυνειδητότητας. Ο διαλεκτικός χαρακτήρας της θεραπείας έγκειται στη σύνθεση δύο φαινομενικά αντίθετων διαδικασιών: της αποδοχής και επικύρωση της παρούσας εμπειρίας του θεραπευόμενου και ταυτοχρονα, της συστηματικής προώθησης της αλλαγής."
+  }
+];
 ---
 
 <BaseLayout title="Θεραπευτικές προσεγγίσεις">
@@ -15,33 +31,74 @@ const baseUrl = import.meta.env.BASE_URL || '/';
     title="Θεραπευτικές προσεγγίσεις"
   >
 
-    <GridHorizontal
-      size="80vmin"
-      padding="1rem"
-      lineWidth="2.2px"
-    >
-      <img slot="A" src=`${import.meta.env.BASE_URL}/images/composition-3.jpg` />
+    <div class="grid-desktop">
+      <GridHorizontal
+        size="80vmin"
+        padding="1rem"
+        lineWidth="2.2px"
+      >
+        <img slot="A" src=`${import.meta.env.BASE_URL}/images/composition-3.jpg` />
+        <div slot="B">
+          <CellContent
+            title={approaches[0].title}
+            href={approaches[0].href}
+            align="justify"
+          >
+            {approaches[0].description}
+          </CellContent>
+        </div>
+        <div slot="C">
+          <CellContent
+            title={approaches[1].title}
+            href={approaches[1].href}
+          >
+            {approaches[1].description}
+          </CellContent>
+        </div>
+      </GridHorizontal>
+    </div>
 
-      <div slot="B">
-        <CellContent
-          title="Συστημική Ψυχοθεραπεία"
-          href=`${baseUrl}/approaches/systemic`}
-          align="justify"
-        >
-          Στρέφει την ψυχολογική ματιά από το άτομο στο «όλον» και από τις προσωπικές ιδιότητες στις σχέσεις, υποστηριζοντας μια διευρυμένη θεώρηση του ανθρώπου. Η συστημική θεωρια αντλεί από ποικίλα θεωρητικά ρεύματα, όπως η θεωρία των συστημάτων, η κυβερνητική, ο κοινωνικός κονστρουξιονισμός και η αφηγηματική προσέγγιση. Βασικό χαρακτηριστικό της είναι η θέαση των ψυχολογικών συμπτωμάτων όχι ως αποκλειστικά ατομικά παθολογικά χαρακτηριστικά, αλλά ως αποτέλεσμα των δυναμικών αλληλεπιδράσεων μεταξύ του ατόμου, της οικογένειας, του ζευγαριού ή ευρύτερων κοινωνικών πλαισίων. Τα ψυχολογικά συμπτώματα προσεγγίζονται έτσι όχι ως «πρόβλημα του ατόμου», αλλά ως έκφραση και αποτέλεσμα αλληλεπιδράσεων και σχεσιακών μοτίβων.
-        </CellContent>
-      </div>
+    <div class="grid-mobile">
+      <GridStacked
+        height="40vh"
+        padding="1rem"
+        lineWidth="2.2px"
+      >
+        <div slot="B">
+          <CellContent
+            title={approaches[0].title}
+            href={approaches[0].href}
+          >
+            {approaches[0].description}
+          </CellContent>
+        </div>
+        <div slot="C">
+          <CellContent
+            title={approaches[1].title}
+            href={approaches[1].href}
+          >
+            {approaches[1].description}
+          </CellContent>
+        </div>
+      </GridStacked>
+    </div>
 
-      <div slot="C">
-        <CellContent
-          title="Διαλεκτική Συμπεριφορική Ψυχοθεραπεία"
-          href=`${baseUrl}/approaches/dialectic`}
-        >
-          Σύγχρονη, επιστημονικά τεκμηριωμένη ψυχοθεραπευτική προσέγγιση που αναπτύχθηκε κατά τη δεκαετία του 1980. Η αρχική της διαμόρφωση προέκυψε μέσα από την ανάγκη αποτελεσματικής θεραπευτικής παρέμβασης σε άτομα με έντονη συναισθηματική απορρύθμιση και χρόνιες αυτοκαταστροφικές συμπεριφορές, κυρίως στο πλαίσιο της διαταραχής οριακής προσωπικότητας. Βασίζεται στο γνωσιακό–συμπεριφορικό μοντέλο, ενσωματώνοντας ταυτόχρονα διαλεκτικές αρχές και πρακτικές ενσυνειδητότητας. Ο διαλεκτικός χαρακτήρας της θεραπείας έγκειται στη σύνθεση δύο φαινομενικά αντίθετων διαδικασιών: της αποδοχής και επικύρωση της παρούσας εμπειρίας του θεραπευόμενου και ταυτοχρονα, της συστηματικής προώθησης της αλλαγής.
-        </CellContent>
-      </div>
+    <style>
+      .grid-mobile {
+        display: none;
+      }
 
-      <div slot="D">Left Panel Content</div>
-    </GridHorizontal>
+      @media (max-width: 768px) {
+        .grid-desktop {
+          display: none;
+        }
+
+        .grid-mobile {
+          display: block;
+        }
+      }
+    </style>
+
+  </SitePage>
 
 </BaseLayout>
