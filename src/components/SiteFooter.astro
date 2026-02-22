@@ -17,11 +17,12 @@ import IconAddress from "../components/IconAddress.astro";
         {CONFIG.specialtyDialectic}
     </p>
 
-    <p class="footer-line-2">
+    <p class="footer-line-3">
         <span class="contact-icon"><IconAddress /></span>
         {CONFIG.address}
-    </p>
-    <p class="footer-line-3">
+
+        <span class="separator">·</span>
+
         <span class="contact-icon"><IconEmail /></span>
         <a href={`mailto:${CONFIG.email}`}>{CONFIG.email}</a>
 
