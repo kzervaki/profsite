@@ -1,0 +1,14 @@
+---
+const {
+  columns = 3,
+  gap = "1.5rem",
+} = Astro.props;
+---
+
+<div
+  class="service-grid"
+  style={`--columns:${columns}; --gap:${gap};`}
+>
+  <slot />
+</div>
+

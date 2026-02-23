@@ -1,0 +1,31 @@
+---
+/**
+ * Props:
+ *  - src: string (required)
+ *  - alt: string (required)
+ *  - width: string or number (optional, e.g., "300px" or "50%")
+ *  - height: string or number (optional)
+ *  - rounded: boolean (optional, default false)
+ *  - class: string (optional additional CSS classes)
+ *  - align: string (optional, "left", "right", "center"), default "center"
+ *
+ * Inherits mobile responsiveness from img
+ */
+const { src, alt, width, height, rounded = false, class: extraClass = "", align = "center" } = Astro.props;
+
+let style = "";
+if (width) style += `width: ${width};`;
+if (height) style += `height: ${height};`;
+if (rounded) style += "border-radius: 8px;";
+
+// Add float for left/right, center via display:block + margin auto
+let wrapperStyle = "";
+if (align === "left") wrapperStyle = "float: left; margin-right: 1rem; margin-bottom: 1rem;";
+else if (align === "right") wrapperStyle = "float: right; margin-left: 1rem; margin-bottom: 1rem;";
+else wrapperStyle = "display: block; margin: 1rem auto;"; // center
+
+---
+<span style={wrapperStyle}>
+  <img src={src} alt={alt} style={style} class={extraClass} />
+</span>
+

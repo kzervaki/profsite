@@ -25,6 +25,9 @@
 @import "./grid-stacked.css";
 @import "./cell-content.css";
 
+@import "./service-card.css";
+@import "./service-grid.css";
+
 @import "./quote-block.css";
 
 @import "./contact-icon.css";

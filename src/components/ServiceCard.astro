@@ -1,0 +1,28 @@
+---
+import Image from "./Image.astro";
+
+const {
+  title,
+  description,
+  href,
+  image,
+  imageAlt = "",
+  imageWidth = "100%",
+  rounded = true,
+} = Astro.props;
+---
+
+<a href={href} class="service-card">
+  <Image
+    src={image}
+    alt={imageAlt}
+    imagewidth={imageWidth}
+    rounded={rounded}
+  />
+
+  <div class="service-card-content">
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </div>
+</a>
+
