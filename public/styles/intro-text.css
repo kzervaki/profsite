@@ -1,0 +1,138 @@
+/* Base styles */
+.intro-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap, 2rem);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Row styles */
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--image-margin, 1rem);
+  width: 100%;
+}
+
+/* Top row specific */
+.top-row {
+  flex-direction: row;
+}
+
+/* Bottom row specific */
+.bottom-row {
+  flex-direction: row;
+}
+
+/* Text block styles */
+.text-block {
+  flex: 1;
+  min-width: 0; /* Prevents overflow */
+  text-align: var(--text-alignment, left);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Image container styles */
+.image-container {
+  flex-shrink: 0;
+  width: var(--image-width, 200px);
+  border-radius: var(--border-radius, 0);
+  overflow: hidden;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Top image positioning (right side) */
+.top-image {
+  order: 2;
+}
+
+.top-text {
+  order: 1;
+}
+
+/* Bottom image positioning (left side) */
+.bottom-image {
+  order: 1;
+}
+
+.bottom-text {
+  order: 2;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column !important;
+    gap: var(--mobile-spacing, 1.5rem);
+  }
+
+  /* Reset order for mobile */
+  .top-image,
+  .top-text,
+  .bottom-image,
+  .bottom-text {
+    order: 0;
+  }
+
+  /* Image container mobile adjustments */
+  .image-container {
+    width: var(--mobile-image-width, 50%) !important;
+    max-width: var(--mobile-image-width, 50%) !important;
+  }
+
+  /* Align images based on text alignment */
+  .intro-text[data-text-alignment="center"] .image-container {
+    margin: 0 auto;
+  }
+
+  .intro-text[data-text-alignment="right"] .image-container {
+    margin-left: auto;
+  }
+
+  .intro-text[data-text-alignment="left"] .image-container {
+    margin-right: auto;
+  }
+
+  /* Text alignment on mobile */
+  .text-block {
+    width: 100%;
+    text-align: var(--text-alignment, left);
+  }
+
+  /* Ensure proper stacking order */
+  .top-row {
+    margin-bottom: 0;
+  }
+
+  .bottom-row {
+    margin-top: 0;
+  }
+}
+
+/* Optional: Add some visual distinction between rows */
+.intro-text .row:first-child {
+  padding-bottom: calc(var(--gap, 2rem) / 2);
+}
+
+.intro-text .row:last-child {
+  padding-top: calc(var(--gap, 2rem) / 2);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .intro-text .row:last-child {
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+}

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SitePage from "../components/SitePage.astro";
+import IntroText from "../components/IntroText.astro";
 import { CONFIG } from "../site-config";
 ---
 
@@ -9,9 +10,18 @@ import { CONFIG } from "../site-config";
   <SitePage
     title="Αρχική"
   >
-    <p>
-      This is index page.
-    </p>
+    <IntroText
+      topImageSrc=`${import.meta.env.BASE_URL}/images/intro-image-1.jpg`
+      topText="Η ψυχοθεραπεία συνιστά έναν ουσιαστικό και ασφαλή χώρο εσωτερικής διερεύνησης, όπου το άτομο έχει τη δυνατότητα να προσεγγίσει σε βάθος τον εαυτό του, τα βιώματά του, τις διαπροσωπικές του δυναμικές και το συναισθηματικό του τοπίο. Η θεραπευτική διαδικασία θεμελιώνεται σε μια σχέση συνεργατική και αυθεντική, όπου η αποδοχή της παρούσας εμπειρίας συνυπάρχει με τη δυνατότητα για ουσιαστική αλλαγή."
+
+      bottomImageSrc=`${import.meta.env.BASE_URL}/images/intro-image-2.webp`
+      bottomText="Ο σκοπός της ψυχοθεραπείας δεν περιορίζεται στη συμπτωματική ανακούφιση, αλλά εκτείνεται στη βαθύτερη ενίσχυση της αυτογνωσίας και της ψυχικής ανθεκτικότητας. Μέσα από μια διαδικασία προσωπικής εξερεύνησης και νοηματοδότησης της εμπειρίας, καλλιεργείται η συναισθηματική ισορροπία, ενδυναμώνεται η ικανότητα αυτορρύθμισης και ενισχύεται η δυνατότητα για αυθεντικές, ικανοποιητικές και ουσιαστικές σχέσεις — τόσο με τον εαυτό όσο και με τους άλλους."
+      textAlignment="justify"
+      imageWidth="250px"
+      roundedCorners={true}
+      gap="3rem"
+      mobileImageWidth="80%"
+    />
 
   </SitePage>
 </BaseLayout>

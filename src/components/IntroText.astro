@@ -1,0 +1,106 @@
+---
+export interface Props {
+  topImageSrc?: string;
+  topImageAlt?: string;
+  bottomImageSrc?: string;
+  bottomImageAlt?: string;
+  topText?: string;
+  bottomText?: string;
+  textAlignment?: 'left' | 'center' | 'right' | 'justify';
+  imageMargin?: string;
+  imageWidth?: string;
+  imageHeight?: string;
+  roundedCorners?: boolean | string;
+  mobileSpacing?: string;
+  mobileImageWidth?: string;
+  gap?: string;
+}
+
+const {
+  topImageSrc,
+  topImageAlt = '',
+  bottomImageSrc,
+  bottomImageAlt = '',
+  topText,
+  bottomText,
+  textAlignment = 'left',
+  imageMargin = '1rem',
+  imageWidth = '200px',
+  imageHeight = 'auto',
+  roundedCorners = false,
+  mobileSpacing = '1.5rem',
+  mobileImageWidth = '50%',
+  gap = '2rem'
+} = Astro.props;
+
+const borderRadius = typeof roundedCorners === 'string'
+  ? roundedCorners
+  : (roundedCorners ? '0.5rem' : '0');
+---
+
+<div
+  class="intro-text"
+  data-text-alignment={textAlignment}
+  style={`
+    --image-margin: ${imageMargin};
+    --border-radius: ${borderRadius};
+    --image-width: ${imageWidth};
+    --image-height: ${imageHeight};
+    --mobile-spacing: ${mobileSpacing};
+    --mobile-image-width: ${mobileImageWidth};
+    --text-alignment: ${textAlignment};
+    --gap: ${gap};
+  `}
+>
+  <!-- Top Row: Image (top-right) and Text (top-left) -->
+  <div class="row top-row">
+    {topText && (
+      <div class="text-block top-text">
+        {topText}
+        {!topText && <slot name="top-text" />}
+      </div>
+    )}
+    
+    {topImageSrc && (
+      <div class="image-container top-image">
+        <img
+          src={topImageSrc}
+          alt={topImageAlt}
+          loading="lazy"
+          style={{
+            width: '100%',
+            height: imageHeight,
+            objectFit: 'cover',
+            display: 'block'
+          }}
+        />
+      </div>
+    )}
+  </div>
+
+  <!-- Bottom Row: Text (bottom-right) and Image (bottom-left) -->
+  <div class="row bottom-row">
+    {bottomImageSrc && (
+      <div class="image-container bottom-image">
+        <img
+          src={bottomImageSrc}
+          alt={bottomImageAlt}
+          loading="lazy"
+          style={{
+            width: '100%',
+            height: imageHeight,
+            objectFit: 'cover',
+            display: 'block'
+          }}
+        />
+      </div>
+    )}
+    
+    {bottomText && (
+      <div class="text-block bottom-text">
+        {bottomText}
+        {!bottomText && <slot name="bottom-text" />}
+      </div>
+    )}
+  </div>
+</div>
