@@ -12,7 +12,7 @@ const {
 } = Astro.props;
 ---
 
-<a href={href} class="service-card">
+<a href={href} class="service-card" data-theme="theme-floral">
   <Image
     src={image}
     alt={imageAlt}
@@ -25,4 +25,3 @@ const {
     <p>{description}</p>
   </div>
 </a>
-
