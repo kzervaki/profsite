@@ -59,9 +59,6 @@ const services = [
       topImageHeight="330px"
       topText="Η ψυχοθεραπεία συνιστά έναν ουσιαστικό και ασφαλή χώρο εσωτερικής διερεύνησης, όπου το άτομο έχει τη δυνατότητα να προσεγγίσει σε βάθος τον εαυτό του, τα βιώματά του, τις διαπροσωπικές του δυναμικές και το συναισθηματικό του τοπίο. Θεμελιώνεται σε μια σχέση συνεργατική και αυθεντική, όπου η αποδοχή της παρούσας εμπειρίας συνυπάρχει με τη δυνατότητα για ουσιαστική αλλαγή. Ο σκοπός της δεν περιορίζεται στη συμπτωματική ανακούφιση, αλλά εκτείνεται στη βαθύτερη ενίσχυση της αυτογνωσίας και της ψυχικής ανθεκτικότητας. Μέσα από μια διαδικασία προσωπικής εξερεύνησης και νοηματοδότησης της εμπειρίας, καλλιεργείται η συναισθηματική ισορροπία, ενδυναμώνεται η ικανότητα αυτορρύθμισης και ενισχύεται η δυνατότητα για αυθεντικές, ικανοποιητικές και ουσιαστικές σχέσεις — τόσο με τον εαυτό όσο και με τους άλλους."
 
-      bottomImageSrc=`${import.meta.env.BASE_URL}/images/intro-image-2.webp`
-      bottomImageWidth="390px"
-      bottomText="Η θεραπευτική μου προσέγγιση είναι συνθετική, αντλώντας κυρίαρχα θεωρητικά εργαλεία και κλινική γνώση από τη Συστημική Ψυχοθεραπεία και τη Διαλεκτική Συμπεριφορική Ψυχοθεραπεία (DBT). Παράλληλα, ενσωματώνει εκλεκτικά στοιχεία  της ψυχοδυναμικής οπτικής, της θεωρίας των αντικειμενοτρόπων σχέσεων και της θεωρίας δεσμού, το γνωσιακό-συμπεριφορικό μοντέλο, αλλά και από τις σύγχρονες προσεγγίσεις της τραυματολογίας. Μέσα από αυτή τη σύνθεση, δίνεται έμφαση τόσο στη σχεσιακή, κυκλική διάσταση των δυσκολιών, όσο και στην κατανόηση ασυνείδητων διεργασιών και βιοψυχοκοινωνικών επιρροών, με γνώμονα την ανάπτυξη ασφαλέστερων  και λειτουργικών τρόπων σύνδεσης με τον εαυτό και τους άλλους. Εάν διανύετε μια περίοδο συναισθηματικής έντασης, προσωπικών δυσκολιών ή επαναλαμβανόμενων προκλήσεων στις σχέσεις σας, η ψυχοθεραπεία μπορεί να αποτελέσει ένα ασφαλές και σταθερό σημείο υποστήριξης και ένα εφαλτήριο προσωπικής εξέλιξης"
       textAlignment="justify"
       imageWidth="250px"
       roundedCorners={true}
@@ -71,39 +68,39 @@ const services = [
 
     <ServiceGrid columns={3}>
       <ServiceCard
-        title="Ατομική Ενηλίκων"
-        description="Δομημένος και ασφαλής χώρος διερεύνησης των σκέψεων, συναισθημάτων και βιωμάτων του ώριμου ατόμου"
-        href=`${import.meta.env.BASE_URL}services/individual-therapy-adults`
+        title={services[0].title}
+        description={services[0].description}
+        href={services[0].href}
         image="images/service-individual-adults.png"
       />
       <ServiceCard
-        title="Ατομική Εφήβων"
-        description="Ασφαλής χώρος έκφρασης και κατανόησης εαυτού σε μια ιδιαίτερα κρίσιμη αναπτυξιακή φάση του ατόμου"
-        href=`${import.meta.env.BASE_URL}services/individual-therapy-teenagers`
+        title={services[1].title}
+        description={services[1].description}
+        href={services[1].href}
         image="images/service-individual-teenagers.png"
       />
       <ServiceCard
-        title="Διαδικτυακές Συνεδρίες"
-        description="Υποστήριξη και θεραπεία μέσω βιντεοκλήσεων, ειδικών εφαρμογών ή κρυπτογραφημένης επικοινωνίας"
-        href=`${import.meta.env.BASE_URL}services/online-sessions`
+        title={services[2].title}
+        description={services[2].description}
+        href={services[2].href}
         image="images/service-online-sessions.png"
       />
       <ServiceCard
-        title="Θεραπεία Ζεύγους"
-        description="Μη επικριτικό και υποστηρικτικό πλαίσιο εξερεύνσης της σχέσης του ζεύγους και κατανόησης των μοτίβων επικοινωνίας"
-        href=`${import.meta.env.BASE_URL}services/couple-therapy`
+        title={services[3].title}
+        description={services[3].description}
+        href={services[3].href}
         image="images/service-couple-therapy.png"
       />
       <ServiceCard
-        title="Θεραπεία Οικογένειας"
-        description="Δομημένος χώρος αμοιβαίας διερεύνησης των σχέσεων μεταξύ και αλληλοκατανόησης μεταξύ των μελών της οικογένειας"
-        href=`${import.meta.env.BASE_URL}services/family-therapy`
+        title={services[4].title}
+        description={services[4].description}
+        href={services[4].href}
         image="images/service-family-therapy.png"
       />
       <ServiceCard
-        title="Συμβουλευτική Γονέων"
-        description="Υποστηρικτικό πλάισιο επεξεργασίας των προκλήσεων της γονεϊκότητας και καλύτερης κατανόησης των αναγκών των παιδιών"
-        href=`${import.meta.env.BASE_URL}services/parents-counseling`
+        title={services[5].title}
+        description={services[5].description}
+        href={services[5].href}
         image="images/service-parents-counseling.png"
       />
     </ServiceGrid>

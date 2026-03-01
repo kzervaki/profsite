@@ -2,10 +2,13 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LinkIntra from "../components/LinkIntra.astro";
 import SitePage from "../components/SitePage.astro";
+import IntroText from "../components/IntroText.astro";
 import GridHorizontal from "../components/GridHorizontal.astro";
 import GridStacked from "../components/GridStacked.astro";
 import CellContent from "../components/CellContent.astro";
 import { CONFIG } from "../site-config";
+import ServiceGrid from "../components/ServiceGrid.astro";
+import ServiceCard from "../components/ServiceCard.astro";
 
 const baseUrl = import.meta.env.BASE_URL || '/';
 
@@ -31,73 +34,32 @@ const approaches = [
     title="Θεραπευτικές προσεγγίσεις"
   >
 
-    <div class="grid-desktop">
-      <GridHorizontal
-        size="80vmin"
-        padding="1rem"
-        lineWidth="2.2px"
-      >
-        <img slot="A" src=`${import.meta.env.BASE_URL}/images/composition-3.jpg` />
-        <div slot="B">
-          <CellContent
-            title={approaches[0].title}
-            href={approaches[0].href}
-            align="justify"
-          >
-            {approaches[0].description}
-          </CellContent>
-        </div>
-        <div slot="C">
-          <CellContent
-            title={approaches[1].title}
-            href={approaches[1].href}
-          >
-            {approaches[1].description}
-          </CellContent>
-        </div>
-      </GridHorizontal>
-    </div>
+    <IntroText
+      bottomImageSrc=`${import.meta.env.BASE_URL}/images/intro-image-2.webp`
+      bottomImageWidth="390px"
+      bottomText="Η θεραπευτική μου προσέγγιση είναι συνθετική, αντλώντας κυρίαρχα θεωρητικά εργαλεία και κλινική γνώση από τη Συστημική Ψυχοθεραπεία και τη Διαλεκτική Συμπεριφορική Ψυχοθεραπεία (DBT). Παράλληλα, ενσωματώνει εκλεκτικά στοιχεία  της ψυχοδυναμικής οπτικής, της θεωρίας των αντικειμενοτρόπων σχέσεων και της θεωρίας δεσμού, το γνωσιακό-συμπεριφορικό μοντέλο, αλλά και από τις σύγχρονες προσεγγίσεις της τραυματολογίας. Μέσα από αυτή τη σύνθεση, δίνεται έμφαση τόσο στη σχεσιακή, κυκλική διάσταση των δυσκολιών, όσο και στην κατανόηση ασυνείδητων διεργασιών και βιοψυχοκοινωνικών επιρροών, με γνώμονα την ανάπτυξη ασφαλέστερων  και λειτουργικών τρόπων σύνδεσης με τον εαυτό και τους άλλους. Εάν διανύετε μια περίοδο συναισθηματικής έντασης, προσωπικών δυσκολιών ή επαναλαμβανόμενων προκλήσεων στις σχέσεις σας, η ψυχοθεραπεία μπορεί να αποτελέσει ένα ασφαλές και σταθερό σημείο υποστήριξης και ένα εφαλτήριο προσωπικής εξέλιξης"
 
-    <div class="grid-mobile">
-      <GridStacked
-        height="40vh"
-        padding="1rem"
-        lineWidth="2.2px"
-      >
-        <div slot="B">
-          <CellContent
-            title={approaches[0].title}
-            href={approaches[0].href}
-          >
-            {approaches[0].description}
-          </CellContent>
-        </div>
-        <div slot="C">
-          <CellContent
-            title={approaches[1].title}
-            href={approaches[1].href}
-          >
-            {approaches[1].description}
-          </CellContent>
-        </div>
-      </GridStacked>
-    </div>
+      textAlignment="justify"
+      imageWidth="250px"
+      roundedCorners={true}
+      gap="2.1rem"
+      mobileImageWidth="80%"
+    />
 
-    <style>
-      .grid-mobile {
-        display: none;
-      }
-
-      @media (max-width: 768px) {
-        .grid-desktop {
-          display: none;
-        }
-
-        .grid-mobile {
-          display: block;
-        }
-      }
-    </style>
+    <ServiceGrid columns={2}>
+      <ServiceCard
+        title={approaches[0].title}
+        description={approaches[0].description}
+        href={approaches[0].href}
+        image="images/service-individual-adults.png"
+      />
+      <ServiceCard
+        title={approaches[1].title}
+        description={approaches[0].description}
+        href={approaches[1].href}
+        image="images/service-individual-teenagers.png"
+      />
+    </ServiceGrid>
 
   </SitePage>
 
