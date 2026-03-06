@@ -3,39 +3,38 @@ import ContactDetails from "./ContactDetails.astro";
 import ContactForm from "./ContactForm.astro";
 import GoogleMap from "./GoogleMap.astro";
 import { CONFIG } from "../site-config"
+
+// Get theme from parent if available
+const siteTheme = Astro.props.theme || "theme-sage";
 ---
 
-<div>
+<div class="contact-section" data-theme={siteTheme}>
   <ContactDetails/>
 
-  <section>
-    <h3>Αποστολή Μηνύματος</h3>
+  <section class="contact-message-section">
+    <h3 class="section-title">Αποστολή Μηνύματος</h3>
 
-    <div class="contact-row">
+    <div class="contact-grid">
       <ContactForm
         action="#"
-        width="100%"
-        height="100%"
-        maxWidth="500px"
         rounded={true}
         align="left"
         buttonText="Αποστολή"
-        buttonWidth="120px"
-        buttonHeight="40px"
-        buttonBg="#5a7d8c"
-        buttonColor="#ffffff"
+        buttonWidth="140px"
+        buttonHeight="44px"
+        buttonBg="var(--color-primary, #5a7d8c)"
+        buttonColor="var(--color-text-light, #ffffff)"
         buttonFontSize="1rem"
         buttonRounded={true}
-        buttonHoverBg="#48656f"
+        buttonHoverBg="var(--color-primary-hover, #48656f)"
+        class="contact-form-component"
       />
 
       <GoogleMap
         embedUrl={CONFIG.googleMapLocation}
-        width="350px"
-        height="250px"
         rounded={true}
         align="right"
-        class="my-4"
+        class="map-component"
       />
     </div>
   </section>

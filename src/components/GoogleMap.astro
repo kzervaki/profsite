@@ -1,42 +1,36 @@
-i---
+---
 /**
  * Props:
  *  - embedUrl: string (required) -> Google Maps iframe URL
  *  - address: string (optional, for display)
- *  - width: string or number (optional, default "100%")
- *  - height: string or number (optional, default "300px")
- *  - rounded: boolean (optional, default false)
+ *  - rounded: boolean (optional, default true)
  *  - align: string (optional, "left", "right", "center", default "center")
  *  - class: string (optional, extra CSS classes)
  */
 const {
   embedUrl,
   address = "",
-  width = "640",
-  height = "480",
-  rounded = false,
+  rounded = true,
   align = "center",
   class: extraClass = ""
 } = Astro.props;
 
-// Inline styles for iframe
-let iframeStyle = `width: ${width}; height: ${height}; border:0;`;
-if (rounded) iframeStyle += " border-radius: 8px;";
-
-// Wrapper style for alignment and spacing
+// Wrapper style for alignment
 let wrapperStyle = "";
-if (align === "left") wrapperStyle = "float: left; margin-right: 1rem; margin-bottom: 1rem;";
-else if (align === "right") wrapperStyle = "float: right; margin-left: 1rem; margin-bottom: 1rem;";
-else wrapperStyle = "display: block; margin: 1rem auto;"; // center
+if (align === "left") wrapperStyle = "margin-right: var(--space-md); margin-bottom: var(--space-md);";
+else if (align === "right") wrapperStyle = "margin-left: var(--space-md); margin-bottom: var(--space-md);";
+else wrapperStyle = "margin: var(--space-md) auto;"; // center
 ---
 <div class={`map-container ${extraClass}`} style={wrapperStyle}>
-  {address && <p>{address}</p>}
-  <iframe
-    src={embedUrl}
-    style={iframeStyle}
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade"
-  ></iframe>
+  {address && <p class="map-address">{address}</p>}
+  <div class="map-frame">
+    <iframe
+      src={embedUrl}
+      class={`map-iframe ${rounded ? "map-iframe--rounded" : ""}`}
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Google Maps location"
+    ></iframe>
+  </div>
 </div>
-

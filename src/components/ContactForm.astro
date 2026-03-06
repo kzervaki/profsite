@@ -2,8 +2,6 @@
 /**
  * Props:
  *  - action: string (form submit URL, default "#")
- *  - width: string (form width, default "100%")
- *  - maxWidth: string (default "500px")
  *  - rounded: boolean (for inputs, default true)
  *  - align: string ("left", "right", "center", default "center")
  *  - class: string (extra classes)
@@ -11,7 +9,7 @@
  *  -- Button customization --
  *  - buttonText: string ("Send")
  *  - buttonWidth: string (default "auto")
- *  - buttonHeight: string (default "40px")
+ *  - buttonHeight: string (default "44px")
  *  - buttonBg: string (default "#4a90e2")
  *  - buttonColor: string (default "#fff")
  *  - buttonFontSize: string (default "1rem")
@@ -20,45 +18,86 @@
  */
 const {
   action = "#",
-  width = "100%",
-  maxWidth = "500px",
   rounded = true,
   align = "center",
   class: extraClass = "",
   buttonText = "Send",
   buttonWidth = "auto",
-  buttonHeight = "40px",
-  buttonBg = "#4a90e2",
-  buttonColor = "#fff",
+  buttonHeight = "44px",
+  buttonBg = "var(--color-primary, #4a90e2)",
+  buttonColor = "var(--color-text-light, #fff)",
   buttonFontSize = "1rem",
   buttonRounded = true,
-  buttonHoverBg = "#357ABD"
+  buttonHoverBg = "var(--color-primary-hover, #357ABD)"
 } = Astro.props;
 
-// Wrapper style for alignment
-let wrapperStyle = "";
-if (align === "left") wrapperStyle = `float: left; margin-right:1rem; margin-bottom:1rem; width:${width}; max-width:${maxWidth};`;
-else if (align === "right") wrapperStyle = `float: right; margin-left:1rem; margin-bottom:1rem; width:${width}; max-width:${maxWidth};`;
-else wrapperStyle = `display:block; margin:1rem auto; width:${width}; max-width:${maxWidth};`;
+// Generate CSS classes based on props
+const formClasses = [
+  "contact-form",
+  align !== "center" ? `contact-form--${align}` : "",
+  extraClass
+].filter(Boolean).join(" ");
 
-let inputRadius = rounded ? "border-radius: 8px;" : "";
-let buttonRadius = buttonRounded ? "border-radius: 8px;" : "";
+const inputClasses = rounded ? "contact-input contact-input--rounded" : "contact-input";
+const buttonClasses = [
+  "contact-button",
+  buttonRounded ? "contact-button--rounded" : "",
+  buttonWidth !== "auto" ? "contact-button--fixed-width" : ""
+].filter(Boolean).join(" ");
 ---
-<form class={`contact-form ${extraClass}`} action={action} method="POST" style={wrapperStyle}>
-  <label for="name">Ονοματεπώνυμο</label>
-  <input type="text" id="name" name="name" required style={inputRadius} />
+<form
+  class={formClasses}
+  action={action}
+  method="POST"
+  data-align={align}
+>
+  <div class="form-field">
+    <label for="name" class="field-label">Ονοματεπώνυμο</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      class={inputClasses}
+      required
+      placeholder="Το ονοματεπώνυμό σας"
+    />
+  </div>
 
-  <label for="email">Email</label>
-  <input type="email" id="email" name="email" required style={inputRadius} />
+  <div class="form-field">
+    <label for="email" class="field-label">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      class={inputClasses}
+      required
+      placeholder="Η διεύθυνση email σας"
+    />
+  </div>
 
-  <label for="message">Μήνυμα</label>
-  <textarea id="message" name="message" rows="5" required style={inputRadius}></textarea>
+  <div class="form-field">
+    <label for="message" class="field-label">Μήνυμα</label>
+    <textarea
+      id="message"
+      name="message"
+      rows="5"
+      class={inputClasses}
+      required
+      placeholder="Το μήνυμά σας..."
+    ></textarea>
+  </div>
 
   <button
     type="submit"
-    style={`width:${buttonWidth}; height:${buttonHeight}; background-color:${buttonBg}; color:${buttonColor}; font-size:${buttonFontSize}; border:none; cursor:pointer; ${buttonRadius}`}
-    onmouseover="this.style.backgroundColor='${buttonHoverBg}'"
-    onmouseout="this.style.backgroundColor='${buttonBg}'"
+    class={buttonClasses}
+    style={`
+      --btn-width: ${buttonWidth};
+      --btn-height: ${buttonHeight};
+      --btn-bg: ${buttonBg};
+      --btn-color: ${buttonColor};
+      --btn-font-size: ${buttonFontSize};
+      --btn-hover-bg: ${buttonHoverBg};
+    `}
   >
     {buttonText}
   </button>
