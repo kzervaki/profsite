@@ -10,18 +10,30 @@ const {
   imageWidth = "100%",
   rounded = true,
 } = Astro.props;
+
+// Create a safe aria-label with proper null checks
+const ariaLabel = title
+  ? `${title}${description ? ` - ${description.substring(0, 60)}` : ''}${description?.length > 60 ? '...' : ''}`
+  : href;
 ---
 
-<a href={href} class="service-card" data-theme="theme-floral">
-  <Image
-    src={image}
-    alt={imageAlt}
-    imagewidth={imageWidth}
-    rounded={rounded}
-  />
+<a
+  href={href}
+  class="service-card"
+  data-theme="theme-floral"
+  aria-label={ariaLabel}
+>
+  <div class="service-card-image-wrapper">
+    <Image
+      src={image}
+      alt={imageAlt}
+      imagewidth={imageWidth}
+      rounded={rounded}
+    />
+  </div>
 
   <div class="service-card-content">
-    <h3>{title}</h3>
-    <p>{description}</p>
+    <h3 class="service-card-title">{title}</h3>
+    {description && <p class="service-card-description">{description}</p>}
   </div>
 </a>

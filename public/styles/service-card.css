@@ -1,17 +1,262 @@
+/* Service Card Styles - Beige with Graphite Letters (Matching Dropdown Aesthetic) */
+
 .service-card {
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem;
 
-  /* background: rgba(255, 255, 255, 0.0); /* Added transparency here */
-  backdrop-filter: blur(10px); /* Optional: adds frosted glass effect */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  /* Beige background matching dropdown aesthetic - slightly transparent */
+  background: rgba(245, 240, 230, 0.65); /* Warm beige - matches dropdown opacity */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(0,0,0,0.04);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.09);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  /* Subtle border matching dropdown */
+  border-radius: var(--radius-md, 0.75rem);
+  border: 1px solid rgba(255, 255, 255, 0.3); /* White border like dropdown */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Shadow matching dropdown */
+
+  transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+
+  text-decoration: none;
+  color: inherit;
+
+  /* Ensure proper card proportions */
+  height: 100%;
+  width: 100%;
 }
 
+/* Image wrapper for consistent sizing */
+.service-card-image-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+/* Image component styling */
+.service-card-image-wrapper :global(img) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+
+  /* Consistent aspect ratio */
+  aspect-ratio: 16 / 9;
+
+  /* Soften image edges slightly */
+  border-radius: calc(var(--radius-md, 0.75rem) - 2px);
+}
+
+/* Content container - centered */
+.service-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  gap: 0.6rem;
+}
+
+/* Title styling - graphite/grey like dropdown text */
+.service-card-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.4;
+
+  /* Graphite grey - matching dropdown text color */
+  color: #2c2c2c;
+
+  /* Ensure long titles wrap properly */
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+/* Description styling - slightly lighter graphite */
+.service-card-description {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+
+  /* Lighter graphite for description */
+  color: #4a4a4a;
+
+  /* Limit description length for consistency */
+  max-width: 100%;
+  word-wrap: break-word;
+
+  /* Limit to 3 lines with ellipsis */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Hover effect - restores original background with current transparency */
 .service-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.10);
+
+  /* RESTORED: Original background at same transparency */
+  background: rgba(245, 240, 230, 0.65); /* Same as base - no change */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  /* Enhanced shadow only - no background change */
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+
+  /* Slightly more visible border on hover */
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Focus state for keyboard navigation */
+.service-card:focus-visible {
+  outline: 2px solid #2c2c2c;
+  outline-offset: 2px;
+  transform: translateY(-2px);
+
+  /* RESTORED: Original background */
+  background: rgba(245, 240, 230, 0.65);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+/* Active state (when clicked) */
+.service-card:active {
+  transform: translateY(0);
+
+  /* Slightly more opaque when pressed - subtle feedback */
+  background: rgba(245, 240, 230, 0.75);
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.1s ease;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .service-card {
+    padding: 1.25rem 0.75rem;
+
+    /* Slightly more opaque on mobile for better readability */
+    background: rgba(245, 240, 230, 0.75);
+  }
+
+  .service-card-title {
+    font-size: 1.1rem;
+    color: #2c2c2c;
+  }
+
+  .service-card-description {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 2; /* Show fewer lines on mobile */
+    color: #4a4a4a;
+  }
+
+  /* Ensure touch targets are large enough */
+  .service-card {
+    min-height: 44px;
+  }
+
+  /* Mobile hover - no background change */
+  .service-card:hover {
+    background: rgba(245, 240, 230, 0.75); /* Keep mobile opacity */
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .service-card {
+    padding: 1rem 0.5rem;
+
+    /* Slightly more opaque on very small screens */
+    background: rgba(245, 240, 230, 0.8);
+  }
+
+  .service-card-image-wrapper {
+    margin-bottom: 0.75rem;
+  }
+
+  /* Slightly smaller aspect ratio for very small screens */
+  .service-card-image-wrapper :global(img) {
+    aspect-ratio: 4 / 3;
+  }
+
+  /* Mobile hover - keep opacity */
+  .service-card:hover {
+    background: rgba(245, 240, 230, 0.8);
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .service-card {
+    padding: 1.25rem 0.875rem;
+  }
+
+  .service-card-title {
+    font-size: 1.2rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .service-card {
+    background: rgba(250, 245, 235, 0.95);
+    border: 2px solid #2c2c2c;
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+
+  .service-card-title {
+    color: #1a1a1a;
+  }
+
+  .service-card-description {
+    color: #2c2c2c;
+  }
+
+  .service-card:hover {
+    background: rgba(250, 245, 235, 0.95); /* Keep high contrast background */
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .service-card {
+    transition: none;
+  }
+
+  .service-card:hover {
+    transform: none;
+  }
+}
+
+/* Dark theme support - matching dropdown dark mode aesthetic */
+[data-theme="theme-floral"][data-dark="true"] .service-card,
+.theme-dark .service-card {
+  /* Dark beige/dropdown background */
+  background: rgba(40, 40, 40, 0.75); /* Dark grey matching dropdown aesthetic */
+  border-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="theme-floral"][data-dark="true"] .service-card-title,
+.theme-dark .service-card-title {
+  color: #e0e0e0; /* Light grey for dark mode */
+}
+
+[data-theme="theme-floral"][data-dark="true"] .service-card-description,
+.theme-dark .service-card-description {
+  color: #b0b0b0; /* Medium grey for dark mode */
+}
+
+[data-theme="theme-floral"][data-dark="true"] .service-card:hover,
+.theme-dark .service-card:hover {
+  /* RESTORED: Original dark background on hover */
+  background: rgba(40, 40, 40, 0.75); /* Same as base */
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
 }
