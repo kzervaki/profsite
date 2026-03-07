@@ -22,12 +22,32 @@
   display: block;
   color: inherit !important;
   text-decoration: none !important;
+  border-radius: 4px;
 }
 
-.site-header-link:hover,
-.site-header-link:focus,
-.site-header-link:active {
+.site-header-link:hover {
   cursor: pointer;
+}
+
+.site-header-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.site-header-link:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.site-header-link:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.site-header-link:active {
   color: inherit !important;
   text-decoration: none !important;
 }
@@ -44,6 +64,10 @@
 }
 
 /* ---------- Logo ---------- */
+.site-header-logo {
+  flex-shrink: 0;
+}
+
 .site-header-logo img {
   width: var(--header-logo-size);
   height: auto;
@@ -54,35 +78,60 @@
 .site-header-banner {
   display: flex;
   flex-direction: column;
+  gap: 0.25rem;
 }
 
 .site-header-title {
   font-size: var(--header-title-size);
   margin: 0;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.site-header-subtitle-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
 }
 
 .site-header-subtitle {
   font-size: var(--header-subtitle-size);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.4em;
-  margin-top: 0.5rem;
-  line-height: 1.2;
+  gap: 0.3em 0.4em;
+  line-height: 1.3;
 }
 
 .subtitle-sep {
-  opacity: 0.6;
+  opacity: 0.5;
+  user-select: none;
+  font-weight: 300;
 }
 
 /* ==================================================
-   Mobile
+   Tablet & Small Desktop
+   ================================================== */
+
+@media (max-width: 1024px) {
+  .site-header {
+    --header-logo-size: 160px;
+    --header-title-size: 1.6rem;
+    --header-subtitle-size: 1.1rem;
+  }
+}
+
+/* ==================================================
+   Mobile - Optimized for Aesthetics
    ================================================== */
 
 @media (max-width: 768px) {
   .site-header {
-    --header-padding-y: 2rem;
-    --header-logo-size: 120px;
-    --header-title-size: 1.2rem;
+    --header-padding-y: 0.875rem;
+    --header-padding-x: 1rem;
+    --header-gap: 0.75rem;
+    --header-logo-size: 70px; /* Smaller, more proportional */
+    --header-title-size: 1.25rem;
     --header-subtitle-size: 0.9rem;
   }
 
@@ -90,13 +139,99 @@
     align-items: center;
   }
 
+  /* Optional: Hide logo on very crowded text scenarios */
+  /* .site-header-logo {
+    display: none;
+  } */
+
+  .site-header-banner {
+    gap: 0.15rem;
+  }
+
+  .site-header-subtitle-group {
+    gap: 0.1rem;
+  }
+
   .site-header-subtitle {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.2rem;
+    flex-wrap: wrap;
+    gap: 0.2em 0.3em;
+  }
+
+  /* Keep subtitles on one line when possible, but allow wrapping gracefully */
+  .subtitle-part {
+    white-space: normal;
+    word-break: normal;
   }
 
   .subtitle-sep {
+    display: inline; /* Keep separator on mobile for visual rhythm */
+    opacity: 0.4;
+  }
+}
+
+/* ==================================================
+   Small Mobile - Refined Proportions
+   ================================================== */
+
+@media (max-width: 480px) {
+  .site-header {
+    --header-padding-y: 0.75rem;
+    --header-padding-x: 0.875rem;
+    --header-gap: 0.6rem;
+    --header-logo-size: 60px; /* Even smaller for very small screens */
+    --header-title-size: 1.2rem;
+    --header-subtitle-size: 0.85rem;
+  }
+
+  /* On very small screens, consider centering if logo is present */
+  .site-header-inner {
+    align-items: center;
+  }
+
+  .site-header-subtitle {
+    gap: 0.15em 0.25em;
+  }
+
+  /* Make subtitles slightly more compact */
+  .subtitle-part {
+    letter-spacing: -0.01em;
+  }
+}
+
+/* ==================================================
+   Extra Small Mobile - Logo Optional
+   ================================================== */
+
+@media (max-width: 360px) {
+  .site-header {
+    --header-logo-size: 50px;
+    --header-title-size: 1.1rem;
+  }
+
+  /* Option 1: Keep logo but make it very small */
+  /* This is already handled by --header-logo-size above */
+
+  /* Option 2: Uncomment to hide logo on very small screens */
+  /*
+  .site-header-logo {
     display: none;
   }
+
+  .site-header {
+    --header-gap: 0;
+  }
+  */
+}
+
+/* ==================================================
+   Theme Variations
+   ================================================== */
+
+.site-header[data-theme="theme-floral"] {
+  /* Your existing floral theme styles */
+}
+
+.site-header[data-theme="theme-minimal"] {
+  --header-title-size: 1.6rem;
+  --header-subtitle-size: 1rem;
 }

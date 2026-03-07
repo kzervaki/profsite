@@ -5,13 +5,16 @@ const {
   title = CONFIG.siteTitle ?? "Site Title",
   subtitle = CONFIG.siteSubtitle ?? "Site subtitle",
   logoSrc = null,
-  logoAlt = "Site logo",
+  logoAlt = CONFIG.siteTitle ?? "Site logo",
   homeHref = import.meta.env.BASE_URL,
+  theme = "theme-floral",
 } = Astro.props;
+
+const headerTitle = title || CONFIG.siteTitle || "Site";
 ---
 
-<header class="site-header" data-theme="theme-floral">
-  <a href={homeHref} class="site-header-link">
+<header class="site-header" data-theme={theme}>
+  <a href={homeHref} class="site-header-link" aria-label={`${headerTitle} homepage`}>
     <div class="site-header-inner">
       {logoSrc && (
         <div class="site-header-logo">
@@ -20,18 +23,20 @@ const {
       )}
 
       <div class="site-header-banner">
-        <h1 class="site-header-title">{title}</h1>
+        <h1 class="site-header-title">{headerTitle}</h1>
 
-        <div class="site-header-subtitle">
-          <span class="subtitle-part">Ψυχολόγος ΜΑ</span>
-          <span class="subtitle-sep">·</span>
-          <span class="subtitle-part">Κοινωνική Λειτουργός</span>
-        </div>
+        <div class="site-header-subtitle-group">
+          <div class="site-header-subtitle">
+            <span class="subtitle-part">Ψυχολόγος ΜΑ</span>
+            <span class="subtitle-sep" aria-hidden="true">·</span>
+            <span class="subtitle-part">Κοινωνική Λειτουργός</span>
+          </div>
 
-        <div class="site-header-subtitle">
-          <span class="subtitle-part">{CONFIG.specialtySystemic}</span>
-          <span class="subtitle-sep">·</span>
-          <span class="subtitle-part">{CONFIG.specialtyDialectic}</span>
+          <div class="site-header-subtitle">
+            <span class="subtitle-part">{CONFIG.specialtySystemic}</span>
+            <span class="subtitle-sep" aria-hidden="true">·</span>
+            <span class="subtitle-part">{CONFIG.specialtyDialectic}</span>
+          </div>
         </div>
       </div>
     </div>
