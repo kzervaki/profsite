@@ -4,7 +4,7 @@
 :root {
   --text-font-family: system-ui, sans-serif;
   --text-font-size: 18px;
-  --text-font-weight: 440;
+  --text-font-weight: 428;
   --text-line-height: 1.9;
   --text-letter-spacing: 0em;
 
@@ -21,7 +21,7 @@
    ========================= */
 :root {
   --heading-font-family: system-ui, sans-serif;
-  --heading-font-weight: 510;
+  --heading-font-weight: 498;
   --heading-line-height: 1.25;
   --heading-letter-spacing: -0.01em;
   --heading-align: left;
@@ -44,4 +44,3 @@
   /* Default border width for typographic elements (e.g., underlines, separators, panels) */
   --text-border-width: 1px;
 }
-
