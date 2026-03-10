@@ -65,15 +65,15 @@
   gap: 0; /* Remove gap since there's only title */
 }
 
-/* Title styling - graphite/grey like dropdown text */
+/* Title styling - lighter graphite for better contrast */
 .service-card-title {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.4;
 
-  /* Graphite grey - matching dropdown text color */
-  color: #2c2c2c;
+  /* Lighter graphite - was #2c2c2c, now lighter for better contrast */
+  color: #3a3a3a;
 
   /* Ensure long titles wrap properly */
   max-width: 100%;
@@ -86,14 +86,14 @@
   padding: 0.5rem 0; /* Add a little breathing room */
 }
 
-/* Description styling - only shown when description exists */
+/* Description styling - lighter for better contrast */
 .service-card-description {
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.6;
 
-  /* Lighter graphite for description */
-  color: #4a4a4a;
+  /* Lighter graphite for description - was #4a4a4a, now lighter */
+  color: #5a5a5a;
 
   /* Limit description length for consistency */
   max-width: 100%;
@@ -128,7 +128,7 @@
 
 /* Focus state for keyboard navigation */
 .service-card:focus-visible {
-  outline: 2px solid #2c2c2c;
+  outline: 2px solid #3a3a3a; /* Updated to match new title color */
   outline-offset: 2px;
   transform: translateY(-2px);
 
@@ -159,13 +159,13 @@
 
   .service-card-title {
     font-size: 1.1rem;
-    color: #2c2c2c;
+    color: #3a3a3a; /* Updated */
   }
 
   .service-card-description {
     font-size: 0.9rem;
     -webkit-line-clamp: 2; /* Show fewer lines on mobile */
-    color: #4a4a4a;
+    color: #5a5a5a; /* Updated */
   }
 
   /* Ensure touch targets are large enough */
@@ -232,17 +232,17 @@
 @media (prefers-contrast: high) {
   .service-card {
     background: rgba(250, 245, 235, 0.95);
-    border: 2px solid #2c2c2c;
+    border: 2px solid #3a3a3a; /* Updated */
     backdrop-filter: none;
     box-shadow: none;
   }
 
   .service-card-title {
-    color: #1a1a1a;
+    color: #2a2a2a; /* Slightly darker for high contrast */
   }
 
   .service-card-description {
-    color: #2c2c2c;
+    color: #3a3a3a; /* Darker for high contrast */
   }
 
   .service-card:hover {
@@ -277,12 +277,12 @@
 
 [data-theme="theme-floral"][data-dark="true"] .service-card-title,
 .theme-dark .service-card-title {
-  color: #e0e0e0; /* Light grey for dark mode */
+  color: #f0f0f0; /* Even lighter for dark mode - was #e0e0e0 */
 }
 
 [data-theme="theme-floral"][data-dark="true"] .service-card-description,
 .theme-dark .service-card-description {
-  color: #b0b0b0; /* Medium grey for dark mode */
+  color: #c0c0c0; /* Lighter for dark mode - was #b0b0b0 */
 }
 
 [data-theme="theme-floral"][data-dark="true"] .service-card:hover,
