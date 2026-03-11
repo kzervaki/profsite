@@ -235,6 +235,7 @@ const baseUrl = import.meta.env.BASE_URL || '/';
 
       // DESKTOP DROPDOWN - Fixed with better hover detection
       // DESKTOP DROPDOWN - Fixed with proper DOM creation
+      // DESKTOP DROPDOWN - FIXED HOVER BEHAVIOR
       function setupDesktopDropdown() {
         if (window.innerWidth < 769) return;
 
@@ -250,7 +251,7 @@ const baseUrl = import.meta.env.BASE_URL || '/';
         dropdown.className = 'desktop-dropdown';
         dropdown.setAttribute('data-desktop-dropdown', '');
 
-        // Create dropdown items using DOM methods (no template literal nesting issues)
+        // Create dropdown items using DOM methods
         const baseUrl = import.meta.env.BASE_URL || '/';
         const items = [
           { href: `${baseUrl}/services/individual-adults`, text: 'Ατομική ενηλίκων' },
@@ -259,7 +260,7 @@ const baseUrl = import.meta.env.BASE_URL || '/';
           { href: `${baseUrl}/services/family-therapy`, text: 'Θεραπεία οικογένειας' },
           { href: `${baseUrl}/services/parents-counseling`, text: 'Συμβουλευτική γονέων' },
           { href: `${baseUrl}/services/online-sessions`, text: 'Διαδικτυακές συνεδρίες' },
-        ]
+        ];
 
         items.forEach(item => {
           const li = document.createElement('li');
@@ -272,9 +273,9 @@ const baseUrl = import.meta.env.BASE_URL || '/';
 
         container.appendChild(dropdown);
 
-        // Better hover handling with timeout to prevent flickering
+        // FIXED: Simplified hover handling - no delay on show
         let hideTimeout;
-        
+
         function showDropdown() {
           clearTimeout(hideTimeout);
           dropdown.classList.add('desktop-dropdown--visible');
@@ -287,13 +288,13 @@ const baseUrl = import.meta.env.BASE_URL || '/';
           }, 150);
         }
 
-        // Hover handlers
+        // Hover handlers - show immediately, hide with delay
         container.addEventListener('mouseenter', showDropdown);
         container.addEventListener('mouseleave', hideDropdown);
 
         dropdown.addEventListener('mouseenter', showDropdown);
         dropdown.addEventListener('mouseleave', hideDropdown);
-        
+
         // Also handle clicks on the trigger for touch devices
         const trigger = container.querySelector('.submenu-trigger');
         if (trigger) {

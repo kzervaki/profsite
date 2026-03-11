@@ -451,7 +451,7 @@ body.menu-open {
     display: none;
   }
 
-  /* ---------- Desktop Dropdown - IMPROVED CONTRAST ---------- */
+  /* ---------- Desktop Dropdown - FIXED VISIBILITY ---------- */
   .desktop-dropdown {
     position: absolute;
     top: 100%;
@@ -459,8 +459,7 @@ body.menu-open {
     min-width: 220px;
 
     /* IMPROVED: Better contrast between dropdown and background */
-    /* Original: rgba(255, 255, 255, 0.35) - too transparent */
-    background: rgba(255, 255, 255, 0.48);  /* HERE */
+    background: rgba(255, 255, 255, 0.48);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 
@@ -471,27 +470,26 @@ body.menu-open {
     list-style: none;
     z-index: 1000;
 
-    /* Hidden by default */
+    /* FIXED: Use only opacity and transform for transition */
+    /* Removed visibility: hidden which was causing issues */
     opacity: 0;
-    visibility: hidden;
     transform: translateY(-10px);
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease;
     pointer-events: none;
 
-    /* Subtle shadow for depth - slightly darker for better definition */
+    /* Subtle shadow for depth */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 
     /* Performance optimization */
     will-change: transform, opacity;
 
-    /* IMPROVED: Subtle border for better definition against background */
+    /* Subtle border for better definition */
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
 
-  /* Visible state */
+  /* Visible state - opacity and transform only */
   .desktop-dropdown.desktop-dropdown--visible {
     opacity: 1;
-    visibility: visible;
     transform: translateY(0);
     pointer-events: auto;
   }
@@ -517,19 +515,18 @@ body.menu-open {
     display: block;
     padding: 0.8rem 1.2rem;
 
-    /* IMPROVED: Darker text for better contrast against lighter background */
-    /* Original: color: inherit (usually dark gray/black) - now explicitly darker */
+    /* Darker text for better contrast */
     color: #2a2a2a;
     text-decoration: none;
 
-    /* IMPROVED: Slightly larger and bolder for better readability */
+    /* Better readability */
     font-size: 1.05rem;
     font-weight: 500;
     line-height: 1.5;
     white-space: nowrap;
     height: auto;
 
-    /* IMPROVED: Higher opacity for better contrast */
+    /* Better contrast */
     opacity: 0.95;
     letter-spacing: 0.01em;
 
@@ -541,7 +538,7 @@ body.menu-open {
     transition: background-color 0.15s ease, color 0.15s ease;
   }
 
-  /* IMPROVED: Hover state with better contrast */
+  /* Hover state with better contrast */
   .desktop-dropdown a:hover {
     background: rgba(0, 0, 0, 0.15);
     color: #000000;
@@ -549,7 +546,7 @@ body.menu-open {
   }
 
   .desktop-dropdown a:focus-visible {
-    background: rgba(0, 202, 204, 0.1);
+    background: rgba(0, 102, 204, 0.1);
   }
 
   /* Touch device optimizations for desktop dropdown */
@@ -560,6 +557,6 @@ body.menu-open {
 
   .touch-device .desktop-dropdown a {
     padding: 1rem 1.5rem;
-    min-height: 49px;
+    min-height: 48px;
   }
 }
