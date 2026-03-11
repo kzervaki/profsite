@@ -1,0 +1,17 @@
+/* Main content container */
+main {
+  width: var(--layout-main-width);
+  min-width: var(--layout-main-min-width);
+  max-width: var(--layout-main-max-width);
+
+  margin-top: var(--layout-main-margin-top);
+  margin-bottom: var(--layout-main-margin-bottom);
+  margin-left: var(--layout-main-margin-left);
+  margin-right: var(--layout-main-margin-right);
+
+  padding-top: var(--layout-main-padding-top);
+  padding-bottom: var(--layout-main-padding-bottom);
+  padding-left: var(--layout-main-padding-left);
+  padding-right: var(--layout-main-padding-right);
+}
+

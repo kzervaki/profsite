@@ -1,0 +1,68 @@
+/* Base desktop styles */
+.text-with-image {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  gap: var(--image-margin, 1rem);
+}
+
+.text-wrapper {
+  flex: 1;
+  min-width: 0; /* Fixes flexbox overflow issues */
+}
+
+.image-side {
+  flex-shrink: 0;
+  overflow: hidden; /* For rounded corners */
+  border-radius: var(--border-radius, 0);
+}
+
+/* Image on left side */
+.text-with-image .image-left {
+  order: 1;
+}
+
+/* Image on right side */
+.text-with-image .image-right {
+  order: 2;
+}
+
+/* When image is on right, text comes first */
+.text-with-image .image-right + .text-wrapper {
+  order: 1;
+}
+
+.text-with-image .image-left ~ .text-wrapper {
+  order: 2;
+}
+
+@media (max-width: 768px) {
+  /* CHANGED: Mobile styles - image stretches full width, always on top */
+  .text-with-image {
+    flex-direction: column;
+    align-items: stretch; /* Changed from var(--text-alignment) */
+    gap: var(--mobile-spacing, 1.5rem);
+  }
+
+  /* CHANGED: Image takes full width, always on top */
+  .image-side {
+    width: 100% !important; /* Changed from var(--mobile-image-width) */
+    max-width: 100% !important; /* Changed from var(--mobile-image-width) */
+    order: 1 !important;
+  }
+
+  /* Image should cover width proportionally */
+  .image-side img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover;
+  }
+
+  /* REMOVED: All image alignment rules (margin-left/right auto) */
+
+  /* CHANGED: Text always after image */
+  .text-wrapper {
+    order: 2 !important;
+    width: 100% !important;
+  }
+}

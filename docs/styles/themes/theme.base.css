@@ -1,0 +1,58 @@
+/* theme.base.css */
+
+/* ==================================================
+   Base theme variables contract
+   ==================================================
+   Any theme should define these variables.
+   These are also grep-friendly (--theme-*)
+*/
+
+/* ---------- Aura ---------- */
+:root {
+  /* General aura / base color of the theme */
+  --theme-base-color: transparent;
+}
+
+/* ---------- Plain text ---------- */
+:root {
+  --theme-text-color: currentColor;       /* Default text color */
+  --theme-text-hover-color: currentColor; /* Text hover color */
+}
+
+/* ---------- Background ---------- */
+:root {
+  --theme-background-image: none;         /* Background image */
+}
+
+/* ---------- Borders ---------- */
+:root {
+  --theme-border-color: currentColor;     /* Borders, outlines */
+}
+
+/* ---------- Surface ---------- */
+:root {
+  --theme-surface-color: transparent;     /* Cards, panels, surfaces */
+}
+
+/* ---------- Selection ---------- */
+:root {
+  --theme-selection-color: hsl(200 100% 80% / 0.4); /* text selection background */
+
+/* ---------- Links ---------- */
+:root {
+  --theme-link-color: currentColor;          /* default link color */
+  --theme-link-hover-color: currentColor;    /* hover state */
+  --theme-link-active-color: currentColor;   /* active (pressed) state */
+  --theme-link-underline: none;               /* underline behavior */
+}
+
+
+
+
+  /*
+  --font-weight-link: 500;
+  --color-link: rgb(246,246,246);               /* default link same as text */
+  /*
+  --color-link-hover: rgba(246,246,246,0.85);  /* hover slightly darker */
+  /*
+  --color-link-active: rgba(246,246,246,0.75); /* active state */

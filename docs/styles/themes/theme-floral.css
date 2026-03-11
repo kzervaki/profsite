@@ -1,0 +1,24 @@
+/* theme-floral.css */
+
+[data-theme="theme-floral"] {
+  /* Aura */
+  --theme-base-color: hsl(50 100% 98%);           /* soft floral white */
+
+  /* Text */
+  --theme-text-color: hsl(220 10% 12%);           /* near-black, coolish dark */
+  --theme-text-hover-color: hsl(220 10% 20%);     /* slightly lighter on hover */
+
+  /* Background */
+  --theme-background-image: url("../images/background-floral.png");
+
+  /* Surfaces & borders */
+  --theme-border-color: hsl(220 10% 60%);         /* subtle cool border */
+  --theme-surface-color: hsl(50 100% 95%);        /* soft card surface */
+  --theme-selection-color: hsl(220 10% 50% / 0.35);
+
+  /* Links (calm but visible) */
+  --theme-link-color: hsl(220 10% 12%);           /* matches text */
+  --theme-link-hover-color: hsl(220 8% 38%);      /* stronger contrast grey */
+  --theme-link-active-color: hsl(220 10% 8%);     /* slightly darker than text */
+  --theme-link-underline: none;
+}

@@ -1,0 +1,14 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.site-main {
+  flex: 1 1 auto;       /*  CRITICAL */
+  display: flex;        /* allows SitePage to stretch */
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}

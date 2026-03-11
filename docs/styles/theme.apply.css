@@ -1,0 +1,50 @@
+/* ---------- Base aura ---------- */
+[data-theme] {
+  /* Use background image if defined; otherwise fallback to base color */
+  background: var(--theme-background-image) no-repeat center/cover,
+              var(--theme-base-color);
+}
+
+/* ---------- Text ---------- */
+[data-theme],
+[data-theme] p,
+[data-theme] li {
+  color: var(--theme-text-color);
+}
+
+[data-theme] a:hover {
+  color: var(--theme-text-hover-color);
+}
+
+/* ---------- Borders ---------- */
+[data-theme] hr,
+[data-theme] .card,
+[data-theme] .panel {
+  border-color: var(--theme-border-color);
+}
+
+/* ---------- Surface ---------- */
+[data-theme] .card,
+[data-theme] .panel {
+  background-color: var(--theme-surface-color);
+}
+
+/* ---------- Selection ---------- */
+[data-theme] ::selection {
+  background-color: var(--theme-selection-color);
+}
+
+/* ---------- Links ---------- */
+[data-theme] a {
+  color: var(--theme-link-color);
+  text-decoration: var(--theme-link-underline);
+}
+
+[data-theme] a:hover {
+  color: var(--theme-link-hover-color);
+}
+
+[data-theme] a:active {
+  color: var(--theme-link-active-color);
+}
+

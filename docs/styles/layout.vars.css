@@ -1,0 +1,29 @@
+/* ==================================================
+   Layout variables for common page structure
+   ==================================================
+   Grep-friendly prefix: --layout-*
+*/
+
+/* ---------- Main content width ---------- */
+:root {
+  --layout-main-max-width: 100%;    /* maximum width of main content */
+  --layout-main-min-width: 320px;     /* minimum width for responsive behavior */
+  --layout-main-width: 100%;          /* preferred width relative to viewport */
+}
+
+/* ---------- Main content margins ---------- */
+:root {
+  --layout-main-margin-top: 0rem;
+  --layout-main-margin-bottom: 0rem;
+  --layout-main-margin-left: auto;    /* auto for centering horizontally */
+  --layout-main-margin-right: auto;   /* auto for centering horizontally */
+}
+
+/* ---------- Main content padding ---------- */
+:root {
+  --layout-main-padding-top: 0rem;
+  --layout-main-padding-bottom: 0rem;
+  --layout-main-padding-left: 0rem;
+  --layout-main-padding-right: 0rem;
+}
+

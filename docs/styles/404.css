@@ -1,0 +1,165 @@
+/* ---------- 404 Page ---------- */
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 60vh;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: var(--color-text);
+  background: var(--color-bg-main, transparent);
+  box-sizing: border-box;
+}
+
+/* Breadcrumb - if you uncomment it later */
+.not-found-breadcrumb {
+  font-size: 0.9rem;
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-muted);
+  width: 100%;
+  text-align: center;
+}
+
+.not-found-breadcrumb a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.not-found-breadcrumb a:hover,
+.not-found-breadcrumb a:focus-visible {
+  color: var(--color-primary-hover);
+}
+
+/* Animated 404 number */
+.not-found-number {
+  font-size: clamp(4rem, 15vw, 6rem);
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 0 0 var(--space-md) 0;
+  color: var(--color-primary);
+  letter-spacing: 0.05em;
+  width: 100%;
+  text-align: center;
+  display: block;
+
+  /* subtle pulse animation */
+  animation: pulse404 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse404 {
+  0%   { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(1.03); opacity: 1; }
+}
+
+/* Lead & subtext */
+.not-found-lead {
+  font-size: 1.9rem;
+  line-height: 1.5;
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--color-text);
+  width: 100%;
+  max-width: 90%;
+  text-align: center;
+}
+
+.not-found-sub {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 var(--space-lg) 0;
+  color: var(--color-text-muted);
+  width: 100%;
+  max-width: 90%;
+  text-align: center;
+}
+
+/* Homepage link */
+.not-found-link {
+  display: inline-block;
+  font-size: 1.3rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: border-color 0.25s ease, color 0.25s ease;
+  padding: 0.25rem 0;
+  text-align: center;
+}
+
+.not-found-link:hover,
+.not-found-link:focus-visible {
+  border-color: currentColor;
+  color: var(--color-primary-hover);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .not-found-number {
+    animation: none;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .not-found {
+    min-height: 50vh;
+    padding: 2rem 1.5rem;
+  }
+
+  .not-found-number {
+    font-size: clamp(3.5rem, 12vw, 5rem);
+    margin-bottom: calc(var(--space-md) * 0.8);
+  }
+
+  .not-found-lead {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .not-found-sub {
+    font-size: 0.9rem;
+    max-width: 100%;
+    margin-bottom: calc(var(--space-lg) * 0.8);
+  }
+
+  .not-found-link {
+    font-size: 1rem;
+    padding: 0.5rem 0.25rem;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .not-found {
+    min-height: 40vh;
+    padding: 1.5rem 1rem;
+  }
+
+  .not-found-number {
+    font-size: clamp(3rem, 10vw, 4rem);
+    margin-bottom: calc(var(--space-md) * 0.6);
+  }
+
+  .not-found-lead {
+    font-size: 0.95rem;
+  }
+
+  .not-found-sub {
+    font-size: 0.85rem;
+  }
+}
+
+/* Landscape orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .not-found {
+    min-height: 80vh;
+    padding: 1rem;
+  }
+
+  .not-found-number {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    margin-bottom: calc(var(--space-md) * 0.5);
+  }
+}

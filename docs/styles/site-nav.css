@@ -1,0 +1,565 @@
+/* ==================================================
+   Site Navigation — Drawer (Modern Right Slide)
+   ================================================== */
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .nav-drawer,
+  .menu-panel,
+  .desktop-dropdown {
+    transition: none !important;
+  }
+}
+
+.site-nav {
+  --nav-font-size: 1.1rem;
+  --burger-size: 2.25rem;
+  --drawer-width: 260px;
+
+  position: sticky;
+  top: 0;
+  z-index: 40;
+
+  /* Height and centering adjustments */
+  display: flex;
+  align-items: center;
+  min-height: 80px;
+  padding: 0 2rem;
+}
+
+/* Performance optimization for animations */
+.nav-drawer,
+.menu-panel,
+.desktop-dropdown {
+  will-change: transform, opacity;
+}
+
+/* ---------- Layout ---------- */
+.nav-inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* ---------- Toggle ---------- */
+.nav-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- Burger ---------- */
+.nav-burger {
+  width: var(--burger-size);
+  height: var(--burger-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  z-index: 50;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+/* Better touch target for mobile */
+@media (max-width: 768px) {
+  .nav-burger {
+    padding: 0.5rem;
+    margin: -0.5rem;
+  }
+}
+
+/* ☰ → ✕ */
+.nav-burger span {
+  position: relative;
+  width: 1.4rem;
+  height: 2px;
+  background: currentColor;
+  display: block;
+}
+
+.nav-burger span::before,
+.nav-burger span::after {
+  content: "";
+  position: absolute;
+  width: 1.4rem;
+  height: 2px;
+  background: currentColor;
+  transition: transform 0.25s ease;
+}
+
+.nav-burger span::before { transform: translateY(-6px); }
+.nav-burger span::after  { transform: translateY(6px); }
+
+.nav-toggle:checked + .nav-burger span {
+  background: transparent;
+}
+
+.nav-toggle:checked + .nav-burger span::before {
+  transform: rotate(45deg);
+}
+
+.nav-toggle:checked + .nav-burger span::after {
+  transform: rotate(-45deg);
+}
+
+/* ---------- Drawer ---------- */
+.nav-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: var(--drawer-width);
+
+  /* Transparency effect - EXACTLY as original */
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+  z-index: 40;
+  overflow: hidden;
+
+  /* Focus outline management */
+  outline: none;
+}
+
+/* Slide-in */
+.nav-toggle:checked ~ .nav-drawer {
+  transform: translateX(0);
+}
+
+/* Menu panels - MINIMAL additions for drill-down */
+.menu-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  background: transparent;
+
+  /* Smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+}
+
+.menu-panel--main {
+  transform: translateX(0);
+}
+
+.menu-panel--main.menu-panel--hidden {
+  transform: translateX(-100%);
+}
+
+.menu-panel--submenu {
+  transform: translateX(100%);
+  background: transparent;
+}
+
+.menu-panel--submenu:not([hidden]) {
+  transform: translateX(0);
+}
+
+/* Menu lists - EXACT original styles */
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--nav-font-size);
+
+  /* Mobile menu spacing - ORIGINAL GAP */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.menu-list li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure all top-level items have the same font-weight */
+.menu-list a,
+.submenu-trigger {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  font-size: var(--nav-font-size);
+  line-height: 1.4;
+  font-weight: inherit;
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  width: 100%;
+
+  /* Better focus styles for accessibility */
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.menu-list a:focus-visible,
+.submenu-trigger:focus-visible,
+.back-button:focus-visible {
+  outline-color: currentColor;
+  outline-width: 2px;
+  outline-style: solid;
+}
+
+/* Submenu trigger - matching link styles exactly */
+.menu-item-with-submenu {
+  width: 100%;
+  position: relative;
+}
+
+.submenu-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trigger-arrow {
+  transition: transform 0.2s ease;
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+}
+
+.submenu-trigger[aria-expanded="true"] .trigger-arrow {
+  transform: rotate(90deg);
+}
+
+/* Submenu styling - matching main menu exactly */
+.submenu-header {
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: var(--nav-font-size);
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+  opacity: 0.9;
+}
+
+.back-button span {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.submenu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.submenu-list a {
+  display: block;
+  padding-left: 1.75rem;
+  text-decoration: none;
+  color: inherit;
+  font-size: var(--nav-font-size);
+  line-height: 1.4;
+  opacity: 0.9;
+  font-weight: inherit;
+}
+
+/* ---------- Overlay ---------- */
+.nav-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 30;
+
+  /* Performance optimization */
+  will-change: opacity;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-toggle:checked ~ .nav-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Prevent body scroll when mobile menu open */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Screen reader only class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Touch device optimizations */
+.touch-device .nav-burger {
+  /* Larger tap target */
+  padding: 0.75rem;
+  margin: -0.75rem;
+}
+
+.touch-device .menu-list a,
+.touch-device .submenu-trigger,
+.touch-device .back-button {
+  /* Larger touch targets for mobile */
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.touch-device .submenu-list a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* ---------- Desktop ---------- */
+@media (min-width: 769px) {
+  .nav-burger,
+  .nav-overlay {
+    display: none;
+  }
+
+  body.menu-open {
+    overflow: auto;
+  }
+
+  .nav-drawer {
+    position: static;
+    height: 100%;
+    width: auto;
+    transform: none;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    overflow: visible;
+  }
+
+  .menu-panel {
+    position: static;
+    padding: 0;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .menu-panel--main {
+    transform: none;
+  }
+
+  .menu-panel--main.menu-panel--hidden {
+    transform: none;
+  }
+
+  .menu-panel--submenu {
+    display: none !important;
+  }
+
+  .menu-list {
+    flex-direction: row;
+    align-items: center;
+    gap: 2.5rem;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .menu-list li {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    position: relative;
+    overflow: visible;
+  }
+
+  /* Ensure trigger has same weight as links */
+  .menu-list a,
+  .submenu-trigger {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    line-height: 1;
+    padding: 0 0.25rem;
+    text-decoration: none;
+    color: inherit;
+    font-size: var(--nav-font-size);
+    background: none;
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    font-weight: inherit;
+  }
+
+  .menu-list a:hover,
+  .submenu-trigger:hover {
+    opacity: 0.8;
+  }
+
+  /* Focus styles for desktop */
+  .menu-list a:focus-visible,
+  .submenu-trigger:focus-visible {
+    outline-offset: 4px;
+  }
+
+  /* Hide trigger arrow on desktop */
+  .trigger-arrow {
+    display: none;
+  }
+
+  /* ---------- Desktop Dropdown - IMPROVED CONTRAST ---------- */
+  .desktop-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+
+    /* IMPROVED: Better contrast between dropdown and background */
+    /* Original: rgba(255, 255, 255, 0.35) - too transparent */
+    background: rgba(255, 255, 255, 0.48);  /* HERE */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    border-radius: 6px;
+    padding: 0.75rem 0;
+    margin-top: 0.75rem;
+
+    list-style: none;
+    z-index: 1000;
+
+    /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+
+    /* Subtle shadow for depth - slightly darker for better definition */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
+    /* Performance optimization */
+    will-change: transform, opacity;
+
+    /* IMPROVED: Subtle border for better definition against background */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  /* Visible state */
+  .desktop-dropdown.desktop-dropdown--visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Create a safe hover zone - no gap between trigger and dropdown */
+  .menu-item-with-submenu {
+    padding-bottom: 0.75rem;
+    margin-bottom: -0.75rem;
+  }
+
+  /* Adjust dropdown position to overlap with padding bridge */
+  .desktop-dropdown {
+    top: calc(100% - 0.75rem);
+  }
+
+  /* Dropdown items - IMPROVED TEXT CONTRAST */
+  .desktop-dropdown li {
+    height: auto;
+    width: 100%;
+  }
+
+  .desktop-dropdown a {
+    display: block;
+    padding: 0.8rem 1.2rem;
+
+    /* IMPROVED: Darker text for better contrast against lighter background */
+    /* Original: color: inherit (usually dark gray/black) - now explicitly darker */
+    color: #2a2a2a;
+    text-decoration: none;
+
+    /* IMPROVED: Slightly larger and bolder for better readability */
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.5;
+    white-space: nowrap;
+    height: auto;
+
+    /* IMPROVED: Higher opacity for better contrast */
+    opacity: 0.95;
+    letter-spacing: 0.01em;
+
+    /* Better focus styles */
+    outline: 2px solid transparent;
+    outline-offset: -2px;
+
+    /* Smooth transition for hover state */
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  /* IMPROVED: Hover state with better contrast */
+  .desktop-dropdown a:hover {
+    background: rgba(0, 0, 0, 0.15);
+    color: #000000;
+    opacity: 1;
+  }
+
+  .desktop-dropdown a:focus-visible {
+    background: rgba(0, 202, 204, 0.1);
+  }
+
+  /* Touch device optimizations for desktop dropdown */
+  .touch-device .desktop-dropdown {
+    /* Larger touch targets */
+    min-width: 240px;
+  }
+
+  .touch-device .desktop-dropdown a {
+    padding: 1rem 1.5rem;
+    min-height: 49px;
+  }
+}

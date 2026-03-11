@@ -1,0 +1,275 @@
+/* ==================================================
+   Site Header
+   ================================================== */
+
+.site-header {
+  --header-max-width: var(--layout-main-max-width, 900px);
+
+  --header-padding-y: 0rem;
+  --header-padding-x: 1rem;
+
+  --header-gap: 1.2rem;
+  --header-logo-size: 190px;
+
+  --header-title-size: 1.8rem;
+  --header-subtitle-size: 1.2rem;
+
+  margin: 0;
+}
+
+/* ---------- Clickable wrapper ---------- */
+.site-header-link {
+  display: block;
+  color: inherit !important;
+  text-decoration: none !important;
+  border-radius: 4px;
+}
+
+.site-header-link:hover {
+  cursor: pointer;
+}
+
+.site-header-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.site-header-link:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.site-header-link:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.site-header-link:active {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+/* ---------- Layout ---------- */
+.site-header-inner {
+  max-width: var(--header-max-width);
+  margin: 0 auto;
+  padding: var(--header-padding-y) var(--header-padding-x);
+
+  display: flex;
+  align-items: center;
+  gap: var(--header-gap);
+}
+
+/* ---------- Logo ---------- */
+.site-header-logo {
+  flex-shrink: 0;
+}
+
+.site-header-logo img {
+  width: var(--header-logo-size);
+  height: auto;
+  display: block;
+}
+
+/* ---------- Banner ---------- */
+.site-header-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: #2a2a2a;
+}
+
+.site-header-title {
+  font-size: var(--header-title-size);
+  margin: 0;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.site-header-subtitle-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-weight: 400;
+}
+
+.site-header-subtitle {
+  font-size: var(--header-subtitle-size);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3em 0.4em;
+  line-height: 1.3;
+}
+
+/* Special handling for the specialties line which is very long */
+.site-header-subtitle.specialties {
+  flex-wrap: wrap;
+}
+
+.site-header-subtitle.specialties .subtitle-part {
+  /* Allow the long specialties to break naturally */
+  word-break: break-word;
+}
+
+.subtitle-sep {
+  opacity: 0.8;
+  user-select: none;
+  font-weight: 900;
+}
+
+/* ==================================================
+   Tablet & Small Desktop
+   ================================================== */
+
+@media (max-width: 1024px) {
+  .site-header {
+    --header-logo-size: 160px;
+    --header-title-size: 1.6rem;
+    --header-subtitle-size: 1.1rem;
+  }
+}
+
+/* ==================================================
+   Mobile - Optimized for Aesthetics
+   ================================================== */
+
+@media (max-width: 768px) {
+  .site-header {
+    --header-padding-y: 0.875rem;
+    --header-padding-x: 1rem;
+    --header-gap: 0.75rem;
+    --header-logo-size: 70px;
+    --header-title-size: 1.25rem;
+    --header-subtitle-size: 0.9rem;
+  }
+
+  .site-header-inner {
+    align-items: center;
+  }
+
+  .site-header-banner {
+    gap: 0.2rem;
+  }
+
+  .site-header-subtitle-group {
+    gap: 0.25rem; /* Increased for better separation between subtitle lines */
+  }
+
+  .site-header-subtitle {
+    line-height: 1.5; /* INCREASED: Better readability on mobile */
+    gap: 0.25em 0.3em;
+  }
+
+  /* Handle the long specialties line */
+  .site-header-subtitle.specialties {
+    display: block; /* Switch to block layout for better control */
+    line-height: 1.5;
+  }
+
+  .site-header-subtitle.specialties .subtitle-part {
+    display: inline;
+  }
+
+  .site-header-subtitle.specialties .subtitle-sep {
+    margin: 0 0.1rem;
+  }
+
+  .subtitle-part {
+    white-space: normal;
+    word-break: normal;
+  }
+
+  .subtitle-sep {
+    display: inline;
+    opacity: 0.4;
+  }
+}
+
+/* ==================================================
+   Small Mobile - Refined Proportions
+   ================================================== */
+
+@media (max-width: 480px) {
+  .site-header {
+    --header-padding-y: 0.75rem;
+    --header-padding-x: 0.875rem;
+    --header-gap: 0.6rem;
+    --header-logo-size: 60px;
+    --header-title-size: 1.2rem;
+    --header-subtitle-size: 0.85rem;
+  }
+
+  .site-header-inner {
+    align-items: center;
+  }
+
+  .site-header-subtitle {
+    line-height: 1.5; /* Keep increased line height */
+    gap: 0.2em 0.25em;
+  }
+
+  /* Special handling for the long specialties line on very small screens */
+  .site-header-subtitle.specialties {
+    display: block;
+  }
+
+  .site-header-subtitle.specialties .subtitle-part {
+    display: block; /* Stack each specialty on its own line */
+    margin: 0.1rem 0;
+  }
+
+  .site-header-subtitle.specialties .subtitle-sep {
+    display: none; /* Hide separator when stacked */
+  }
+
+  .subtitle-part {
+    letter-spacing: -0.01em;
+  }
+}
+
+/* ==================================================
+   Extra Small Mobile
+   ================================================== */
+
+@media (max-width: 360px) {
+  .site-header {
+    --header-logo-size: 50px;
+    --header-title-size: 1.1rem;
+    --header-subtitle-size: 0.8rem;
+  }
+
+  .site-header-subtitle {
+    line-height: 1.5;
+  }
+
+  /* Ensure both subtitle lines stack properly */
+  .site-header-subtitle {
+    display: block;
+  }
+
+  .site-header-subtitle .subtitle-part {
+    display: block;
+    margin: 0.15rem 0;
+  }
+
+  .site-header-subtitle .subtitle-sep {
+    display: none;
+  }
+}
+
+/* ==================================================
+   Theme Variations
+   ================================================== */
+
+.site-header[data-theme="theme-floral"] {
+  /* Your existing floral theme styles */
+}
+
+.site-header[data-theme="theme-minimal"] {
+  --header-title-size: 1.6rem;
+  --header-subtitle-size: 1rem;
+}

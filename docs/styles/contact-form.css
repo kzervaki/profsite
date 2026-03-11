@@ -1,0 +1,209 @@
+/* Contact Form Styles - Enhanced for better cohesion and contrast */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--space-md);
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+/* Alignment variations */
+.contact-form[data-align="left"] {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.contact-form[data-align="right"] {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* Form fields container */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  width: 100%;
+}
+
+/* Field labels */
+.field-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: currentColor;
+  opacity: 0.95; /* Increased from 0.9 */
+  margin-left: var(--space-xs);
+}
+
+/* Input base styles - IMPROVED CONTRAST */
+.contact-input {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+
+  /* Darker border for better definition */
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Increased from 0.08 */
+
+  /* More opaque background for better text contrast */
+  background-color: rgba(255, 255, 255, 0.65); /* Increased from 0.4 */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  transition: all 0.2s ease;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+
+  /* Darker text for better contrast */
+  color: #1a1a1a; /* Explicit dark color instead of currentColor */
+  font-weight: 400;
+}
+
+/* Rounded variant */
+.contact-input--rounded {
+  border-radius: var(--radius-md);
+}
+
+/* Focus state - even better contrast */
+.contact-input:focus {
+  background-color: rgba(255, 255, 255, 0.85); /* Increased from 0.7 */
+  border-color: rgba(0, 0, 0, 0.35); /* Increased from 0.2 */
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+
+  /* Even darker text on focus */
+  color: #000000;
+}
+
+/* Placeholder styling - improved contrast */
+.contact-input::placeholder {
+  color: #4a4a4a; /* Darker gray instead of currentColor with opacity */
+  opacity: 0.7; /* Increased from 0.4 */
+  font-size: 0.95rem;
+  font-weight: 300;
+}
+
+/* Textarea specific - improved contrast */
+textarea.contact-input {
+  resize: vertical;
+  min-height: 120px;
+  background-color: rgba(255, 255, 255, 0.6); /* Increased from 0.3 */
+}
+
+/* Textarea focus */
+textarea.contact-input:focus {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+/* Input with content (not empty) - can't detect with CSS, but focus covers it */
+/* For filled fields that aren't focused, they keep the base styles which now have better contrast */
+
+/* Error state - if needed */
+.contact-input.contact-input--error {
+  border-color: #d32f2f;
+  background-color: rgba(255, 235, 235, 0.8);
+}
+
+/* Success state - if needed */
+.contact-input.contact-input--success {
+  border-color: #2e7d32;
+  background-color: rgba(235, 255, 235, 0.8);
+}
+
+/* Disabled state */
+.contact-input:disabled {
+  opacity: 0.6;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  cursor: not-allowed;
+}
+
+/* Dark theme support - if site has dark mode */
+[data-theme="theme-dark"] .contact-input,
+[data-theme="theme-night"] .contact-input {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #f0f0f0;
+}
+
+[data-theme="theme-dark"] .contact-input::placeholder,
+[data-theme="theme-night"] .contact-input::placeholder {
+  color: #b0b0b0;
+  opacity: 0.8;
+}
+
+[data-theme="theme-dark"] .contact-input:focus,
+[data-theme="theme-night"] .contact-input:focus {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+}
+
+/* Button base styles (unchanged) */
+.contact-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 120px;
+  height: var(--btn-height, 44px);
+  padding: 0 var(--space-lg);
+  background-color: var(--btn-bg, var(--color-primary, #5a7d8c));
+  color: var(--btn-color, #ffffff);
+  font-size: var(--btn-font-size, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* Button hover */
+.contact-button:hover {
+  background-color: var(--btn-hover-bg, var(--color-primary-hover, #48656f));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Button active state */
+.contact-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Button focus */
+.contact-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Rounded button variant */
+.contact-button--rounded {
+  border-radius: var(--radius-md);
+}
+
+/* Fixed width button */
+.contact-button--fixed-width {
+  width: var(--btn-width, auto);
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .contact-button {
+    min-height: 48px; /* Larger touch target */
+    padding: 0 var(--space-lg);
+  }
+
+  .contact-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: var(--space-md) var(--space-md);
+  }
+}

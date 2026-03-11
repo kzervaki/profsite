@@ -1,0 +1,21 @@
+/* Full viewport, no margins */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  /* Ensure theme background fills entire viewport */
+  background-color: var(--theme-base-color);
+  background-image: var(--theme-background-image);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Optional: remove any gap from common elements */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}

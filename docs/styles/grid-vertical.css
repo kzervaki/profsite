@@ -1,0 +1,55 @@
+/* =========================================================
+   Grid Vertical — CORRECT IMPLEMENTATION
+   ========================================================= */
+
+.grid-vertical-wrapper {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--gv-padding);
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+/* ---------- Grid container ---------- */
+.grid-vertical {
+  aspect-ratio: 1 / 1;
+  max-width: min(var(--gv-size), 100%);
+  max-height: min(var(--gv-size), 100%);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+
+  /* Remove gap since we'll draw our own lines */
+  gap: 0;
+  padding: var(--gv-line-width);
+
+  box-sizing: border-box;
+
+  /* Background for ALL grid lines (outer and interior) */
+  background:
+    /* Outer border - top */
+    linear-gradient(currentColor, currentColor) top / 100% var(--gv-line-width) no-repeat,
+    /* Outer border - bottom */
+    linear-gradient(currentColor, currentColor) bottom / 100% var(--gv-line-width) no-repeat,
+    /* Outer border - left */
+    linear-gradient(currentColor, currentColor) left / var(--gv-line-width) 100% no-repeat,
+    /* Outer border - right */
+    linear-gradient(currentColor, currentColor) right / var(--gv-line-width) 100% no-repeat,
+    /* Vertical interior line between col 1 & 2 */
+    linear-gradient(currentColor, currentColor) calc(33.33% - var(--gv-line-width) / 2) 0 / var(--gv-line-width) 100% no-repeat,
+    /* Vertical interior line between col 2 & 3 */
+    linear-gradient(currentColor, currentColor) calc(66.66% - var(--gv-line-width) / 2) 0 / var(--gv-line-width) 100% no-repeat,
+    /* Horizontal interior line between row 1 & 2 */
+    linear-gradient(currentColor, currentColor) 0 calc(33.33% - var(--gv-line-width) / 2) / 100% var(--gv-line-width) no-repeat,
+    /* Horizontal interior line between row 2 & 3 */
+    linear-gradient(currentColor, currentColor) 0 calc(66.66% - var(--gv-line-width) / 2) / 100% var(--gv-line-width) no-repeat;
+
+  transition: max-width 0.35s ease, max-height 0.35s ease;
+}
