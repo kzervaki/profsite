@@ -1,4 +1,4 @@
-/* Service Card Styles - With optional image and description */
+/* Service Card Styles - With vertically centered content */
 
 .service-card {
   display: flex;
@@ -21,9 +21,12 @@
   text-decoration: none;
   color: inherit;
 
-  /* Ensure proper card proportions */
-  height: 100%;
+  /* Base height - can be overridden by inline style */
+  height: auto;
   width: 100%;
+
+  /* Allow content to determine height by default */
+  min-height: auto;
 }
 
 /* Image wrapper - only shown when image exists */
@@ -32,6 +35,9 @@
   display: flex;
   justify-content: center;
   margin-bottom: 1.25rem;
+
+  /* Allow image wrapper to shrink if needed */
+  flex-shrink: 0;
 }
 
 /* Image component styling */
@@ -48,7 +54,7 @@
   border-radius: calc(var(--radius-md, 0.75rem) - 2px);
 }
 
-/* Content container - base styles */
+/* Content container - base styles with vertical centering */
 .service-card-content {
   display: flex;
   flex-direction: column;
@@ -56,12 +62,20 @@
   text-align: center;
   width: 100%;
   gap: 0.6rem;
+
+  /* Allow content to grow and fill space */
+  flex: 1;
+
+  /* Vertical centering magic */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* This centers content vertically */
+  min-height: 0; /* Helps with flexbox constraints */
 }
 
 /* Title-only variant - vertically centered when no image and no description */
 .service-card-content--title-only {
   min-height: 120px; /* Give some height for empty cards */
-  justify-content: center;
   gap: 0; /* Remove gap since there's only title */
 }
 
@@ -128,7 +142,7 @@
 
 /* Focus state for keyboard navigation */
 .service-card:focus-visible {
-  outline: 2px solid #3a3a3a; /* Updated to match new title color */
+  outline: 2px solid #3a3a3a;
   outline-offset: 2px;
   transform: translateY(-2px);
 
@@ -148,6 +162,42 @@
   transition: all 0.1s ease;
 }
 
+/* Cards with fixed height - ensure perfect vertical centering */
+.service-card[style*="height"] {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card[style*="height"] .service-card-image-wrapper {
+  flex-shrink: 0; /* Image doesn't shrink */
+}
+
+.service-card[style*="height"] .service-card-content {
+  flex: 1; /* Take remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  min-height: 0; /* Critical for flexbox to respect centering */
+}
+
+/* Cards with min-height only */
+.service-card[style*="min-height"]:not([style*="height"]) {
+  min-height: var(--min-height, auto);
+}
+
+.service-card[style*="min-height"]:not([style*="height"]) .service-card-content {
+  min-height: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* When image exists in fixed-height card, adjust spacing */
+.service-card[style*="height"] .service-card-image-wrapper + .service-card-content {
+  padding-top: 0; /* Remove any extra padding */
+}
+
 /* Responsive adjustments for mobile */
 @media (max-width: 768px) {
   .service-card {
@@ -159,13 +209,13 @@
 
   .service-card-title {
     font-size: 1.1rem;
-    color: #3a3a3a; /* Updated */
+    color: #3a3a3a;
   }
 
   .service-card-description {
     font-size: 0.9rem;
     -webkit-line-clamp: 2; /* Show fewer lines on mobile */
-    color: #5a5a5a; /* Updated */
+    color: #5a5a5a;
   }
 
   /* Ensure touch targets are large enough */
@@ -181,6 +231,11 @@
   /* Title-only variant on mobile */
   .service-card-content--title-only {
     min-height: 100px; /* Slightly smaller on mobile */
+  }
+
+  /* Fixed height cards on mobile - maintain centering */
+  .service-card[style*="height"] .service-card-content {
+    justify-content: center;
   }
 }
 
@@ -232,21 +287,21 @@
 @media (prefers-contrast: high) {
   .service-card {
     background: rgba(250, 245, 235, 0.95);
-    border: 2px solid #3a3a3a; /* Updated */
+    border: 2px solid #3a3a3a;
     backdrop-filter: none;
     box-shadow: none;
   }
 
   .service-card-title {
-    color: #2a2a2a; /* Slightly darker for high contrast */
+    color: #2a2a2a;
   }
 
   .service-card-description {
-    color: #3a3a3a; /* Darker for high contrast */
+    color: #3a3a3a;
   }
 
   .service-card:hover {
-    background: rgba(250, 245, 235, 0.95); /* Keep high contrast background */
+    background: rgba(250, 245, 235, 0.95);
   }
 
   /* Title-only variant in high contrast */
@@ -266,7 +321,7 @@
   }
 }
 
-/* Dark theme support - matching dropdown dark mode aesthetic */
+/* Dark theme support */
 [data-theme="theme-floral"][data-dark="true"] .service-card,
 .theme-dark .service-card {
   /* Dark grey background matching dropdown aesthetic */
@@ -277,20 +332,25 @@
 
 [data-theme="theme-floral"][data-dark="true"] .service-card-title,
 .theme-dark .service-card-title {
-  color: #f0f0f0; /* Even lighter for dark mode - was #e0e0e0 */
+  color: #f0f0f0;
 }
 
 [data-theme="theme-floral"][data-dark="true"] .service-card-description,
 .theme-dark .service-card-description {
-  color: #c0c0c0; /* Lighter for dark mode - was #b0b0b0 */
+  color: #c0c0c0;
 }
 
 [data-theme="theme-floral"][data-dark="true"] .service-card:hover,
 .theme-dark .service-card:hover {
-  /* Original dark background on hover */
-  background: rgba(40, 40, 40, 0.75); /* Same as base */
+  background: rgba(40, 40, 40, 0.75);
   border-color: rgba(255, 255, 255, 0.25);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+/* Dark theme fixed height cards - maintain centering */
+[data-theme="theme-floral"][data-dark="true"] .service-card[style*="height"] .service-card-content,
+.theme-dark .service-card[style*="height"] .service-card-content {
+  justify-content: center;
 }
 
 /* Dark theme title-only variant */

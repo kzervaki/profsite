@@ -9,6 +9,8 @@ const {
   imageAlt = "",
   imageWidth = "100%",
   rounded = true,
+  height = "auto",
+  minHeight = "auto",
 } = Astro.props;
 
 // Create a safe aria-label with proper null checks
@@ -32,6 +34,10 @@ if (!hasImage && !hasDescription) {
   class="service-card"
   data-theme="theme-floral"
   aria-label={ariaLabel}
+  style={`
+    ${height !== 'auto' ? `height: ${height};` : ''}
+    ${minHeight !== 'auto' ? `min-height: ${minHeight};` : ''}
+  `}
 >
   {hasImage && (
     <div class="service-card-image-wrapper">
