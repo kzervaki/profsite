@@ -9,7 +9,7 @@
   margin: 0;
 
   /* Reduced internal padding */
-  padding: 0.75rem 1rem;
+  padding: 1.50rem 1rem;
 
   /* Full width */
   width: 100%;
@@ -27,7 +27,7 @@
 
 .site-footer p {
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.0;
 }
 
 .footer-line-1 {
