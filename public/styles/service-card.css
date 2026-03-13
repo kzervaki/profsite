@@ -85,8 +85,8 @@
 /* Title styling */
 .service-card-title {
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 500;
+  font-size: 1.05rem;
+  font-weight: 490;
   line-height: 1.4;
 
   /* Graphite grey */
@@ -296,7 +296,7 @@
   }
 
   .service-card-title {
-    font-size: 1.2rem;
+    font-size: 1.0rem;
   }
 
   .service-card:hover {
