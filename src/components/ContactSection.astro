@@ -3,13 +3,37 @@ import ContactDetails from "./ContactDetails.astro";
 import ContactForm from "./ContactForm.astro";
 import GoogleMap from "./GoogleMap.astro";
 import { CONFIG } from "../site-config"
+import Image from "./Image.astro";
+
+const {
+  image,
+  imageAlt = "",
+  imageWidth = "100%",
+  imageHeight = "auto",
+  rounded = true,
+  imagePosition = "left", // New prop for image position
+} = Astro.props;
 
 // Get theme from parent if available
 const siteTheme = Astro.props.theme || "theme-sage";
 ---
 
 <div class="contact-section" data-theme={siteTheme}>
-  <ContactDetails/>
+
+
+  <div class="contact-image-wrapper" style={`--image-width: ${imageWidth}; --image-height: ${imageHeight};`}>
+    <Image
+      src={image}
+      alt={imageAlt}
+      imagewidth={imageWidth}
+      imageheight={imageHeight}
+      rounded={rounded}
+    />
+  </div>
+
+  <div class="contact-header">
+    <ContactDetails/>
+  </div>
 
   <section class="contact-message-section">
     <h3 class="section-title">Αποστολή Μηνύματος</h3>
@@ -33,7 +57,7 @@ const siteTheme = Astro.props.theme || "theme-sage";
       <GoogleMap
         embedUrl={CONFIG.googleMapLocation}
         rounded={true}
-        align="right"
+        align="center"
         class="map-component"
       />
     </div>
