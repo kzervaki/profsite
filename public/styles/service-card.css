@@ -1,4 +1,4 @@
-/* Service Card Styles - With vertically centered content */
+/* Service Card Styles - Vivid and Glassy on Calm State */
 
 .service-card {
   display: flex;
@@ -6,15 +6,15 @@
   align-items: center;
   padding: 1.5rem 1rem;
 
-  /* Beige background matching dropdown aesthetic - slightly transparent */
-  background: rgba(245, 240, 230, 0.65);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  /* Vivid, glassy background - lighter and more neutral */
+  background: rgba(255, 255, 255, 0.48); /* Pure white with 48% opacity - clean and glassy */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 
-  /* Subtle border matching dropdown */
+  /* Subtle border for definition */
   border-radius: var(--radius-md, 0.75rem);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); /* Softer shadow */
 
   transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
 
@@ -52,6 +52,9 @@
 
   /* Soften image edges slightly */
   border-radius: calc(var(--radius-md, 0.75rem) - 2px);
+
+  /* Subtle image enhancement for vibrancy */
+  filter: brightness(1.02) contrast(1.02);
 }
 
 /* Content container - base styles with vertical centering */
@@ -69,44 +72,47 @@
   /* Vertical centering magic */
   display: flex;
   flex-direction: column;
-  justify-content: center; /* This centers content vertically */
-  min-height: 0; /* Helps with flexbox constraints */
+  justify-content: center;
+  min-height: 0;
 }
 
 /* Title-only variant - vertically centered when no image and no description */
 .service-card-content--title-only {
-  min-height: 120px; /* Give some height for empty cards */
-  gap: 0; /* Remove gap since there's only title */
+  min-height: 120px;
+  gap: 0;
 }
 
-/* Title styling - lighter graphite for better contrast */
+/* Title styling */
 .service-card-title {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.4;
 
-  /* Lighter graphite - was #2c2c2c, now lighter for better contrast */
+  /* Graphite grey */
   color: #3a3a3a;
 
   /* Ensure long titles wrap properly */
   max-width: 100%;
   word-wrap: break-word;
+
+  /* Subtle text enhancement */
+  text-rendering: optimizeLegibility;
 }
 
 /* Title-only variant - ensure perfect centering */
 .service-card-content--title-only .service-card-title {
   margin: 0;
-  padding: 0.5rem 0; /* Add a little breathing room */
+  padding: 0.5rem 0;
 }
 
-/* Description styling - lighter for better contrast */
+/* Description styling */
 .service-card-description {
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.6;
 
-  /* Lighter graphite for description - was #4a4a4a, now lighter */
+  /* Lighter graphite */
   color: #5a5a5a;
 
   /* Limit description length for consistency */
@@ -124,20 +130,20 @@
   letter-spacing: 0.01em;
 }
 
-/* Hover effect - restores original background with current transparency */
+/* Hover effect - subtle enhancement only */
 .service-card:hover {
   transform: translateY(-3px);
 
-  /* Original background at same transparency */
-  background: rgba(245, 240, 230, 0.65);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  /* Same background - no change */
+  background: rgba(255, 255, 255, 0.48);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 
-  /* Enhanced shadow only - no background change */
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  /* Slightly enhanced shadow */
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
 
   /* Slightly more visible border on hover */
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 /* Focus state for keyboard navigation */
@@ -146,19 +152,19 @@
   outline-offset: 2px;
   transform: translateY(-2px);
 
-  /* Original background */
-  background: rgba(245, 240, 230, 0.65);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  /* Same background */
+  background: rgba(255, 255, 255, 0.48);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
 }
 
-/* Active state (when clicked) */
+/* Active state (when clicked) - subtle feedback only */
 .service-card:active {
   transform: translateY(0);
 
-  /* Slightly more opaque when pressed - subtle feedback */
-  background: rgba(245, 240, 230, 0.75);
+  /* Slightly more opaque only when pressed */
+  background: rgba(255, 255, 255, 0.55);
 
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
   transition: all 0.1s ease;
 }
 
@@ -169,15 +175,15 @@
 }
 
 .service-card[style*="height"] .service-card-image-wrapper {
-  flex-shrink: 0; /* Image doesn't shrink */
+  flex-shrink: 0;
 }
 
 .service-card[style*="height"] .service-card-content {
-  flex: 1; /* Take remaining space */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center content vertically */
-  min-height: 0; /* Critical for flexbox to respect centering */
+  justify-content: center;
+  min-height: 0;
 }
 
 /* Cards with min-height only */
@@ -195,7 +201,7 @@
 
 /* When image exists in fixed-height card, adjust spacing */
 .service-card[style*="height"] .service-card-image-wrapper + .service-card-content {
-  padding-top: 0; /* Remove any extra padding */
+  padding-top: 0;
 }
 
 /* Responsive adjustments for mobile */
@@ -203,8 +209,13 @@
   .service-card {
     padding: 1.25rem 0.75rem;
 
-    /* Slightly more opaque on mobile for better readability */
-    background: rgba(245, 240, 230, 0.75);
+    /* Mobile - same glassy background, slightly more opaque for readability */
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    /* Slightly softer shadow on mobile */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
   }
 
   .service-card-title {
@@ -214,7 +225,7 @@
 
   .service-card-description {
     font-size: 0.9rem;
-    -webkit-line-clamp: 2; /* Show fewer lines on mobile */
+    -webkit-line-clamp: 2;
     color: #5a5a5a;
   }
 
@@ -225,12 +236,13 @@
 
   /* Mobile hover - no background change */
   .service-card:hover {
-    background: rgba(245, 240, 230, 0.75); /* Keep mobile opacity */
+    background: rgba(255, 255, 255, 0.55); /* Keep mobile opacity */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
   }
 
   /* Title-only variant on mobile */
   .service-card-content--title-only {
-    min-height: 100px; /* Slightly smaller on mobile */
+    min-height: 100px;
   }
 
   /* Fixed height cards on mobile - maintain centering */
@@ -244,8 +256,10 @@
   .service-card {
     padding: 1rem 0.5rem;
 
-    /* Slightly more opaque on very small screens */
-    background: rgba(245, 240, 230, 0.8);
+    /* Small mobile - slightly more opaque */
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   }
 
   .service-card-image-wrapper {
@@ -259,7 +273,7 @@
 
   /* Mobile hover - keep opacity */
   .service-card:hover {
-    background: rgba(245, 240, 230, 0.8);
+    background: rgba(255, 255, 255, 0.6);
   }
 
   /* Title-only variant on small mobile */
@@ -268,7 +282,7 @@
   }
 
   .service-card-content--title-only .service-card-title {
-    font-size: 1rem; /* Slightly smaller title on very small screens */
+    font-size: 1rem;
   }
 }
 
@@ -276,17 +290,24 @@
 @media (min-width: 769px) and (max-width: 1024px) {
   .service-card {
     padding: 1.25rem 0.875rem;
+
+    /* Tablet - same glassy background */
+    background: rgba(255, 255, 255, 0.5);
   }
 
   .service-card-title {
     font-size: 1.2rem;
+  }
+
+  .service-card:hover {
+    background: rgba(255, 255, 255, 0.5); /* Keep tablet opacity */
   }
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .service-card {
-    background: rgba(250, 245, 235, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     border: 2px solid #3a3a3a;
     backdrop-filter: none;
     box-shadow: none;
@@ -301,7 +322,7 @@
   }
 
   .service-card:hover {
-    background: rgba(250, 245, 235, 0.95);
+    background: #ffffff;
   }
 
   /* Title-only variant in high contrast */
@@ -321,13 +342,14 @@
   }
 }
 
-/* Dark theme support */
+/* Dark theme support - glassy dark mode */
 [data-theme="theme-floral"][data-dark="true"] .service-card,
 .theme-dark .service-card {
-  /* Dark grey background matching dropdown aesthetic */
-  background: rgba(40, 40, 40, 0.75);
+  /* Dark but glassy background */
+  background: rgba(35, 38, 42, 0.55); /* Semi-transparent dark gray */
   border-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
 [data-theme="theme-floral"][data-dark="true"] .service-card-title,
@@ -342,9 +364,24 @@
 
 [data-theme="theme-floral"][data-dark="true"] .service-card:hover,
 .theme-dark .service-card:hover {
-  background: rgba(40, 40, 40, 0.75);
+  background: rgba(35, 38, 42, 0.55); /* Same as base */
   border-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* Dark theme mobile adjustments */
+@media (max-width: 768px) {
+  [data-theme="theme-floral"][data-dark="true"] .service-card,
+  .theme-dark .service-card {
+    background: rgba(40, 43, 47, 0.6);
+  }
+}
+
+@media (max-width: 480px) {
+  [data-theme="theme-floral"][data-dark="true"] .service-card,
+  .theme-dark .service-card {
+    background: rgba(40, 43, 47, 0.65);
+  }
 }
 
 /* Dark theme fixed height cards - maintain centering */
