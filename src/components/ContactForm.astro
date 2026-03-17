@@ -44,6 +44,8 @@ const buttonClasses = [
   buttonRounded ? "contact-button--rounded" : "",
   buttonWidth !== "auto" ? "contact-button--fixed-width" : ""
 ].filter(Boolean).join(" ");
+
+const baseUrl = import.meta.env.BASE_URL || '/';
 ---
 <form
   class={formClasses}
@@ -51,6 +53,8 @@ const buttonClasses = [
   method="POST"
   data-align={align}
 >
+  <!-- Redirection after successful submission -->
+  <input type="hidden" name="_next" value=`${baseUrl}` />
   <div class="form-field">
     <label for="name" class="field-label">Ονοματεπώνυμο</label>
     <input
