@@ -10,4 +10,8 @@ export default defineConfig({
     throttle: 3,  // throttle prefetch requests
     prefetchAll: false, // prefetch all links by default
   },
+  build: {
+    inlineStylesheets: 'auto', // reduces extra requests
+  },
+  compressHTML: true, // minifies HTML
 });
