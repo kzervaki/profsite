@@ -4,7 +4,7 @@ import LinkActive from "../components/LinkActive.astro";
 const baseUrl = import.meta.env.BASE_URL || '/';
 ---
 
-<nav class="site-nav" data-theme="theme-sage">
+<nav class="site-nav" data-theme="theme-sage" data-base-url={baseUrl}>
   <div class="nav-inner">
     <input
       type="checkbox"
@@ -63,12 +63,12 @@ const baseUrl = import.meta.env.BASE_URL || '/';
           </button>
         </div>
         <ul class="submenu-list">
-          <li><a href=`${baseUrl}/services/individual-adults`>Ατομική ενηλίκων</a></li>
-          <li><a href=`${baseUrl}/services/individual-teenagers`>Ατομική εφήβων</a></li>
-          <li><a href=`${baseUrl}/services/couple-therapy`>Θεραπεία ζεύγους</a></li>
-          <li><a href=`${baseUrl}/services/family-therapy`>Θεραπεία οικογένειας</a></li>
-          <li><a href=`${baseUrl}/services/parents-counseling`>Συμβουλευτική γονέων</a></li>
-          <li><a href=`${baseUrl}/services/online-sessions`>Διαδικτυακές συνεδρίες</a></li>
+          <li><a href={`${baseUrl}/services/individual-adults`}>Ατομική ενηλίκων</a></li>
+          <li><a href={`${baseUrl}/services/individual-teenagers`}>Ατομική εφήβων</a></li>
+          <li><a href={`${baseUrl}/services/couple-therapy`}>Θεραπεία ζεύγους</a></li>
+          <li><a href={`${baseUrl}/services/family-therapy`}>Θεραπεία οικογένειας</a></li>
+          <li><a href={`${baseUrl}/services/parents-counseling`}>Συμβουλευτική γονέων</a></li>
+          <li><a href={`${baseUrl}/services/online-sessions`}>Διαδικτυακές συνεδρίες</a></li>
         </ul>
       </div>
     </div>
@@ -89,6 +89,10 @@ const baseUrl = import.meta.env.BASE_URL || '/';
     }
 
     function init() {
+      // Get baseUrl from the nav element
+      const nav = document.querySelector('.site-nav');
+      const baseUrl = nav?.getAttribute('data-base-url') || '/';
+
       // DOM elements
       const navToggle = document.getElementById('nav-toggle');
       const navBurger = document.querySelector('.nav-burger');
@@ -233,16 +237,14 @@ const baseUrl = import.meta.env.BASE_URL || '/';
         }
       });
 
-      // DESKTOP DROPDOWN - Fixed with better hover detection
-      // DESKTOP DROPDOWN - Fixed with proper DOM creation
-      // DESKTOP DROPDOWN - FIXED HOVER BEHAVIOR
+      // DESKTOP DROPDOWN - Fixed with proper baseUrl from data attribute
       function setupDesktopDropdown() {
         if (window.innerWidth < 769) return;
 
         const container = document.querySelector('[data-desktop-dropdown-container]');
         if (!container) return;
 
-        // Remove any existing dropdown
+        // Remove any existing dropdown to prevent duplicates
         const existing = container.querySelector('.desktop-dropdown');
         if (existing) existing.remove();
 
@@ -251,15 +253,14 @@ const baseUrl = import.meta.env.BASE_URL || '/';
         dropdown.className = 'desktop-dropdown';
         dropdown.setAttribute('data-desktop-dropdown', '');
 
-        // Create dropdown items using DOM methods
-        const baseUrl = import.meta.env.BASE_URL || '/';
+        // Create dropdown items using baseUrl from data attribute
         const items = [
-          { href: `${baseUrl}/services/individual-adults`, text: 'Ατομική ενηλίκων' },
-          { href: `${baseUrl}/services/individual-teenagers`, text: 'Ατομική εφήβων' },
-          { href: `${baseUrl}/services/couple-therapy`, text: 'Θεραπεία ζεύγους' },
-          { href: `${baseUrl}/services/family-therapy`, text: 'Θεραπεία οικογένειας' },
-          { href: `${baseUrl}/services/parents-counseling`, text: 'Συμβουλευτική γονέων' },
-          { href: `${baseUrl}/services/online-sessions`, text: 'Διαδικτυακές συνεδρίες' },
+          { href: `${baseUrl}services/individual-adults`, text: 'Ατομική ενηλίκων' },
+          { href: `${baseUrl}services/individual-teenagers`, text: 'Ατομική εφήβων' },
+          { href: `${baseUrl}services/couple-therapy`, text: 'Θεραπεία ζεύγους' },
+          { href: `${baseUrl}services/family-therapy`, text: 'Θεραπεία οικογένειας' },
+          { href: `${baseUrl}services/parents-counseling`, text: 'Συμβουλευτική γονέων' },
+          { href: `${baseUrl}services/online-sessions`, text: 'Διαδικτυακές συνεδρίες' },
         ];
 
         items.forEach(item => {
@@ -273,7 +274,7 @@ const baseUrl = import.meta.env.BASE_URL || '/';
 
         container.appendChild(dropdown);
 
-        // FIXED: Simplified hover handling - no delay on show
+        // Hover handling
         let hideTimeout;
 
         function showDropdown() {
