@@ -1,0 +1,24 @@
+/* theme-sage.css */
+
+[data-theme="theme-sage"] {
+  /* Aura / Base */
+  --theme-base-color: hsl(120 15% 95%);          /* soft sage background */
+
+  /* Text (near-white) */
+  --theme-text-color: hsl(120 10% 97%);          /* very soft near-white */
+  --theme-text-hover-color: hsl(120 8% 28%);     /* slightly darker grey hover */
+
+  /* Background */
+  --theme-background-image: url("../images/background-sage.png");
+
+  /* Surfaces & borders */
+  --theme-border-color: hsl(120 15% 80%);        /* soft border */
+  --theme-surface-color: hsl(120 15% 90%);       /* card/panel surface */
+  --theme-selection-color: hsl(120 20% 75% / 0.35); /* semi-transparent highlight */
+
+  /* Links */
+  --theme-link-color: hsl(120 10% 97%);          /* matches text */
+  --theme-link-hover-color: hsl(120 5% 42%);     /* darker grey hover for contrast */
+  --theme-link-active-color: hsl(120 8% 25%);    /* slightly darker active */
+  --theme-link-underline: none;
+}

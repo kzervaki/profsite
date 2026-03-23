@@ -1,0 +1,397 @@
+/* Service Card Styles - Vivid and Glassy on Calm State */
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem;
+
+  /* Vivid, glassy background - lighter and more neutral */
+  background: rgba(255, 255, 255, 0.48); /* Pure white with 48% opacity - clean and glassy */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Subtle border for definition */
+  border-radius: var(--radius-md, 0.75rem);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); /* Softer shadow */
+
+  transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+
+  text-decoration: none;
+  color: inherit;
+
+  /* Base height - can be overridden by inline style */
+  height: auto;
+  width: 100%;
+
+  /* Allow content to determine height by default */
+  min-height: auto;
+}
+
+/* Image wrapper - only shown when image exists */
+.service-card-image-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+
+  /* Allow image wrapper to shrink if needed */
+  flex-shrink: 0;
+}
+
+/* Image component styling */
+.service-card-image-wrapper :global(img) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+
+  /* Consistent aspect ratio */
+  aspect-ratio: 16 / 9;
+
+  /* Soften image edges slightly */
+  border-radius: calc(var(--radius-md, 0.75rem) - 2px);
+
+  /* Subtle image enhancement for vibrancy */
+  filter: brightness(1.02) contrast(1.02);
+}
+
+/* Content container - base styles with vertical centering */
+.service-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  gap: 0.6rem;
+
+  /* Allow content to grow and fill space */
+  flex: 1;
+
+  /* Vertical centering magic */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 0;
+}
+
+/* Title-only variant - vertically centered when no image and no description */
+.service-card-content--title-only {
+  min-height: 120px;
+  gap: 0;
+}
+
+/* Title styling */
+.service-card-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 490;
+  line-height: 1.4;
+
+  /* Graphite grey */
+  color: #3a3a3a;
+
+  /* Ensure long titles wrap properly */
+  max-width: 100%;
+  word-wrap: break-word;
+
+  /* Subtle text enhancement */
+  text-rendering: optimizeLegibility;
+}
+
+/* Title-only variant - ensure perfect centering */
+.service-card-content--title-only .service-card-title {
+  margin: 0;
+  padding: 0.5rem 0;
+}
+
+/* Description styling */
+.service-card-description {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+
+  /* Lighter graphite */
+  color: #5a5a5a;
+
+  /* Limit description length for consistency */
+  max-width: 100%;
+  word-wrap: break-word;
+
+  /* Limit to 3 lines with ellipsis */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Hover effect - subtle enhancement only */
+.service-card:hover {
+  transform: translateY(-3px);
+
+  /* Same background - no change */
+  background: rgba(255, 255, 255, 0.48);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Slightly enhanced shadow */
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+
+  /* Slightly more visible border on hover */
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Focus state for keyboard navigation */
+.service-card:focus-visible {
+  outline: 2px solid #3a3a3a;
+  outline-offset: 2px;
+  transform: translateY(-2px);
+
+  /* Same background */
+  background: rgba(255, 255, 255, 0.48);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Active state (when clicked) - subtle feedback only */
+.service-card:active {
+  transform: translateY(0);
+
+  /* Slightly more opaque only when pressed */
+  background: rgba(255, 255, 255, 0.55);
+
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.1s ease;
+}
+
+/* Cards with fixed height - ensure perfect vertical centering */
+.service-card[style*="height"] {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card[style*="height"] .service-card-image-wrapper {
+  flex-shrink: 0;
+}
+
+.service-card[style*="height"] .service-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 0;
+}
+
+/* Cards with min-height only */
+.service-card[style*="min-height"]:not([style*="height"]) {
+  min-height: var(--min-height, auto);
+}
+
+.service-card[style*="min-height"]:not([style*="height"]) .service-card-content {
+  min-height: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* When image exists in fixed-height card, adjust spacing */
+.service-card[style*="height"] .service-card-image-wrapper + .service-card-content {
+  padding-top: 0;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .service-card {
+    padding: 1.25rem 0.75rem;
+
+    /* Mobile - same glassy background, slightly more opaque for readability */
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    /* Slightly softer shadow on mobile */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  }
+
+  .service-card-title {
+    font-size: 1.1rem;
+    color: #3a3a3a;
+  }
+
+  .service-card-description {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 2;
+    color: #5a5a5a;
+  }
+
+  /* Ensure touch targets are large enough */
+  .service-card {
+    min-height: 44px;
+  }
+
+  /* Mobile hover - no background change */
+  .service-card:hover {
+    background: rgba(255, 255, 255, 0.55); /* Keep mobile opacity */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Title-only variant on mobile */
+  .service-card-content--title-only {
+    min-height: 100px;
+  }
+
+  /* Fixed height cards on mobile - maintain centering */
+  .service-card[style*="height"] .service-card-content {
+    justify-content: center;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .service-card {
+    padding: 1rem 0.5rem;
+
+    /* Small mobile - slightly more opaque */
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .service-card-image-wrapper {
+    margin-bottom: 0.75rem;
+  }
+
+  /* Slightly smaller aspect ratio for very small screens */
+  .service-card-image-wrapper :global(img) {
+    aspect-ratio: 4 / 3;
+  }
+
+  /* Mobile hover - keep opacity */
+  .service-card:hover {
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  /* Title-only variant on small mobile */
+  .service-card-content--title-only {
+    min-height: 80px;
+  }
+
+  .service-card-content--title-only .service-card-title {
+    font-size: 1rem;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .service-card {
+    padding: 1.25rem 0.875rem;
+
+    /* Tablet - same glassy background */
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .service-card-title {
+    font-size: 1.0rem;
+  }
+
+  .service-card:hover {
+    background: rgba(255, 255, 255, 0.5); /* Keep tablet opacity */
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .service-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #3a3a3a;
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+
+  .service-card-title {
+    color: #2a2a2a;
+  }
+
+  .service-card-description {
+    color: #3a3a3a;
+  }
+
+  .service-card:hover {
+    background: #ffffff;
+  }
+
+  /* Title-only variant in high contrast */
+  .service-card-content--title-only {
+    min-height: 100px;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .service-card {
+    transition: none;
+  }
+
+  .service-card:hover {
+    transform: none;
+  }
+}
+
+/* Dark theme support - glassy dark mode */
+[data-theme="theme-floral"][data-dark="true"] .service-card,
+.theme-dark .service-card {
+  /* Dark but glassy background */
+  background: rgba(35, 38, 42, 0.55); /* Semi-transparent dark gray */
+  border-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="theme-floral"][data-dark="true"] .service-card-title,
+.theme-dark .service-card-title {
+  color: #f0f0f0;
+}
+
+[data-theme="theme-floral"][data-dark="true"] .service-card-description,
+.theme-dark .service-card-description {
+  color: #c0c0c0;
+}
+
+[data-theme="theme-floral"][data-dark="true"] .service-card:hover,
+.theme-dark .service-card:hover {
+  background: rgba(35, 38, 42, 0.55); /* Same as base */
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* Dark theme mobile adjustments */
+@media (max-width: 768px) {
+  [data-theme="theme-floral"][data-dark="true"] .service-card,
+  .theme-dark .service-card {
+    background: rgba(40, 43, 47, 0.6);
+  }
+}
+
+@media (max-width: 480px) {
+  [data-theme="theme-floral"][data-dark="true"] .service-card,
+  .theme-dark .service-card {
+    background: rgba(40, 43, 47, 0.65);
+  }
+}
+
+/* Dark theme fixed height cards - maintain centering */
+[data-theme="theme-floral"][data-dark="true"] .service-card[style*="height"] .service-card-content,
+.theme-dark .service-card[style*="height"] .service-card-content {
+  justify-content: center;
+}
+
+/* Dark theme title-only variant */
+[data-theme="theme-floral"][data-dark="true"] .service-card-content--title-only,
+.theme-dark .service-card-content--title-only {
+  min-height: 120px;
+}
