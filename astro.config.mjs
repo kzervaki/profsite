@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://kzervaki.github.io',
-  base: '/profsite',
+  site: 'https://konzervaki.com',
+  base: '/',
   outDir: 'docs',
   prefetch: {
     prefetch: true, // enable prefetching
