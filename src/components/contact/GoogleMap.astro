@@ -1,0 +1,40 @@
+---
+interface Props {
+  /** Google Maps iframe embed URL */
+  embedUrl: string;
+  /** Optional address shown above the map */
+  address?: string;
+  rounded?: boolean;
+  align?: "left" | "center" | "right";
+  class?: string;
+}
+
+const {
+  embedUrl,
+  address = "",
+  rounded = true,
+  align = "center",
+  class: extraClass = "",
+} = Astro.props;
+
+const wrapperStyles = {
+  left: "margin-right: var(--space-md); margin-bottom: var(--space-md);",
+  right: "margin-left: var(--space-md); margin-bottom: var(--space-md);",
+  center: "margin: var(--space-md) auto;",
+};
+const wrapperStyle = wrapperStyles[align] ?? wrapperStyles.center;
+---
+
+<div class={`map-container ${extraClass}`} style={wrapperStyle}>
+  {address && <p class="map-address">{address}</p>}
+  <div class="map-frame">
+    <iframe
+      src={embedUrl}
+      class={`map-iframe ${rounded ? "map-iframe--rounded" : ""}`}
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Google Maps location"
+    ></iframe>
+  </div>
+</div>

@@ -1,0 +1,132 @@
+---
+/**
+ * Two-row intro: top text beside a top image, then a bottom image beside bottom text.
+ * Per-image sizes fall back to the shared `imageWidth`/`imageHeight`/`mobileImageWidth`.
+ */
+import { toBorderRadius } from "@/utils/style";
+
+interface Props {
+  topText?: string;
+  topImageSrc?: string;
+  topImageAlt?: string;
+  bottomText?: string;
+  bottomImageSrc?: string;
+  bottomImageAlt?: string;
+  textAlignment?: "left" | "center" | "right" | "justify";
+  imageMargin?: string;
+  /** `true` → 0.5rem, or any CSS border-radius */
+  roundedCorners?: boolean | string;
+  gap?: string;
+  mobileSpacing?: string;
+
+  // Shared image sizes
+  imageWidth?: string;
+  imageHeight?: string;
+  mobileImageWidth?: string;
+
+  // Per-image overrides
+  topImageWidth?: string;
+  topImageHeight?: string;
+  topMobileImageWidth?: string;
+  bottomImageWidth?: string;
+  bottomImageHeight?: string;
+  bottomMobileImageWidth?: string;
+}
+
+const {
+  topText,
+  topImageSrc,
+  topImageAlt = "",
+  bottomText,
+  bottomImageSrc,
+  bottomImageAlt = "",
+  textAlignment = "left",
+  imageMargin = "1rem",
+  roundedCorners = false,
+  gap = "2rem",
+  mobileSpacing = "1.5rem",
+  imageWidth = "200px",
+  imageHeight = "auto",
+  mobileImageWidth = "50%",
+  topImageWidth,
+  topImageHeight,
+  topMobileImageWidth,
+  bottomImageWidth,
+  bottomImageHeight,
+  bottomMobileImageWidth,
+} = Astro.props;
+
+const borderRadius = toBorderRadius(roundedCorners);
+---
+
+<div
+  class="intro-text"
+  data-text-alignment={textAlignment}
+  style={`
+    --image-margin: ${imageMargin};
+    --border-radius: ${borderRadius};
+    --text-alignment: ${textAlignment};
+    --gap: ${gap};
+    --mobile-spacing: ${mobileSpacing};
+
+    /* Top image sizes */
+    --top-image-width: ${topImageWidth || imageWidth};
+    --top-image-height: ${topImageHeight || imageHeight};
+    --top-mobile-image-width: ${topMobileImageWidth || mobileImageWidth};
+
+    /* Bottom image sizes */
+    --bottom-image-width: ${bottomImageWidth || imageWidth};
+    --bottom-image-height: ${bottomImageHeight || imageHeight};
+    --bottom-mobile-image-width: ${bottomMobileImageWidth || mobileImageWidth};
+  `}
+>
+  <!-- Top row: text, then image -->
+  <div class="intro-text-row">
+    {topText && (
+      <div class="intro-text-text intro-text-text--top">
+        {topText}
+      </div>
+    )}
+
+    {topImageSrc && (
+      <div class="intro-text-image intro-text-image--top">
+        <img
+          src={topImageSrc}
+          alt={topImageAlt}
+          loading="lazy"
+          style={{
+            width: "100%",
+            height: "var(--top-image-height)",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+      </div>
+    )}
+  </div>
+
+  <!-- Bottom row: image, then text -->
+  <div class="intro-text-row">
+    {bottomImageSrc && (
+      <div class="intro-text-image intro-text-image--bottom">
+        <img
+          src={bottomImageSrc}
+          alt={bottomImageAlt}
+          loading="lazy"
+          style={{
+            width: "100%",
+            height: "var(--bottom-image-height)",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+      </div>
+    )}
+
+    {bottomText && (
+      <div class="intro-text-text intro-text-text--bottom">
+        {bottomText}
+      </div>
+    )}
+  </div>
+</div>

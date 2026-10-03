@@ -1,0 +1,20 @@
+/* ==================================================
+   Theme: sage (sage background, near-white text)
+   ================================================== */
+
+[data-theme="theme-sage"] {
+  --theme-base-color: hsl(120 15% 95%);              /* soft sage */
+  --theme-background-image: url("../../images/background-sage.png");
+
+  --theme-text-color: hsl(120 10% 97%);              /* near-white */
+  --theme-text-hover-color: hsl(120 8% 28%);
+
+  --theme-border-color: hsl(120 15% 80%);
+  --theme-surface-color: hsl(120 15% 90%);
+  --theme-selection-color: hsl(120 20% 75% / 0.35);
+
+  --theme-link-color: hsl(120 10% 97%);              /* matches text */
+  --theme-link-hover-color: hsl(120 5% 42%);
+  --theme-link-active-color: hsl(120 8% 25%);
+  --theme-link-underline: none;
+}

@@ -1,0 +1,41 @@
+---
+/** Responsive image with optional fixed size, rounded corners and float alignment. */
+interface Props {
+  src: string;
+  alt: string;
+  /** CSS length, e.g. "300px" or "50%" */
+  width?: string | number;
+  height?: string | number;
+  rounded?: boolean;
+  class?: string;
+  /** "left"/"right" float the image; "center" centers it as a block */
+  align?: "left" | "center" | "right";
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  rounded = false,
+  class: extraClass = "",
+  align = "center",
+} = Astro.props;
+
+const imageStyle = [
+  width && `width: ${width};`,
+  height && `height: ${height};`,
+  rounded && "border-radius: 8px;",
+].filter(Boolean).join("");
+
+const wrapperStyles = {
+  left: "float: left; margin-right: 1rem; margin-bottom: 1rem;",
+  right: "float: right; margin-left: 1rem; margin-bottom: 1rem;",
+  center: "display: block; margin: 1rem auto;",
+};
+const wrapperStyle = wrapperStyles[align] ?? wrapperStyles.center;
+---
+
+<span style={wrapperStyle}>
+  <img src={src} alt={alt} style={imageStyle} class={extraClass} />
+</span>

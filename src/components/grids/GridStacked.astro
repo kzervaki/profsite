@@ -1,0 +1,50 @@
+---
+/** Vertical stack of cells; only the slots "B" to "G" that are provided are rendered. */
+interface Props {
+  height?: string;
+  padding?: string;
+  lineWidth?: string;
+
+  /** Inline click handlers (optional) */
+  onClickB?: string;
+  onClickC?: string;
+  onClickD?: string;
+  onClickE?: string;
+  onClickF?: string;
+  onClickG?: string;
+}
+
+const {
+  height = "60vmin",
+  padding = "1rem",
+  lineWidth = "2px",
+} = Astro.props;
+
+const cells = await Promise.all(
+  (["B", "C", "D", "E", "F", "G"] as const)
+    .filter((id) => Astro.slots.has(id))
+    .map(async (id) => ({
+      id,
+      onclick: Astro.props[`onClick${id}`],
+      html: await Astro.slots.render(id),
+    }))
+);
+---
+
+<section
+  class="stacked-grid-wrapper"
+  style={`
+    --sg-height: ${height};
+    --sg-padding: ${padding};
+    --sg-line-width: ${lineWidth};
+    --sg-cell-count: ${cells.length};
+  `}
+>
+  <div class="stacked-grid">
+    {cells.map(({ id, onclick, html }) => (
+      <div class="cell" data-cell={id} onclick={onclick}>
+        <Fragment set:html={html} />
+      </div>
+    ))}
+  </div>
+</section>

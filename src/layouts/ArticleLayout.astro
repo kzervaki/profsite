@@ -1,0 +1,59 @@
+---
+/**
+ * Layout for text pages (services, approaches, about): title, optional quote,
+ * then the page text (default slot) beside an image.
+ *
+ * Usage:
+ *   <ArticleLayout title="…" image="images/x.jpg" imageAlt="…" quoteAuthor="…">
+ *     <Fragment slot="quote">Quote text</Fragment>
+ *     <p>Body…</p>
+ *   </ArticleLayout>
+ */
+import QuoteBlock from "@/components/content/QuoteBlock.astro";
+import TextWithImage from "@/components/content/TextWithImage.astro";
+import SitePage from "@/components/layout/SitePage.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { withBase } from "@/utils/paths";
+
+interface Props {
+  title: string;
+  /** Site-relative image path, e.g. "images/service-adults.jpg" */
+  image: string;
+  imageAlt: string;
+  imageWidth?: string;
+  /** Shown under the quote (provide the quote via slot="quote") */
+  quoteAuthor?: string;
+}
+
+const { title, image, imageAlt, imageWidth = "300px", quoteAuthor } = Astro.props;
+---
+
+<BaseLayout title={title}>
+  <SitePage title={title}>
+    {Astro.slots.has("quote") && (
+      <QuoteBlock
+        author={quoteAuthor}
+        position="right"
+        align="right"
+        edgeMargin="0.0rem"
+        size="md"
+      >
+        <slot name="quote" />
+      </QuoteBlock>
+    )}
+
+    <TextWithImage
+      imageSrc={withBase(image)}
+      imageAlt={imageAlt}
+      imagePosition="top-right"
+      textAlignment="justify"
+      imageMargin="33px"
+      imageWidth={imageWidth}
+      roundedCorners={true}
+      mobileImageWidth="50%"
+      mobileSpacing="1.5rem"
+    >
+      <slot />
+    </TextWithImage>
+  </SitePage>
+</BaseLayout>

@@ -1,0 +1,73 @@
+/* ==================================================
+   Grid horizontal (GridHorizontal.astro)
+   ==================================================
+   Desktop: cell A spans the left third; B and C stack on the right.
+   Mobile (≤640px): A hidden; B above C.
+   Grid lines are drawn with background gradients.
+*/
+
+.grid-horizontal-wrapper {
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  justify-content: center;
+
+  padding: var(--gh-padding);
+}
+
+.grid-horizontal {
+  width: 100%;
+  max-width: var(--gh-size);
+  height: var(--gh-height);
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr;
+  padding: var(--gh-line-width);
+
+  background:
+    /* Outer border */
+    linear-gradient(currentColor, currentColor) top / 100% var(--gh-line-width) no-repeat,
+    linear-gradient(currentColor, currentColor) bottom / 100% var(--gh-line-width) no-repeat,
+    linear-gradient(currentColor, currentColor) left / var(--gh-line-width) 100% no-repeat,
+    linear-gradient(currentColor, currentColor) right / var(--gh-line-width) 100% no-repeat,
+    /* Vertical line after the first column */
+    linear-gradient(currentColor, currentColor)
+      calc(33.333% - var(--gh-line-width) / 2) 0 /
+      var(--gh-line-width) 100% no-repeat,
+    /* Horizontal line on the right side only */
+    linear-gradient(currentColor, currentColor)
+      33.333% calc(50% - var(--gh-line-width) / 2) /
+      66.666% var(--gh-line-width) no-repeat;
+
+  transition: width 0.35s ease, height 0.35s ease;
+}
+
+/* ---------- Cell placement ---------- */
+.grid-horizontal > [data-cell="A"] { grid-column: 1; grid-row: 1 / span 2; }
+.grid-horizontal > [data-cell="B"] { grid-column: 2; grid-row: 1; }
+.grid-horizontal > [data-cell="C"] { grid-column: 2; grid-row: 2; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+  .grid-horizontal {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    background:
+      /* Outer border */
+      linear-gradient(currentColor, currentColor) top / 100% var(--gh-line-width) no-repeat,
+      linear-gradient(currentColor, currentColor) bottom / 100% var(--gh-line-width) no-repeat,
+      linear-gradient(currentColor, currentColor) left / var(--gh-line-width) 100% no-repeat,
+      linear-gradient(currentColor, currentColor) right / var(--gh-line-width) 100% no-repeat,
+      /* Horizontal divider */
+      linear-gradient(currentColor, currentColor)
+        0 calc(50% - var(--gh-line-width) / 2) /
+        100% var(--gh-line-width) no-repeat;
+  }
+
+  .grid-horizontal > [data-cell="A"] { display: none; }
+  .grid-horizontal > [data-cell="B"] { grid-column: 1; grid-row: 1; }
+  .grid-horizontal > [data-cell="C"] { grid-column: 1; grid-row: 2; }
+}

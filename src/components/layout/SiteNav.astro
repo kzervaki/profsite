@@ -1,0 +1,78 @@
+---
+import LinkActive from "@/components/links/LinkActive.astro";
+import { SERVICES, serviceHref } from "@/data/services";
+---
+
+<nav class="site-nav" data-theme="theme-sage">
+  <div class="nav-inner">
+    <input
+      type="checkbox"
+      id="nav-toggle"
+      class="nav-toggle"
+      aria-hidden="true"
+    />
+
+    <label
+      for="nav-toggle"
+      class="nav-burger"
+      aria-label="Open navigation"
+      aria-controls="site-navigation"
+      aria-expanded="false"
+    >
+      <span></span>
+    </label>
+
+    <div class="nav-drawer" id="site-navigation" data-theme="theme-sage">
+      <!-- Main menu -->
+      <div class="menu-panel menu-panel--main" data-panel="main">
+        <ul class="menu-list">
+          <li><LinkActive location="" text="Αρχική" /></li>
+          <li><LinkActive location="approaches" text="Προσεγγίσεις" /></li>
+
+          <!-- Services trigger (desktop dropdown is built by the script from the submenu below) -->
+          <li class="menu-item-with-submenu" data-desktop-dropdown-container>
+            <button
+              class="submenu-trigger"
+              data-trigger="services"
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
+              <span>Υπηρεσίες</span>
+              <svg class="trigger-arrow" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                <polyline points="4,2 8,6 4,10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </button>
+          </li>
+
+          <li><LinkActive location="about" text="Βιογραφικό" /></li>
+          <li><LinkActive location="contact" text="Επικοινωνία" /></li>
+        </ul>
+      </div>
+
+      <!-- Services submenu (mobile) -->
+      <div class="menu-panel menu-panel--submenu" data-panel="services" hidden>
+        <div class="submenu-header">
+          <button class="back-button" data-back="main">
+            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+              <polyline points="8,2 4,6 8,10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span></span>
+          </button>
+        </div>
+        <ul class="submenu-list">
+          {SERVICES.map((service) => (
+            <li><a href={serviceHref(service)}>{service.navLabel}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="nav-overlay"></div>
+  </div>
+</nav>
+
+<script>
+  import { initSiteNav } from "@/scripts/site-nav";
+
+  initSiteNav();
+</script>

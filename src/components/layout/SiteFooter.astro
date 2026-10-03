@@ -1,0 +1,35 @@
+---
+import IconAddress from "@/components/icons/IconAddress.astro";
+import IconEmail from "@/components/icons/IconEmail.astro";
+import IconPhone from "@/components/icons/IconPhone.astro";
+import { CONFIG } from "@/config/site";
+---
+
+<footer class="site-footer" data-theme="theme-floral">
+  <div>
+    <p class="site-footer-credits">
+      © {CONFIG.year}, {CONFIG.fullName}
+      <span class="site-footer-separator">·</span>
+      {CONFIG.professionTitle}
+      <span class="site-footer-separator">·</span>
+      {CONFIG.specialtySystemic}
+      <span class="site-footer-separator">/</span>
+      {CONFIG.specialtyDialectic}
+    </p>
+
+    <p class="site-footer-contact">
+      <span class="contact-icon"><IconAddress /></span>
+      {CONFIG.address}
+
+      <span class="site-footer-separator">·</span>
+
+      <span class="contact-icon"><IconEmail /></span>
+      <a href={`mailto:${CONFIG.email}`}>{CONFIG.email}</a>
+
+      <span class="site-footer-separator">·</span>
+
+      <span class="contact-icon"><IconPhone /></span>
+      {CONFIG.phone}
+    </p>
+  </div>
+</footer>

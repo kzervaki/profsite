@@ -1,0 +1,119 @@
+---
+/** Grid cell content: a title and body, rendered as a link when `href` is given. */
+interface Props {
+  title: string;
+  href?: string;
+  target?: "_blank" | "_self" | "_parent" | "_top";
+}
+
+const { title, href, target = "_self" } = Astro.props;
+
+const Wrapper = href ? "a" : "div";
+const wrapperProps = href
+  ? { href, target, class: "cell-link" }
+  : { class: "cell-static" };
+---
+
+<article class="cell-content">
+  <Wrapper {...wrapperProps}>
+    <h3 class="cell-title">{title}</h3>
+    <div class="cell-body">
+      <slot />
+    </div>
+  </Wrapper>
+</article>
+
+<style>
+  /* ---------- Base ---------- */
+  .cell-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .cell-link,
+  .cell-static {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .cell-link {
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cell-link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: currentColor;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .cell-link:hover::before {
+    opacity: 0.1;
+  }
+
+  .cell-title {
+    font-size: 1.25em;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cell-link:hover .cell-title {
+    transform: translateY(-2px);
+  }
+
+  .cell-body {
+    font-size: 0.9em;
+    line-height: 1.4;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cell-link:hover .cell-body {
+    opacity: 0.9;
+    transform: translateY(2px);
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 768px) {
+    .cell-title {
+      font-size: 0.9em;
+      margin-bottom: 0.25rem;
+    }
+
+    .cell-link,
+    .cell-static {
+      padding: 0.5rem;
+    }
+
+    /* Clip the body to ~3 lines with a fade-out */
+    .cell-body {
+      font-size: 0.8em;
+      line-height: 1.3;
+      max-height: 4.2em;
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(
+        to bottom,
+        black 70%,
+        transparent 100%
+      );
+    }
+  }
+</style>

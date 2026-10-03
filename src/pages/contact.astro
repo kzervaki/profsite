@@ -1,17 +1,15 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import SitePage from "../components/SitePage.astro";
-import ContactSection from "../components/ContactSection.astro";
-import { CONFIG } from "../site-config";
+import ContactSection from "@/components/contact/ContactSection.astro";
+import SitePage from "@/components/layout/SitePage.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { withBase } from "@/utils/paths";
 ---
 
 <BaseLayout title="Επικοινωνία">
-
-  <SitePage title="">
+  <SitePage>
     <ContactSection
-      image=`${import.meta.env.BASE_URL}/images/grafeio.jpg`;
-      imageWidth=540px;
+      image={withBase("images/grafeio.jpg")}
+      imageWidth="540px"
     />
   </SitePage>
-
 </BaseLayout>

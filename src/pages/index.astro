@@ -1,65 +1,16 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import SitePage from "../components/SitePage.astro";
-import TextWithImage from "../components/TextWithImage.astro";
-import QuoteBlock from "../components/QuoteBlock.astro";
-import { CONFIG } from "../site-config";
-import ServiceGrid from "../components/ServiceGrid.astro";
-import ServiceCard from "../components/ServiceCard.astro";
-
-const baseUrl = import.meta.env.BASE_URL || '/';
-
-const services = [
-  {
-    id: "B",
-    title: "Ατομική ψυχοθεραπεία ενηλίκων",
-    href: `${baseUrl}/services/individual-adults`,
-    // description: "Διερεύνηση των ενδόμυχων σκέψεων και βιωμάτων του ώριμου ατόμου"
-    // description: "Δομημένος χώρος διερεύνησης των σκέψεων, των συναισθημάτων και των βιωμάτων του ώριμου ατόμου. Στο επίκεντρο βρίσκεται η μοναδική προσωπική ιστορία κάθε ανθρώπου, καθώς και ο τρόπος με τον οποίο οι εμπειρίες ζωής, οι σχέσεις και τα εσωτερικά μοτίβα επηρεάζουν τη σημερινή του λειτουργικότητα."
-  },
-  {
-    id: "C",
-    title: "Ατομική ψυχοθεραπεία εφήβων",
-    href: `${baseUrl}/services/individual-teenagers`,
-    // description: "Έκφραση και κατανόηση εαυτού σε μια κρίσιμη αναπτυξιακή φάση του ατόμου"
-    // description: "Ασφαλής χώρος έκφρασης και κατανόησης εαυτού σε μια ιδιαίτερα κρίσιμη αναπτυξιακή φάση του ατόμου. Στοχεύει στη στήριξη του εφήβου, ενισχύοντας την ψυχική του ανθεκτικότητα και τη σταδιακή του αυτονόμηση μέσα σε καταστάσεις έντονων συναισθηματικών μεταβολών και αναζήτησης ταυτότητας."
-  },
-  {
-    id: "E",
-    title: "Θεραπεία ζεύγους",
-    href: `${baseUrl}/services/couple-therapy`,
-    // description: "Μη επικριτική διερεύνηση της σχέσης και αμοιβαία κατανόηση μοτίβων επικοινωνίας"
-    // description: "Υποστηρικτικό και μη επικριτικό πλαίσιο εξερεύνησης της σχέσης του ζεύγους και αμοιβαίας κατανόησης των μοτίβων επικοινωνίας. Η σχέση δεν εξετάζεται απομονωμένα, αλλά ως μέρος ενός ευρύτερου συστήματος –οικογένειας, κοινωνικού περιβάλλοντος και προσωπικού ιστορικού– όπου κάθε μέλος επηρεάζει και επηρεάζεται από τους υπόλοιπους."
-  },
-  {
-    id: "F",
-    title: "Θεραπεία οικογένειας",
-    href: `${baseUrl}/services/family-therapy`,
-    // description: "Αμοιβαία διερεύνηση των δεσμών και αλληλοκατανόηση μεταξύ των μελών της"
-    // description: "Δομημένος χώρος αμοιβαίας διερεύνησης των σχέσεων και αλληλοκατανόησης μεταξύ των μελών της οικογένειας. Στόχος είναι να ενισχυθεί η επικοινωνία, η συναισθηματική σύνδεση και η συνολική ισορροπία του οικογενειακού συστήματος, πέρα από την αντιμετώπιση μόνο μεμονωμένων προβλημάτων ή προβληματικών συμπεριφορών."
-  },
-  {
-    id: "G",
-    title: "Συμβουλευτική γονέων",
-    href: `${baseUrl}/services/parents-counseling`,
-    // description: "Επεξεργασία προκλήσεων της γoνεϊκότητας και κατανόησηs των παιδικών αναγκών"
-    // description: "Υποστηρικτικό πλαίσιο επεξεργασίας των προκλήσεων της γoνεϊκότητας και καλύτερης κατανόησης των αναγκών των παιδιών. Η διαδικασία αυτή δεν επικεντρώνεται σε «σωστούς» ή «λάθους» τρόπους ανατροφής, αλλά στην κατανόηση των μοναδικών δυναμικών που διαμορφώνουν την επικοινωνία και τη λειτουργικότητα της κάθε οικογένειας."
-  },
-  {
-    id: "D",
-    title: "Διαδικτυακές συνεδρίες",
-    href: `${baseUrl}/services/online-sessions`,
-    // description: "Υποστήριξη και θεραπεία μέσω απομακρυσμένης επικοινωνίας"
-    // description: "Υποστήριξη και θεραπεία μέσω βιντεοκλήσεων, ειδικών εφαρμογών ή κρυπτογραφημένης επικοινωνίας. Παρέχεται σε περιπτώσεις όπου η φυσική παρουσία είναι δύσκολη ή ανέφικτη, ή όποτε κάποιο άτομο νιώθει πιο άνετα να ξεκινήσει θεραπεία από τον προσωπικό του χώρο. Πραγματοποιούνται με τον ίδιο τρόπο όπως οι παραδοσιακές συνεδρίες."
-  },
-];
+import QuoteBlock from "@/components/content/QuoteBlock.astro";
+import TextWithImage from "@/components/content/TextWithImage.astro";
+import SitePage from "@/components/layout/SitePage.astro";
+import ServiceCard from "@/components/services/ServiceCard.astro";
+import ServiceGrid from "@/components/services/ServiceGrid.astro";
+import { SERVICES, serviceHref } from "@/data/services";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { withBase } from "@/utils/paths";
 ---
 
 <BaseLayout title="Αρχική">
-
-  <SitePage
-    title=""
-  >
+  <SitePage>
     <QuoteBlock
       author="Rainer Maria Rilke, 1929"
       position="right"
@@ -72,7 +23,7 @@ const services = [
     </QuoteBlock>
 
     <TextWithImage
-      imageSrc=`${import.meta.env.BASE_URL}/images/intro-image-3.jpg`
+      imageSrc={withBase("images/intro-image-3.jpg")}
       imageAlt="Sample image"
       imagePosition="top-right"
       textAlignment="justify"
@@ -80,7 +31,6 @@ const services = [
       imageWidth="350px"
       roundedCorners={true}
       mobileSpacing="1.5rem"
-      gap="0.1rem"
       mobileImageWidth="80%"
     >
       <p>
@@ -100,44 +50,14 @@ const services = [
     </TextWithImage>
 
     <ServiceGrid columns={3}>
-      <ServiceCard
-        title={services[0].title}
-        description={services[0].description}
-        height=120px
-        href={services[0].href}
-      />
-      <ServiceCard
-        title={services[1].title}
-        description={services[1].description}
-        height=120px
-        href={services[1].href}
-      />
-      <ServiceCard
-        title={services[2].title}
-        description={services[2].description}
-        height=120px
-        href={services[2].href}
-      />
-      <ServiceCard
-        title={services[3].title}
-        description={services[3].description}
-        height=120px
-        href={services[3].href}
-      />
-      <ServiceCard
-        title={services[4].title}
-        description={services[4].description}
-        height=120px
-        href={services[4].href}
-      />
-      <ServiceCard
-        title={services[5].title}
-        description={services[5].description}
-        height=120px
-        href={services[5].href}
-      />
+      {SERVICES.map((service) => (
+        <ServiceCard
+          title={service.title}
+          description={service.description}
+          href={serviceHref(service)}
+          height="120px"
+        />
+      ))}
     </ServiceGrid>
-
   </SitePage>
 </BaseLayout>
-

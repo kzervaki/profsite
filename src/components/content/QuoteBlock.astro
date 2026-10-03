@@ -1,0 +1,39 @@
+---
+interface Props {
+  author?: string;
+  /** Position of the block within the page */
+  position?: "left" | "center" | "right";
+  /** Text alignment within the block */
+  align?: "left" | "center" | "right";
+  size?: "sm" | "md" | "lg";
+  muted?: boolean;
+  /** Minimum distance from the page edge */
+  edgeMargin?: string;
+}
+
+const {
+  author,
+  position = "center",
+  align = "center",
+  size = "md",
+  muted = false,
+  edgeMargin = "2rem",
+} = Astro.props;
+---
+
+<figure
+  class:list={[
+    "quote",
+    `quote-position-${position}`,
+    `quote-align-${align}`,
+    `quote-size-${size}`,
+    { "quote-muted": muted },
+  ]}
+  style={`--quote-edge-margin: ${edgeMargin};`}
+>
+  <blockquote>
+    <slot />
+  </blockquote>
+
+  {author && <figcaption>{author}</figcaption>}
+</figure>

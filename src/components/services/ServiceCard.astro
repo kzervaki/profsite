@@ -1,0 +1,64 @@
+---
+/** Clickable card with a title and optional image and description. */
+import Image from "@/components/content/Image.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  href: string;
+  image?: string;
+  imageAlt?: string;
+  rounded?: boolean;
+  /** Fixed card height ("auto" = unset) */
+  height?: string;
+  /** Minimum card height ("auto" = unset) */
+  minHeight?: string;
+}
+
+const {
+  title,
+  description,
+  href,
+  image,
+  imageAlt = "",
+  rounded = true,
+  height = "auto",
+  minHeight = "auto",
+} = Astro.props;
+
+const ARIA_DESCRIPTION_LENGTH = 60;
+
+const ariaDescription = description && description.length > ARIA_DESCRIPTION_LENGTH
+  ? `${description.substring(0, ARIA_DESCRIPTION_LENGTH)}...`
+  : description;
+
+const ariaLabel = !title
+  ? href
+  : ariaDescription
+    ? `${title} - ${ariaDescription}`
+    : title;
+
+const cardStyle = [
+  height !== "auto" && `height: ${height};`,
+  minHeight !== "auto" && `min-height: ${minHeight};`,
+].filter(Boolean).join(" ") || undefined;
+---
+
+<a
+  href={href}
+  class="service-card"
+  data-theme="theme-floral"
+  aria-label={ariaLabel}
+  style={cardStyle}
+>
+  {image && (
+    <div class="service-card-image-wrapper">
+      <Image src={image} alt={imageAlt} rounded={rounded} />
+    </div>
+  )}
+
+  <div class:list={["service-card-content", { "service-card-content--title-only": !image && !description }]}>
+    <h3 class="service-card-title">{title}</h3>
+    {description && <p class="service-card-description">{description}</p>}
+  </div>
+</a>

@@ -1,0 +1,188 @@
+---
+/**
+ * Text (slot) beside an optional image. On desktop the image sits to the left
+ * or right of the text; on mobile it stacks full-width above the text.
+ */
+import { toBorderRadius } from "@/utils/style";
+
+interface Props {
+  imageSrc?: string;
+  imageAlt?: string;
+  /** Only the left/right part affects layout */
+  imagePosition?: "top-left" | "top-right" | "bottom-left" | "bottom-right";
+  textAlignment?: "left" | "center" | "right" | "justify";
+  /** Gap between image and text */
+  imageMargin?: string;
+  imageWidth?: string;
+  imageHeight?: string;
+  /** `true` → 0.5rem, or any CSS border-radius */
+  roundedCorners?: boolean | string;
+  /** Gap between image and text on mobile */
+  mobileSpacing?: string;
+  mobileImageWidth?: string;
+}
+
+const {
+  imageSrc,
+  imageAlt = "",
+  imagePosition = "top-right",
+  textAlignment = "left",
+  imageMargin = "1rem",
+  imageWidth = "300px",
+  imageHeight = "auto",
+  roundedCorners = false,
+  mobileSpacing = "1.5rem",
+  mobileImageWidth = "75%",
+} = Astro.props;
+
+const borderRadius = toBorderRadius(roundedCorners);
+const imageSide = imagePosition.includes("left") ? "left" : "right";
+---
+
+<div
+  class="text-with-image"
+  style={`
+    --mobile-spacing: ${mobileSpacing};
+    --mobile-image-width: ${mobileImageWidth};
+    --border-radius: ${borderRadius};
+    --text-alignment: ${textAlignment};
+    --image-margin: ${imageMargin};
+    --image-position: ${imageSide};
+  `}
+>
+  {imageSrc && (
+    <div
+      class="image-side"
+      style={`
+        border-radius: ${borderRadius};
+        overflow: hidden;
+        width: ${imageWidth};
+      `}
+    >
+      <img
+        src={imageSrc}
+        alt={imageAlt}
+        width="100%"
+        height={imageHeight}
+        style="max-width: 100%; height: auto; display: block;"
+      />
+    </div>
+  )}
+
+  <div
+    class="text-wrapper"
+    style={`text-align: ${textAlignment}; overflow-wrap: break-word; word-wrap: break-word; hyphens: auto;`}
+  >
+    <slot />
+  </div>
+</div>
+
+<style>
+  /* ---------- Desktop: side-by-side grid ---------- */
+  .text-with-image {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto;
+    align-items: start;
+    gap: var(--image-margin, 1rem);
+    width: 100%;
+  }
+
+  /* Image on the left */
+  .text-with-image[style*="--image-position: left"] {
+    grid-template-columns: auto 1fr;
+  }
+
+  .text-with-image[style*="--image-position: left"] .image-side {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .text-with-image[style*="--image-position: left"] .text-wrapper {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  /* Image on the right */
+  .text-with-image[style*="--image-position: right"] {
+    grid-template-columns: 1fr auto;
+  }
+
+  .text-with-image[style*="--image-position: right"] .image-side {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .text-with-image[style*="--image-position: right"] .text-wrapper {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .image-side {
+    border-radius: var(--border-radius, 0);
+    overflow: hidden;
+  }
+
+  .image-side img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .text-wrapper {
+    min-width: 0; /* Prevents overflow */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* ---------- Mobile: full-width image stacked above text ---------- */
+  @media (max-width: 768px) {
+    .text-with-image {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--mobile-spacing, 1.5rem);
+    }
+
+    .image-side {
+      width: 100% !important;
+      max-width: 100% !important;
+      grid-column: 1 !important;
+      grid-row: 1 !important;
+    }
+
+    .image-side img {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: cover;
+    }
+
+    .text-wrapper {
+      grid-column: 1 !important;
+      grid-row: 2 !important;
+      width: 100% !important;
+      order: 2;
+    }
+
+    .image-side {
+      order: 1;
+    }
+
+    .text-with-image[style*="--text-alignment: center"] .text-wrapper {
+      text-align: center !important;
+    }
+
+    .text-with-image[style*="--text-alignment: right"] .text-wrapper {
+      text-align: right !important;
+    }
+
+    .text-with-image[style*="--text-alignment: left"] .text-wrapper {
+      text-align: left !important;
+    }
+
+    .text-with-image[style*="--text-alignment: justify"] .text-wrapper {
+      text-align: justify !important;
+    }
+  }
+</style>

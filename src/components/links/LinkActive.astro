@@ -1,0 +1,18 @@
+---
+/** Internal link that gets the "active" class when it points to the current page. */
+import { withBase } from "@/utils/paths";
+
+interface Props {
+  /** Site-relative path, e.g. "about" ("" for the home page) */
+  location: string;
+  text: string;
+}
+
+const { location, text } = Astro.props;
+const href = withBase(location);
+const isActive = Astro.url.pathname === href;
+---
+
+<a href={href} class={isActive ? "active" : ""}>
+  {text}
+</a>

@@ -1,0 +1,51 @@
+---
+/** Three-cell grid; fill cells via slots "A", "B" and "C". */
+interface Props {
+  /** Max width of the grid */
+  size?: string;
+  /** Total height of the grid */
+  height?: string;
+  /** Outer padding */
+  padding?: string;
+  /** Line thickness */
+  lineWidth?: string;
+
+  /** Inline click handlers (optional) */
+  onClickA?: string;
+  onClickB?: string;
+  onClickC?: string;
+}
+
+const {
+  size = "80vmin",
+  height = "60vmin",
+  padding = "1rem",
+  lineWidth = "2px",
+} = Astro.props;
+
+const cells = await Promise.all(
+  (["A", "B", "C"] as const).map(async (id) => ({
+    id,
+    onclick: Astro.props[`onClick${id}`],
+    html: await Astro.slots.render(id),
+  }))
+);
+---
+
+<section
+  class="grid-horizontal-wrapper"
+  style={`
+    --gh-size: ${size};
+    --gh-height: ${height};
+    --gh-padding: ${padding};
+    --gh-line-width: ${lineWidth};
+  `}
+>
+  <div class="grid-horizontal">
+    {cells.map(({ id, onclick, html }) => (
+      <div class="cell" data-cell={id} onclick={onclick}>
+        <Fragment set:html={html} />
+      </div>
+    ))}
+  </div>
+</section>

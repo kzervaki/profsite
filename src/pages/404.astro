@@ -1,27 +1,24 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { CONFIG } from "../site-config";
-const baseUrl = import.meta.env.BASE_URL || '/';
+import { CONFIG } from "@/config/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { BASE_URL } from "@/utils/paths";
 ---
 
 <BaseLayout title="Page not found">
   <section class="not-found">
-    <!-- Breadcrumb hint - hidden on mobile, shown on desktop -->
+    <!-- Breadcrumb hint (desktop only) -->
     <div class="not-found-breadcrumb">
-      <a href={baseUrl}>{CONFIG.siteTitle}</a> / 404
+      <a href={BASE_URL}>{CONFIG.siteTitle}</a> / 404
     </div>
 
-    <!-- Animated 404 number with improved mobile sizing -->
     <h1 class="not-found-number" aria-label="404 error">404</h1>
 
     <h1 class="not-found-lead">
       Η σελίδα που ψάχνετε δεν υπάρχει
     </h1>
 
-    <!-- Easy homepage redirect - improved touch target -->
-    <a href={baseUrl} class="not-found-link">
+    <a href={BASE_URL} class="not-found-link">
       Επιστροφή στην αρχική
     </a>
-
   </section>
 </BaseLayout>

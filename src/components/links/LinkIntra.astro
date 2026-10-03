@@ -1,0 +1,16 @@
+---
+/** Internal link to a site-relative path. */
+import { withBase } from "@/utils/paths";
+
+interface Props {
+  /** Site-relative path, e.g. "about" */
+  location: string;
+  text: string;
+}
+
+const { location, text } = Astro.props;
+---
+
+<a href={withBase(location)}>
+  {text}
+</a>

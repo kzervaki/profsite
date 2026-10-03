@@ -1,0 +1,11 @@
+/* ==================================================
+   Main element (BaseLayout.astro): fills the space between nav and footer
+   ================================================== */
+
+.site-main {
+  flex: 1 1 auto;
+  display: flex;   /* lets SitePage stretch */
+  flex-direction: column;
+  margin: 0;       /* overrides base/layout.css auto margins */
+  padding: 0;
+}

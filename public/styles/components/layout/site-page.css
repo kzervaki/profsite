@@ -1,0 +1,41 @@
+/* ==================================================
+   Page section (SitePage.astro)
+   ================================================== */
+
+.site-page {
+  --page-max-width: 1200px;
+  --page-padding: 3.6rem;
+  --page-section-gap: 2rem;
+
+  flex: 1 1 auto;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--page-section-gap);
+
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding: var(--page-padding);
+}
+
+.site-page-header,
+.site-page-title {
+  margin: 0;
+}
+
+.site-page-content {
+  flex: 0 0 auto;
+}
+
+/* ---------- Mobile: tighter spacing, no full-viewport height ---------- */
+@media (max-width: 768px) {
+  .site-page {
+    --page-padding: 1.25rem;
+    --page-section-gap: 1.25rem;
+
+    min-height: auto;
+  }
+}

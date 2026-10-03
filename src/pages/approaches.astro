@@ -1,43 +1,17 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import LinkIntra from "../components/LinkIntra.astro";
-import SitePage from "../components/SitePage.astro";
-import TextWithImage from "../components/TextWithImage.astro";
-import GridHorizontal from "../components/GridHorizontal.astro";
-import GridStacked from "../components/GridStacked.astro";
-import CellContent from "../components/CellContent.astro";
-import { CONFIG } from "../site-config";
-import ServiceGrid from "../components/ServiceGrid.astro";
-import ServiceCard from "../components/ServiceCard.astro";
-
-const baseUrl = import.meta.env.BASE_URL || '/';
-
-const approaches = [
-  {
-    id: "B",
-    title: "Συστημική ψυχοθεραπεία",
-    href: `${baseUrl}/approaches/systemic`,
-    // description: "Στρέφει την ψυχολογική στο «όλον» και στις διαπροσωπικές του σχέσεις, υποστηριζοντας μια διευρυμένη θεώρηση του ατόμου"
-    // description: "Στρέφει την ψυχολογική ματιά από το άτομο στο «όλον» και από τις προσωπικές ιδιότητες στις σχέσεις, υποστηριζοντας μια διευρυμένη θεώρηση του ανθρώπου. Η συστημική θεωρια αντλεί από ποικίλα θεωρητικά ρεύματα, όπως η θεωρία των συστημάτων, η κυβερνητική, ο κοινωνικός κονστρουξιονισμός και η αφηγηματική προσέγγιση. Βασικό χαρακτηριστικό της είναι η θέαση των ψυχολογικών συμπτωμάτων όχι ως αποκλειστικά ατομικά παθολογικά χαρακτηριστικά, αλλά ως αποτέλεσμα των δυναμικών αλληλεπιδράσεων μεταξύ του ατόμου, της οικογένειας, του ζευγαριού ή ευρύτερων κοινωνικών πλαισίων. Τα ψυχολογικά συμπτώματα προσεγγίζονται έτσι όχι ως «πρόβλημα του ατόμου», αλλά ως έκφραση και αποτέλεσμα αλληλεπιδράσεων και σχεσιακών μοτίβων."
-  },
-  {
-    id: "C",
-    title: "Διαλεκτική συμπεριφορική θεραπεία",
-    href: `${baseUrl}/approaches/dialectic`,
-    // description: "Τεκμηριωμένη ψυχοθεραπευτική προσέγγιση της συναισθηματικής απορρύθμισης στο πλαίσιο της οριακής διαταραχής προσωπικότητας",
-    // description: "Σύγχρονη, επιστημονικά τεκμηριωμένη ψυχοθεραπευτική προσέγγιση που αναπτύχθηκε κατά τη δεκαετία του 1980. Η αρχική της διαμόρφωση προέκυψε μέσα από την ανάγκη αποτελεσματικής θεραπευτικής παρέμβασης σε άτομα με έντονη συναισθηματική πορρύθμιση και χρόνιες αυτοκαταστροφικές συμπεριφορές, κυρίως στο πλαίσιο της διαταραχής οριακής προσωπικότητας. Βασίζεται στο γνωσιακό–συμπεριφορικό μοντέλο, ενσωματώνοντας ταυτόχρονα διαλεκτικές αρχές και πρακτικές ενσυνειδητότητας. Ο διαλεκτικός χαρακτήρας της θεραπείας έγκειται στη σύνθεση δύο φαινομενικά αντίθετων διαδικασιών: της αποδοχής και επικύρωση της παρούσας εμπειρίας του θεραπευόμενου και ταυτοχρονα, της συστηματικής προώθησης της αλλαγής."
-  }
-];
+import TextWithImage from "@/components/content/TextWithImage.astro";
+import SitePage from "@/components/layout/SitePage.astro";
+import ServiceCard from "@/components/services/ServiceCard.astro";
+import ServiceGrid from "@/components/services/ServiceGrid.astro";
+import { APPROACHES, approachHref } from "@/data/approaches";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { withBase } from "@/utils/paths";
 ---
 
 <BaseLayout title="Θεραπευτικές προσεγγίσεις">
-
-  <SitePage
-    title="Θεραπευτικές προσεγγίσεις"
-  >
-
+  <SitePage title="Θεραπευτικές προσεγγίσεις">
     <TextWithImage
-      imageSrc=`${import.meta.env.BASE_URL}/images/intro-image-2.webp`,
+      imageSrc={withBase("images/intro-image-2.webp")}
       imageAlt="Sample image"
       imagePosition="top-left"
       textAlignment="justify"
@@ -45,7 +19,6 @@ const approaches = [
       imageWidth="390px"
       roundedCorners={true}
       mobileSpacing="1.5rem"
-      gap="4.1rem"
       mobileImageWidth="80%"
     >
       <p>
@@ -68,20 +41,14 @@ const approaches = [
     </TextWithImage>
 
     <ServiceGrid columns={2}>
-      <ServiceCard
-        title={approaches[0].title}
-        description={approaches[0].description}
-        href={approaches[0].href}
-        height=120px
-      />
-      <ServiceCard
-        title={approaches[1].title}
-        description={approaches[1].description}
-        height=120px
-        href={approaches[1].href}
-      />
+      {APPROACHES.map((approach) => (
+        <ServiceCard
+          title={approach.title}
+          description={approach.description}
+          href={approachHref(approach)}
+          height="120px"
+        />
+      ))}
     </ServiceGrid>
-
   </SitePage>
-
 </BaseLayout>

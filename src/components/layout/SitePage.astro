@@ -1,0 +1,21 @@
+---
+/** Page content section with an optional title header. */
+interface Props {
+  title?: string;
+  theme?: string;
+}
+
+const { title, theme } = Astro.props;
+---
+
+<section class="site-page" data-theme={theme}>
+  {title && (
+    <header class="site-page-header">
+      <h2 class="site-page-title">{title}</h2>
+    </header>
+  )}
+
+  <div class="site-page-content">
+    <slot />
+  </div>
+</section>

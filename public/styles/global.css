@@ -1,41 +1,51 @@
-@import "./reset.css";
+/* ==================================================
+   Stylesheet entry point (linked from BaseLayout.astro)
+   ==================================================
+   Import order is cascade order: later files win on equal specificity.
+   Component styles mirror src/components/<group>/; component-scoped
+   styles (<style> in .astro files) live in the components themselves.
+*/
 
-@import "./typography.vars.css";
-@import "./typography.css";
+/* ---------- Base ---------- */
+@import "./base/tokens.css";
+@import "./base/reset.css";
+@import "./base/motion.css";
+@import "./base/typography.css";
+@import "./base/layout.css";
 
-@import "./layout.vars.css";
-@import "./layout.css";
+/* ---------- Themes ---------- */
+@import "./themes/contract.css";
+@import "./themes/floral.css";
+@import "./themes/sage.css";
+@import "./themes/apply.css";
 
-@import "./themes/theme.base.css";
-@import "./themes/theme-floral.css";
-@import "./themes/theme-sage.css";
-@import "./theme.apply.css";
+/* ---------- Components: layout ---------- */
+@import "./components/layout/site-header.css";
+@import "./components/layout/site-nav.css";
+@import "./components/layout/site-main.css";
+@import "./components/layout/site-page.css";
+@import "./components/layout/site-footer.css";
 
-@import "./site-header.css";
-@import "./site-nav.css";
-@import "./site-main.css";
-@import "./site-page.css";
-@import "./site-footer.css";
+/* ---------- Components: content ---------- */
+@import "./components/content/intro-text.css";
+@import "./components/content/quote-block.css";
 
-@import "./intro-text.css";
+/* ---------- Components: grids ---------- */
+@import "./components/grids/grid-cell.css";
+@import "./components/grids/grid-horizontal.css";
+@import "./components/grids/grid-vertical.css";
+@import "./components/grids/grid-stacked.css";
+@import "./components/grids/cell-content.css";
 
-@import "./link-active.css";
-@import "./link-intra.css";
+/* ---------- Components: services ---------- */
+@import "./components/services/service-card.css";
+@import "./components/services/service-grid.css";
 
-@import "./grid-horizontal.css";
-@import "./grid-vertical.css";
-@import "./grid-stacked.css";
-@import "./cell-content.css";
+/* ---------- Components: contact ---------- */
+@import "./components/contact/contact-icon.css";
+@import "./components/contact/contact-section.css";
+@import "./components/contact/contact-details.css";
+@import "./components/contact/contact-form.css";
 
-@import "./service-card.css";
-@import "./service-grid.css";
-
-@import "./quote-block.css";
-
-@import "./contact-icon.css";
-@import "./contact-section.css";
-@import "./contact-details.css";
-@import "./contact-form.css";
-
-@import "./404.css";
-
+/* ---------- Pages ---------- */
+@import "./pages/not-found.css";

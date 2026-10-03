@@ -1,0 +1,50 @@
+---
+import { CONFIG } from "@/config/site";
+import { BASE_URL } from "@/utils/paths";
+
+interface Props {
+  title?: string;
+  logoSrc?: string | null;
+  logoAlt?: string;
+  homeHref?: string;
+  theme?: string;
+}
+
+const {
+  title = CONFIG.siteTitle,
+  logoSrc = null,
+  logoAlt = CONFIG.siteTitle,
+  homeHref = BASE_URL,
+  theme = "theme-floral",
+} = Astro.props;
+---
+
+<header class="site-header" data-theme={theme}>
+  <a href={homeHref} class="site-header-link" aria-label={`${title} homepage`}>
+    <div class="site-header-inner">
+      {logoSrc && (
+        <div class="site-header-logo">
+          <img src={logoSrc} alt={logoAlt} />
+        </div>
+      )}
+
+      <div class="site-header-banner">
+        <h1 class="site-header-title">{title}</h1>
+
+        <div class="site-header-subtitle-group">
+          <div class="site-header-subtitle">
+            <span class="subtitle-part">{CONFIG.professionTitle}</span>
+            <span class="subtitle-sep" aria-hidden="true">·</span>
+            <span class="subtitle-part">{CONFIG.socialWorkTitle}</span>
+          </div>
+
+          <div class="site-header-subtitle specialties">
+            <span class="subtitle-part">{CONFIG.specialtySystemic}</span>
+            <span class="subtitle-sep" aria-hidden="true">·</span>
+            <span class="subtitle-part">{CONFIG.specialtyDialectic}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+</header>

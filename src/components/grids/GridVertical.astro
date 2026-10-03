@@ -1,0 +1,48 @@
+---
+/** Seven-cell grid; fill cells via slots "A" to "G". */
+interface Props {
+  size?: string;
+  padding?: string;
+  lineWidth?: string;
+
+  /** Inline click handlers (optional) */
+  onClickA?: string;
+  onClickB?: string;
+  onClickC?: string;
+  onClickD?: string;
+  onClickE?: string;
+  onClickF?: string;
+  onClickG?: string;
+}
+
+const {
+  size = "80vmin",
+  padding = "1rem",
+  lineWidth = "2px",
+} = Astro.props;
+
+const cells = await Promise.all(
+  (["A", "B", "C", "D", "E", "F", "G"] as const).map(async (id) => ({
+    id,
+    onclick: Astro.props[`onClick${id}`],
+    html: await Astro.slots.render(id),
+  }))
+);
+---
+
+<section
+  class="grid-vertical-wrapper"
+  style={`
+    --gv-size: ${size};
+    --gv-padding: ${padding};
+    --gv-line-width: ${lineWidth};
+  `}
+>
+  <div class="grid-vertical">
+    {cells.map(({ id, onclick, html }) => (
+      <div class="cell" data-cell={id} onclick={onclick}>
+        <Fragment set:html={html} />
+      </div>
+    ))}
+  </div>
+</section>

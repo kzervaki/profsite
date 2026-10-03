@@ -1,0 +1,64 @@
+---
+/** Contact page body: image, contact details, message form and map. */
+import ContactDetails from "@/components/contact/ContactDetails.astro";
+import ContactForm from "@/components/contact/ContactForm.astro";
+import GoogleMap from "@/components/contact/GoogleMap.astro";
+import Image from "@/components/content/Image.astro";
+import { CONFIG } from "@/config/site";
+
+interface Props {
+  image: string;
+  imageAlt?: string;
+  imageWidth?: string;
+  imageHeight?: string;
+  rounded?: boolean;
+  theme?: string;
+}
+
+const {
+  image,
+  imageAlt = "",
+  imageWidth = "100%",
+  imageHeight = "auto",
+  rounded = true,
+  theme = "theme-sage",
+} = Astro.props;
+---
+
+<div class="contact-section" data-theme={theme}>
+  <div class="contact-image-wrapper" style={`--image-width: ${imageWidth}; --image-height: ${imageHeight};`}>
+    <Image src={image} alt={imageAlt} rounded={rounded} />
+  </div>
+
+  <div class="contact-header">
+    <ContactDetails />
+  </div>
+
+  <section class="contact-message-section">
+    <h3 class="contact-title">Αποστολή Μηνύματος</h3>
+
+    <div class="contact-grid">
+      <ContactForm
+        action="https://formspree.io/f/xnjgogqr"
+        rounded={true}
+        align="left"
+        buttonText="Αποστολή"
+        buttonWidth="140px"
+        buttonHeight="44px"
+        buttonBg="var(--color-primary, #5a7d8c)"
+        buttonColor="var(--color-text-light, #ffffff)"
+        buttonFontSize="1rem"
+        buttonRounded={true}
+        buttonHoverBg="var(--color-primary-hover, #48656f)"
+        class="contact-form-component"
+      />
+
+      <GoogleMap
+        embedUrl={CONFIG.googleMapLocation}
+        rounded={true}
+        align="center"
+        class="map-component"
+      />
+    </div>
+  </section>
+</div>

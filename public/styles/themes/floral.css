@@ -1,0 +1,20 @@
+/* ==================================================
+   Theme: floral (light, warm white)
+   ================================================== */
+
+[data-theme="theme-floral"] {
+  --theme-base-color: hsl(50 100% 98%);              /* soft floral white */
+  --theme-background-image: url("../../images/background-floral.png");
+
+  --theme-text-color: hsl(220 10% 12%);              /* near-black, coolish */
+  --theme-text-hover-color: hsl(220 10% 20%);
+
+  --theme-border-color: hsl(220 10% 60%);
+  --theme-surface-color: hsl(50 100% 95%);
+  --theme-selection-color: hsl(220 10% 50% / 0.35);
+
+  --theme-link-color: hsl(220 10% 12%);              /* matches text */
+  --theme-link-hover-color: hsl(220 8% 38%);
+  --theme-link-active-color: hsl(220 10% 8%);
+  --theme-link-underline: none;
+}
