@@ -1,0 +1,430 @@
+/* ==================================================
+   Site navigation (SiteNav.astro + scripts/site-nav.ts)
+   ==================================================
+   Mobile  (≤768px): burger → right-hand drawer; "Services" slides in a submenu panel.
+   Desktop (≥769px): inline menu; "Services" opens a dropdown built by the script.
+*/
+
+.site-nav {
+  --nav-font-size: 1.1rem;
+  --burger-size: 2.25rem;
+  --drawer-width: 260px;
+
+  position: sticky;
+  top: 0;
+  z-index: 40;
+
+  display: flex;
+  align-items: center;
+  min-height: 80px;
+  padding: 0 2rem;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.nav-drawer,
+.menu-panel,
+.desktop-dropdown {
+  will-change: transform, opacity;
+}
+
+/* ---------- Toggle (hidden checkbox driving the drawer) ---------- */
+.nav-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- Burger: ☰ → ✕ ---------- */
+.nav-burger {
+  width: var(--burger-size);
+  height: var(--burger-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  z-index: 50;
+  line-height: 1;
+}
+
+.nav-burger span {
+  position: relative;
+  width: 1.4rem;
+  height: 2px;
+  background: currentColor;
+  display: block;
+}
+
+.nav-burger span::before,
+.nav-burger span::after {
+  content: "";
+  position: absolute;
+  width: 1.4rem;
+  height: 2px;
+  background: currentColor;
+  transition: transform 0.25s ease;
+}
+
+.nav-burger span::before { transform: translateY(-6px); }
+.nav-burger span::after  { transform: translateY(6px); }
+
+.nav-toggle:checked + .nav-burger span {
+  background: transparent;
+}
+
+.nav-toggle:checked + .nav-burger span::before {
+  transform: rotate(45deg);
+}
+
+.nav-toggle:checked + .nav-burger span::after {
+  transform: rotate(-45deg);
+}
+
+/* ---------- Drawer ---------- */
+.nav-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: var(--drawer-width);
+  z-index: 40;
+  overflow: hidden;
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+}
+
+.nav-toggle:checked ~ .nav-drawer {
+  transform: translateX(0);
+}
+
+/* ---------- Drawer panels: main menu ⇄ services submenu ---------- */
+.menu-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: transparent;
+  transition: transform 0.3s ease;
+}
+
+.menu-panel--main {
+  transform: translateX(0);
+}
+
+.menu-panel--main.menu-panel--hidden {
+  transform: translateX(-100%);
+}
+
+.menu-panel--submenu {
+  transform: translateX(100%);
+}
+
+.menu-panel--submenu:not([hidden]) {
+  transform: translateX(0);
+}
+
+/* ---------- Main menu ---------- */
+.menu-list {
+  list-style: none;
+  font-size: var(--nav-font-size);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.menu-list li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Links and the "Services" trigger button look identical */
+.menu-list a,
+.submenu-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  color: inherit;
+  font-family: inherit;
+  font-size: var(--nav-font-size);
+  font-weight: inherit;
+  line-height: 1.4;
+  text-align: left;
+  text-decoration: none;
+
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.menu-list a:focus-visible,
+.submenu-trigger:focus-visible,
+.back-button:focus-visible {
+  outline: 2px solid currentColor;
+}
+
+.menu-item-with-submenu {
+  width: 100%;
+  position: relative;
+}
+
+.submenu-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trigger-arrow {
+  transition: transform 0.2s ease;
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+}
+
+.submenu-trigger[aria-expanded="true"] .trigger-arrow {
+  transform: rotate(90deg);
+}
+
+/* ---------- Services submenu ---------- */
+.submenu-header {
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  opacity: 0.9;
+
+  color: inherit;
+  font-family: inherit;
+  font-size: var(--nav-font-size);
+  text-align: left;
+}
+
+.back-button span {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.submenu-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.submenu-list a {
+  display: block;
+  padding-left: 1.75rem;
+  opacity: 0.9;
+
+  color: inherit;
+  font-size: var(--nav-font-size);
+  font-weight: inherit;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+/* ---------- Overlay behind the open drawer ---------- */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  will-change: opacity;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-toggle:checked ~ .nav-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Lock page scroll while the drawer is open */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* ---------- Mobile: larger burger tap target ---------- */
+@media (max-width: 768px) {
+  .nav-burger {
+    padding: 0.5rem;
+    margin: -0.5rem;
+  }
+}
+
+/* ---------- Desktop: inline menu + dropdown ---------- */
+@media (min-width: 769px) {
+  .nav-burger,
+  .nav-overlay,
+  .trigger-arrow {
+    display: none;
+  }
+
+  body.menu-open {
+    overflow: auto;
+  }
+
+  .nav-drawer {
+    position: static;
+    height: 100%;
+    width: auto;
+    transform: none;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    overflow: visible;
+  }
+
+  .menu-panel {
+    position: static;
+    padding: 0;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .menu-panel--main,
+  .menu-panel--main.menu-panel--hidden {
+    transform: none;
+  }
+
+  .menu-panel--submenu {
+    display: none !important;
+  }
+
+  .menu-list {
+    flex-direction: row;
+    align-items: center;
+    gap: 2.5rem;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .menu-list li {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    overflow: visible;
+  }
+
+  .menu-list a,
+  .submenu-trigger {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    line-height: 1;
+    padding: 0 0.25rem;
+    white-space: nowrap;
+  }
+
+  .menu-list a:hover,
+  .submenu-trigger:hover {
+    opacity: 0.8;
+  }
+
+  .menu-list a:focus-visible,
+  .submenu-trigger:focus-visible {
+    outline-offset: 4px;
+  }
+
+  .desktop-dropdown {
+    position: absolute;
+    top: calc(100% - 0.75rem);
+    left: 0;
+    z-index: 1000;
+    min-width: 220px;
+    margin-top: 0.75rem;
+    padding: 0.75rem 0;
+    list-style: none;
+
+    background: rgba(255, 255, 255, 0.48);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
+    /* Hidden until .desktop-dropdown--visible (opacity/transform only) */
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .desktop-dropdown.desktop-dropdown--visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .desktop-dropdown li {
+    height: auto;
+    width: 100%;
+  }
+
+  .desktop-dropdown a {
+    display: block;
+    height: auto;
+    padding: 0.8rem 1.2rem;
+    opacity: 0.95;
+
+    color: #2a2a2a;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+
+    outline: 2px solid transparent;
+    outline-offset: -2px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .desktop-dropdown a:hover {
+    background: rgba(0, 0, 0, 0.15);
+    color: #000000;
+    opacity: 1;
+  }
+
+  .desktop-dropdown a:focus-visible {
+    background: rgba(0, 102, 204, 0.1);
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .nav-drawer,
+  .menu-panel,
+  .desktop-dropdown {
+    transition: none !important;
+  }
+}

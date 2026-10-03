@@ -1,0 +1,156 @@
+/* ==================================================
+   Contact form (ContactForm.astro)
+   ================================================== */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--space-md);
+  transition: all 0.3s ease;
+}
+
+.contact-form[data-align="left"] {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.contact-form[data-align="right"] {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* ---------- Fields ---------- */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  width: 100%;
+}
+
+.field-label {
+  margin-left: var(--space-xs);
+  opacity: 0.95;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.contact-input {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  color: #1a1a1a;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+
+  transition: all 0.2s ease;
+}
+
+.contact-input--rounded {
+  border-radius: var(--radius-md);
+}
+
+.contact-input:focus {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.35);
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: #000000;
+}
+
+.contact-input::placeholder {
+  color: #4a4a4a;
+  opacity: 0.7;
+  font-size: 0.95rem;
+  font-weight: 300;
+}
+
+textarea.contact-input {
+  resize: vertical;
+  min-height: 120px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+textarea.contact-input:focus {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+/* ---------- Submit button (colors/sizes via --btn-* set by the component) ---------- */
+.contact-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 120px;
+  height: var(--btn-height, 44px);
+  padding: 0 var(--space-lg);
+
+  border: none;
+  background-color: var(--btn-bg, var(--color-primary, #5a7d8c));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+
+  color: var(--btn-color, #ffffff);
+  font-size: var(--btn-font-size, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
+
+  transition: all 0.2s ease;
+}
+
+.contact-button:hover {
+  background-color: var(--btn-hover-bg, var(--color-primary-hover, #48656f));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.contact-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.contact-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.contact-button--rounded {
+  border-radius: var(--radius-md);
+}
+
+.contact-button--fixed-width {
+  width: var(--btn-width, auto);
+}
+
+/* ---------- Mobile / touch: larger targets ---------- */
+@media (max-width: 768px) {
+  .contact-button {
+    min-height: 48px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .contact-button {
+    min-height: 48px;
+    padding: 0 var(--space-lg);
+  }
+
+  .contact-input {
+    font-size: 16px;   /* prevents iOS zoom on focus */
+    padding: var(--space-md) var(--space-md);
+  }
+}

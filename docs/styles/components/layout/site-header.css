@@ -1,0 +1,196 @@
+/* ==================================================
+   Site header (SiteHeader.astro)
+   ================================================== */
+
+.site-header {
+  --header-max-width: var(--layout-main-max-width, 900px);
+  --header-padding-y: 0rem;
+  --header-padding-x: 1rem;
+  --header-gap: 1.2rem;
+  --header-logo-size: 190px;
+  --header-title-size: 1.7rem;
+  --header-subtitle-size: 1.0rem;
+
+  margin: 0;
+}
+
+/* ---------- Clickable wrapper (home link) ---------- */
+.site-header-link {
+  display: block;
+  color: inherit !important;
+  text-decoration: none !important;
+  border-radius: 4px;
+}
+
+.site-header-link:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.site-header-link:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ---------- Layout ---------- */
+.site-header-inner {
+  max-width: var(--header-max-width);
+  margin: 0 auto;
+  padding: var(--header-padding-y) var(--header-padding-x);
+
+  display: flex;
+  align-items: center;
+  gap: var(--header-gap);
+}
+
+.site-header-logo {
+  flex-shrink: 0;
+}
+
+.site-header-logo img {
+  width: var(--header-logo-size);
+  height: auto;
+  display: block;
+}
+
+/* ---------- Title & subtitles ---------- */
+.site-header-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: #2a2a2a;
+}
+
+.site-header-title {
+  font-size: var(--header-title-size);
+  margin: 0;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.site-header-subtitle-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-weight: 400;
+}
+
+.site-header-subtitle {
+  font-size: var(--header-subtitle-size);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3em 0.4em;
+  line-height: 1.3;
+}
+
+/* The specialties line is long: let it break anywhere */
+.site-header-subtitle.specialties .subtitle-part {
+  word-break: break-word;
+}
+
+.subtitle-sep {
+  opacity: 0.8;
+  user-select: none;
+  font-weight: 900;
+}
+
+/* ---------- Tablet & small desktop ---------- */
+@media (max-width: 1024px) {
+  .site-header {
+    --header-logo-size: 160px;
+    --header-title-size: 1.6rem;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 768px) {
+  .site-header {
+    --header-padding-y: 0.875rem;
+    --header-gap: 0.75rem;
+    --header-logo-size: 70px;
+    --header-title-size: 1.35rem;
+    --header-subtitle-size: 0.9rem;
+  }
+
+  .site-header-banner {
+    gap: 0.2rem;
+  }
+
+  .site-header-subtitle-group {
+    gap: 0.25rem;
+  }
+
+  .site-header-subtitle {
+    line-height: 1.5;
+    gap: 0.25em 0.3em;
+  }
+
+  /* Specialties flow as inline text */
+  .site-header-subtitle.specialties {
+    display: block;
+  }
+
+  .site-header-subtitle.specialties .subtitle-part {
+    display: inline;
+  }
+
+  .site-header-subtitle.specialties .subtitle-sep {
+    margin: 0 0.1rem;
+  }
+
+  .subtitle-sep {
+    opacity: 0.4;
+  }
+}
+
+/* ---------- Small mobile ---------- */
+@media (max-width: 480px) {
+  .site-header {
+    --header-padding-y: 0.75rem;
+    --header-padding-x: 0.875rem;
+    --header-gap: 0.6rem;
+    --header-logo-size: 60px;
+    --header-title-size: 1.2rem;
+    --header-subtitle-size: 0.85rem;
+  }
+
+  .site-header-subtitle {
+    gap: 0.2em 0.25em;
+  }
+
+  /* One specialty per line, no separator */
+  .site-header-subtitle.specialties .subtitle-part {
+    display: block;
+    margin: 0.1rem 0;
+  }
+
+  .site-header-subtitle.specialties .subtitle-sep {
+    display: none;
+  }
+
+  .subtitle-part {
+    letter-spacing: -0.01em;
+  }
+}
+
+/* ---------- Extra small mobile: stack both subtitle lines ---------- */
+@media (max-width: 360px) {
+  .site-header {
+    --header-logo-size: 50px;
+    --header-title-size: 1.1rem;
+    --header-subtitle-size: 0.8rem;
+  }
+
+  .site-header-subtitle {
+    display: block;
+  }
+
+  .site-header-subtitle .subtitle-part {
+    display: block;
+    margin: 0.15rem 0;
+  }
+
+  .site-header-subtitle .subtitle-sep {
+    display: none;
+  }
+}

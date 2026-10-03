@@ -1,0 +1,30 @@
+/* ==================================================
+   Cell content inside grid cells (CellContent.astro; base styles are scoped in the component)
+   ================================================== */
+
+@media (max-width: 768px) {
+  /* Smaller plain text in cells */
+  .cell :where(p, span, div:not(.cell-content, .cell-static, .cell-link)) {
+    font-size: clamp(0.75rem, 3vw, 0.9rem);
+  }
+
+  /* Clamp the body to 3 lines */
+  .cell-body {
+    font-size: 0.8em;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .cell-title {
+    font-size: 0.9em;
+    margin-bottom: 0.25rem;
+  }
+
+  .cell-link,
+  .cell-static {
+    padding: 0.5rem;
+  }
+}

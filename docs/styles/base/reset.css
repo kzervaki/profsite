@@ -1,0 +1,23 @@
+/* ==================================================
+   Reset
+   ================================================== */
+
+/* Full viewport, no margins; theme background fills the viewport */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  background-color: var(--theme-base-color);
+  background-image: var(--theme-background-image);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}

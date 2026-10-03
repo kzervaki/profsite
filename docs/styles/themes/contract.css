@@ -1,0 +1,27 @@
+/* ==================================================
+   Theme contract: variables every theme defines
+   ==================================================
+   Defaults below apply outside any [data-theme] element.
+   Themes override them on [data-theme="theme-<name>"] (see floral.css, sage.css).
+*/
+
+:root {
+  /* Base color behind the background image */
+  --theme-base-color: transparent;
+  --theme-background-image: none;
+
+  /* Text */
+  --theme-text-color: currentColor;
+  --theme-text-hover-color: currentColor;
+
+  /* Borders, surfaces (cards, panels) and text selection */
+  --theme-border-color: currentColor;
+  --theme-surface-color: transparent;
+  --theme-selection-color: hsl(200 100% 80% / 0.4);
+
+  /* Links */
+  --theme-link-color: currentColor;
+  --theme-link-hover-color: currentColor;
+  --theme-link-active-color: currentColor;
+  --theme-link-underline: none;
+}

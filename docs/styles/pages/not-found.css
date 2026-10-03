@@ -1,0 +1,150 @@
+/* ==================================================
+   404 page (pages/404.astro)
+   ==================================================
+   Note: the --color-* variables used here are not defined anywhere, so those
+   declarations resolve to the inherited/initial value.
+*/
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 520px;
+  min-height: 60vh;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  text-align: center;
+  color: var(--color-text);
+  background: var(--color-bg-main, transparent);
+}
+
+.not-found-breadcrumb {
+  width: 100%;
+  margin-bottom: var(--space-sm);
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.not-found-breadcrumb a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.not-found-breadcrumb a:hover,
+.not-found-breadcrumb a:focus-visible {
+  color: var(--color-primary-hover);
+}
+
+/* Big "404" with a subtle pulse */
+.not-found-number {
+  display: block;
+  width: 100%;
+  margin: 0 0 var(--space-md) 0;
+
+  font-size: clamp(4rem, 15vw, 6rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: var(--color-primary);
+
+  animation: pulse404 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse404 {
+  0%   { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(1.03); opacity: 1; }
+}
+
+.not-found-lead {
+  width: 100%;
+  max-width: 90%;
+  margin: 0 0 var(--space-sm) 0;
+
+  font-size: 1.9rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.not-found-link {
+  display: inline-block;
+  padding: 0.25rem 0;
+
+  font-size: 1.3rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--color-primary);
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.not-found-link:hover,
+.not-found-link:focus-visible {
+  border-color: currentColor;
+  color: var(--color-primary-hover);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 768px) {
+  .not-found {
+    min-height: 50vh;
+    padding: 2rem 1.5rem;
+  }
+
+  .not-found-number {
+    font-size: clamp(3.5rem, 12vw, 5rem);
+    margin-bottom: calc(var(--space-md) * 0.8);
+  }
+
+  .not-found-lead {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .not-found-link {
+    font-size: 1rem;
+    padding: 0.5rem 0.25rem;
+  }
+}
+
+/* ---------- Small mobile ---------- */
+@media (max-width: 480px) {
+  .not-found {
+    min-height: 40vh;
+    padding: 1.5rem 1rem;
+  }
+
+  .not-found-number {
+    font-size: clamp(3rem, 10vw, 4rem);
+    margin-bottom: calc(var(--space-md) * 0.6);
+  }
+
+  .not-found-lead {
+    font-size: 0.95rem;
+  }
+}
+
+/* ---------- Landscape phones ---------- */
+@media (max-width: 768px) and (orientation: landscape) {
+  .not-found {
+    min-height: 80vh;
+    padding: 1rem;
+  }
+
+  .not-found-number {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    margin-bottom: calc(var(--space-md) * 0.5);
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .not-found-number {
+    animation: none;
+  }
+}

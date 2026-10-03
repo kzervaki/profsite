@@ -1,0 +1,210 @@
+/* ==================================================
+   Contact section (ContactSection.astro)
+   ==================================================
+   Image, contact details, then a two-column [form | map] grid (stacked on mobile).
+*/
+
+.contact-section {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg);
+}
+
+.contact-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.contact-image-wrapper {
+  width: var(--image-width, 100%);
+  height: var(--image-height, auto);
+  max-width: 100%;
+}
+
+.contact-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Section headings ("Στοιχεία Επικοινωνίας", "Αποστολή Μηνύματος") */
+.contact-title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-xl);
+  opacity: 0.95;
+}
+
+.contact-title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.3;
+}
+
+.contact-message-section {
+  margin-top: var(--space-2xl);
+}
+
+/* ---------- Form | map grid (both columns share the row height) ---------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: stretch;
+  min-height: 600px;
+  margin-top: var(--space-lg);
+}
+
+.contact-grid > * {
+  min-width: 0;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form-component,
+.map-component {
+  height: 100%;
+}
+
+/* ---------- Map (GoogleMap.astro) ---------- */
+.map-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+.map-address {
+  margin-bottom: var(--space-sm);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Frame takes the remaining height; the iframe fills it */
+.map-frame {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.map-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  transition: all 0.2s ease;
+}
+
+.map-iframe--rounded {
+  border-radius: var(--radius-md);
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .contact-header {
+    gap: var(--space-lg);
+  }
+
+  .contact-title {
+    font-size: 1.6rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr 0.9fr;
+    gap: var(--space-xl);
+    min-height: 500px;
+  }
+}
+
+/* ---------- Mobile: single column, map at a fixed aspect ratio ---------- */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .contact-header {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .contact-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    min-height: auto;
+  }
+
+  .contact-grid > * {
+    width: 100%;
+  }
+
+  .contact-form-component {
+    max-width: 100%;
+  }
+
+  .map-component {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    min-height: 250px;
+    max-height: 350px;
+  }
+
+  .map-frame {
+    height: 100%;
+    flex: none;
+  }
+}
+
+/* ---------- Small mobile ---------- */
+@media (max-width: 480px) {
+  .contact-section {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .contact-title {
+    font-size: 1.3rem;
+  }
+
+  .contact-grid {
+    gap: var(--space-xl);
+  }
+
+  .map-component {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ---------- Landscape phones ---------- */
+@media (max-width: 896px) and (orientation: landscape) {
+  .contact-grid {
+    gap: var(--space-lg);
+  }
+
+  .map-component {
+    aspect-ratio: 16 / 7;
+    max-height: 300px;
+  }
+}

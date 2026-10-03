@@ -1,0 +1,90 @@
+/* ==================================================
+   Intro text (IntroText.astro)
+   ==================================================
+   Desktop: [top text | top image] then [bottom image | bottom text].
+   Mobile:  everything stacked: top text, top image, bottom text, bottom image.
+*/
+
+.intro-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap, 2rem);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.intro-text-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--image-margin, 1rem);
+  width: 100%;
+}
+
+.intro-text-text {
+  flex: 1;
+  min-width: 0;
+  text-align: var(--text-alignment, left);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.intro-text-image {
+  flex-shrink: 0;
+  border-radius: var(--border-radius, 0);
+  overflow: hidden;
+}
+
+.intro-text-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.intro-text-text--top     { order: 1; }
+.intro-text-image--top    { order: 2; width: var(--top-image-width, 200px); }
+.intro-text-image--bottom { order: 1; width: var(--bottom-image-width, 200px); }
+.intro-text-text--bottom  { order: 2; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 768px) {
+  .intro-text-row {
+    flex-direction: column !important;
+    gap: var(--mobile-spacing, 1.5rem);
+  }
+
+  .intro-text-text {
+    width: 100%;
+  }
+
+  .intro-text-text--top    { order: 1 !important; }
+  .intro-text-image--top   { order: 2 !important; }
+  .intro-text-text--bottom { order: 3 !important; }
+  .intro-text-image--bottom { order: 4 !important; }
+
+  .intro-text-image--top {
+    width: var(--top-mobile-image-width, 50%) !important;
+    max-width: var(--top-mobile-image-width, 50%) !important;
+  }
+
+  .intro-text-image--bottom {
+    width: var(--bottom-mobile-image-width, 50%) !important;
+    max-width: var(--bottom-mobile-image-width, 50%) !important;
+  }
+
+  /* Align images with the text */
+  .intro-text[data-text-alignment="center"] .intro-text-image {
+    margin: 0 auto;
+  }
+
+  .intro-text[data-text-alignment="right"] .intro-text-image {
+    margin-left: auto;
+  }
+
+  .intro-text[data-text-alignment="left"] .intro-text-image {
+    margin-right: auto;
+  }
+}
